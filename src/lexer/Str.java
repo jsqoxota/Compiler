@@ -9,6 +9,6 @@ public class Str extends Token {
 
     @Override
     public String toString() {
-        return string;
+        return '"'+ string + '"';
     }
 }

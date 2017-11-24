@@ -49,7 +49,7 @@ public class Lexer {
         }
         Token temp;
 
-        if(flag)return null;
+        if(flag)return null;                //文件读取结束
 
         //是否是operator
         temp = isCompoundOperator();
@@ -59,6 +59,12 @@ public class Lexer {
 
         //是否数值
         temp = isNumber();
+        if(temp != null){
+            return temp;
+        }
+
+        //是否是字符串
+        temp = isString();
         if(temp != null){
             return temp;
         }
@@ -209,10 +215,13 @@ public class Lexer {
         if(peek == '"'){
             String s = "";
             char bef = '"';
-            while (readCh('"')&&bef != '\\'){
+            readCh();
+            while (peek != '"'|| bef == '\\'){
                 s += peek;
                 bef = peek;
+                readCh();
             }
+            peek = ' ';
             return new Str(s);
         }
         else return null;
