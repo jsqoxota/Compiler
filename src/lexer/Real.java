@@ -8,6 +8,11 @@ public class Real extends Token {
     }
 
     @Override
+    public String getTag() {
+        return "real";
+    }
+
+    @Override
     public String toString() {
         return "" + value;
     }

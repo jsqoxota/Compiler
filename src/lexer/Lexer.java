@@ -1,12 +1,14 @@
 package lexer;
 
+import operation.*;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
 public class Lexer {
-    private static int line = 1;            //行数
+    public static int line = 1;            //行数
     private static boolean flag;            //文件是否读取结束
     char peek = ' ';
     HashMap id;
@@ -52,7 +54,7 @@ public class Lexer {
         if(flag)return null;                //文件读取结束
 
         //是否是operator
-        temp = isCompoundOperator();
+        temp = isOperator();
         if(temp != null){
             return temp;
         }
@@ -75,9 +77,8 @@ public class Lexer {
             return temp;
         }
 
-        Token token = new Symbol(peek);
         peek = ' ';
-        return token;
+        return null;
     }
 
     //跳过分隔符 空格 回车 换行 横向制表
@@ -156,54 +157,72 @@ public class Lexer {
         return null;
     }
 
-    //是否是复合词法单元的词素
-    private Token isCompoundOperator()throws IOException{
+    //是否是运算符
+    private Token isOperator()throws IOException{
         switch ( peek ){
             case '+':
-                if( readCh('+'))return CompoundOperator.inc;
-                else if(peek == '=')return CompoundOperator.az;
-                else return new Symbol('+');
+                if( readCh('+'))return AssignmentOp.inc;
+                else if(peek == '=')return AssignmentOp.az;
+                else return ArithmeticOp.add;
             case '-':
-                if ( readCh('-'))return CompoundOperator.dec;
-                else if(peek == '=')return CompoundOperator.sz;
-                else return new Symbol('-');
+                if ( readCh('-'))return AssignmentOp.dec;
+                else if(peek == '=')return AssignmentOp.sz;
+                else return ArithmeticOp.sub;
             case '*':
-                if(readCh('='))return CompoundOperator.mz;
-                else return new Symbol('*');
+                if(readCh('='))return AssignmentOp.mz;
+                else return ArithmeticOp.mul;
             case '/':
-                if(readCh('='))return CompoundOperator.dz;
-                else return new Symbol('/');
+                if(readCh('='))return AssignmentOp.dz;
+                else return ArithmeticOp.div;
             case '%':
-                if( readCh('='))return CompoundOperator.pz;
-                else return new Symbol('%');
+                if( readCh('='))return AssignmentOp.pz;
+                else return ArithmeticOp.rem;
             case '&':
-                if ( readCh('&') )return CompoundOperator.and;
-                else if( peek == '=')return CompoundOperator.andz;
-                else return new Symbol('&');
+                if ( readCh('&') )return LogicOp.and;
+                else if( peek == '=')return AssignmentOp.andZ;
+                else return BitOp.and;
             case '|':
-                if ( readCh('|'))return CompoundOperator.or;
-                else if(peek == '=')return CompoundOperator.orz;
-                else return new Symbol('|');
+                if ( readCh('|'))return LogicOp.or;
+                else if(peek == '=')return AssignmentOp.orz;
+                else return BitOp.or;
             case '^':
-                if(readCh('='))return CompoundOperator.xorz;
-                else return new Symbol('^');
+                if(readCh('='))return AssignmentOp.xorZ;
+                else return BitOp.xor;
             case '=':
-                if ( readCh('='))return CompoundOperator.eq;
-                else return new Symbol('=');
+                if ( readCh('='))return RelationOp.eq;
+                else return AssignmentOp.equal;
             case '!':
-                if ( readCh('='))return CompoundOperator.ne;
-                else return new Symbol('!');
+                if ( readCh('='))return RelationOp.ne;
+                else return LogicOp.not;
             case '<':
-                if ( readCh('='))return CompoundOperator.le;
-                else if(peek == '<')return CompoundOperator.sal;
-                else return new Symbol('<');
+                if ( readCh('='))return RelationOp.le;
+                else if(peek == '<')return BitOp.sal;
+                else return RelationOp.be;
             case '>':
-                if ( readCh('='))return CompoundOperator.ge;
+                if ( readCh('='))return RelationOp.ge;
                 else if(peek == '>'){
-                    if(readCh('>'))return CompoundOperator.shr;
-                    else return CompoundOperator.sar;
+                    if(readCh('>'))return BitOp.shr;
+                    else return BitOp.sar;
                 }
-                else return new Symbol('>');
+                else return RelationOp.ab;
+            case '{':
+                peek = ' ';
+                return Delimiter.curlyBraL;
+            case '}':
+                peek = ' ';
+                return Delimiter.curlyBraR;
+            case '[':
+                peek = ' ';
+                return Delimiter.squareBraL;
+            case ']':
+                peek = ' ';
+                return Delimiter.squareBraR;
+            case '(':
+                peek = ' ';
+                return Delimiter.roundBraL;
+            case ')':
+                peek = ' ';
+                return Delimiter.roundBraR;
             default:
                 break;
         }

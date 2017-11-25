@@ -8,6 +8,11 @@ public class Num extends Token {
     }
 
     @Override
+    public String getTag() {
+        return "num";
+    }
+
+    @Override
     public String toString() {
         return "" + value;
     }

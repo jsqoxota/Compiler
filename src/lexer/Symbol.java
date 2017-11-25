@@ -6,6 +6,11 @@ public class Symbol extends Token {
     }
 
     @Override
+    public String getTag() {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return ""+(char)tag;
     }

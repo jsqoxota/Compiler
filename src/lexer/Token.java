@@ -16,13 +16,13 @@ abstract public class Token {
 
     //控制台打印
     public void printOnConsole(){
-        System.out.println("<"+ tag +",\t"+ this.toString() + ">");
+        System.out.println("<"+ this.toString() +", "+ this.getTag() + ">");
     }
 
     //输出到文件
     public boolean outputToFile()throws IOException{
         if(fileWriter == null)return false;
-        fileWriter.write("<"+ tag +",\t"+ this.toString() + ">"+ "\r\n");
+        fileWriter.write("<"+ this.toString() +", "+ tag + ">"+ "\r\n");
         return true;
     }
 
@@ -33,4 +33,6 @@ abstract public class Token {
     public static void closeFileWrite()throws IOException{
         fileWriter.close();
     }
+
+    abstract public String getTag();
 }

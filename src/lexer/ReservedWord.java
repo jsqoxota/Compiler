@@ -19,7 +19,6 @@ public class ReservedWord extends Word {
         return reservedWords.get(lexeme);
     }
 
-
     //保存关键字s
     private static void reserveReservedWord(){
         reserve(new ReservedWord("abstract",    Tag.ABSTRACT    ));
@@ -85,5 +84,10 @@ public class ReservedWord extends Word {
     //将关键字保存到HashMap
     private static void reserve(ReservedWord reservedWord){
         reservedWords.put(reservedWord.toString(), reservedWord);
+    }
+
+    @Override
+    public String getTag() {
+        return "key";
     }
 }
