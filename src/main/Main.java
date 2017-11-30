@@ -3,33 +3,39 @@ package main;
 import lexer.Lexer;
 import lexer.Token;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
+    private static final String pathnameInput = "./test.txt";
+    private static final String pathnameOutput = "./result.txt";
     public static void main(String[] args)throws IOException {
-        File fileInput = new File("./test.txt");
-        File fileOutput = new File("./result.txt");
+        File inputFile = new File(pathnameInput);
+        File outputFile = new File(pathnameOutput);
+        checkFile(inputFile, outputFile);
 
-        if(!fileInput.exists()){
-            System.out.println("无法找到源文件");
-        }
-        if(fileOutput.exists()){
-            fileOutput.delete();
-            fileOutput.createNewFile();
-        }
-        else fileOutput.createNewFile();
-
-        Lexer lexer = new Lexer(fileInput);
+        Lexer lexer = new Lexer(inputFile);
         Token token;
 
-        Token.setFile(fileOutput);
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile)));
         while (true) {
             if((token = lexer.scan())==null)break;
-            token.printOnConsole();
-            token.outputToFile();
+            String temp = token.getToken();
+            System.out.println(temp);
+            bufferedWriter.write(temp);
+            bufferedWriter.newLine();
         }
-        Token.closeFileWrite();
-        lexer.closeFile();
+        bufferedWriter.close();
+    }
+
+    //检测文件是否存在
+    private static void checkFile(File inputFile, File outputFile)throws IOException{
+        if(!inputFile.exists()){
+            System.out.println("无法找到源文件");
+        }
+        if(outputFile.exists()){
+            outputFile.delete();
+            outputFile.createNewFile();
+        }
+        else outputFile.createNewFile();
     }
 }
