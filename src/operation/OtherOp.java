@@ -1,5 +1,7 @@
 package operation;
 
+import lexer.Tag;
+
 public class OtherOp extends Operation {
     private OtherOp(int tag, String lexeme) {
         super(tag, lexeme);
@@ -10,5 +12,9 @@ public class OtherOp extends Operation {
         return "otherOp";
     }
 
-    
+    public final static OtherOp
+        point       = new OtherOp('.', "."),
+        questionM   = new OtherOp('?', "?"),
+        quotationM  = new OtherOp(':', ":"),
+        lambda     = new OtherOp(Tag.LAMBDA ,"->");
 }

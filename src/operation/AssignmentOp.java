@@ -21,6 +21,9 @@ public class AssignmentOp extends Operation {
             pz      = new AssignmentOp(Tag.PZ,      "%="),
             andZ    = new AssignmentOp(Tag.ANDZ,    "&="),
             orz     = new AssignmentOp(Tag.ORZ,     "|="),
-            xorZ    = new AssignmentOp(Tag.XORZ,    "^=");
+            xorZ    = new AssignmentOp(Tag.XORZ,    "^="),
+            salZ    = new AssignmentOp(Tag.SALZ,    "<<="),
+            sarZ    = new AssignmentOp(Tag.SARZ,    ">>="),
+            shrZ    = new AssignmentOp(Tag.SHRZ,    ">>>=");
 
 }

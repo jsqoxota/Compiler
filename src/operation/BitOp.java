@@ -13,10 +13,10 @@ public class BitOp extends Operation {
     }
 
     public static final BitOp
-            or  = new BitOp('~',    "~"),
+            or  = new BitOp('|',    "|"),
             and = new BitOp('&',    "&"),
             xor = new BitOp('^',    "^"),
-            not = new BitOp('!',    "!"),
+            not = new BitOp('~',    "~"),
             sal = new BitOp(Tag.SAL,    "<<"),
             sar = new BitOp(Tag.SAR,    ">>"),
             shr = new BitOp(Tag.SHR,    "<<<");

@@ -17,5 +17,5 @@ public class Tag {
         VOLATILE    = 316,  WHILE       = 317,  INC         = 318,  DEC         = 319,  AZ          = 320,
         SZ          = 321,  MZ          = 322,  DZ          = 323,  PZ          = 324,  SAL         = 325,
         SAR         = 326,  SHR         = 327,  ANDZ        = 328,  ORZ         = 329,  XORZ        = 330,
-        SALZ        = 331,  SARZ        = 332;
+        SALZ        = 331,  SARZ        = 332,  LAMBDA      = 333,  SHRZ        = 334;
 }

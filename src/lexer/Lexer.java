@@ -188,14 +188,18 @@ public class Lexer {
                 return isComplexOperation('=', RelationOp.ne, LogicOp.not);
             case '+':
                 return isComplexOperation('+','=',ArithmeticOp.inc, AssignmentOp.az, ArithmeticOp.add);
-            case '-':
-                return isComplexOperation('-','=',ArithmeticOp.dec, AssignmentOp.sz, ArithmeticOp.sub);
             case '&':
                 return isComplexOperation('&','=',LogicOp.and, AssignmentOp.andZ, BitOp.and);
             case '|':
                 return isComplexOperation('|','=',LogicOp.or, AssignmentOp.orz, BitOp.or);
-            case '<':
-                return isComplexOperation('=','<',RelationOp.le, BitOp.sal, RelationOp.be);
+            case '.':
+                return OtherOp.point;
+            case '?':
+                return OtherOp.questionM;
+            case ':':
+                return OtherOp.quotationM;
+            case '~':
+                return BitOp.not;
             case '{':
                 return Delimiter.curlyBraL;
             case '}':
@@ -208,10 +212,34 @@ public class Lexer {
                 return Delimiter.roundBraL;
             case ')':
                 return Delimiter.roundBraR;
+            case '-':
+                if( readCh('-'))return ArithmeticOp.dec;
+                else if(cmpCh('='))return AssignmentOp.sz;
+                else if(cmpCh('>'))return OtherOp.lambda;
+                else {
+                    backCh();
+                    return ArithmeticOp.sub;
+                }
+            case '<':
+                if (readCh('=')) return RelationOp.le;
+                else if (cmpCh('<')) {
+                    return isComplexOperation('=', AssignmentOp.salZ, BitOp.sal);
+                }
+                else {
+                    backCh();
+                    return RelationOp.be;
+                }
             case '>':
                 if ( readCh('='))return RelationOp.ge;
                 else if(cmpCh('>')){
-                    return isComplexOperation('>', BitOp.shr, BitOp.sar);
+                    if (readCh('>')) {
+                        return isComplexOperation('=', AssignmentOp.shrZ, BitOp.shr);
+                    }
+                    else if (cmpCh('='))return AssignmentOp.sarZ;
+                    else {
+                        backCh();
+                        return BitOp.sar;
+                    }
                 }
                 else {
                     backCh();
@@ -303,13 +331,13 @@ public class Lexer {
     }
 
     //complex operation
-    private Token isComplexOperation(char op1, char op2, Token token1, Token token2, Token token3)throws IOException{
-            if( readCh(op1))return token1;
-            else if(cmpCh(op2))return token2;
-            else {
-                backCh();
-                return token3;
-            }
+    private Token isComplexOperation(char op1, char op2, Token token1, Token token2, Token token3)throws IOException {
+        if (readCh(op1)) return token1;
+        else if (cmpCh(op2)) return token2;
+        else {
+            backCh();
+            return token3;
+        }
     }
     private Token isComplexOperation(char op, Token token1, Token token2)throws IOException {
         if (readCh(op)) return token1;
