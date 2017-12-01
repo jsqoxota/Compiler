@@ -6,8 +6,8 @@ import lexer.Token;
 import java.io.*;
 
 public class Main {
-    private static final String pathnameInput = "./src/test/test2.java";
-    private static final String pathnameOutput = "./src/test/result2.txt";
+    private static final String pathnameInput = "./src/test/test4";
+    private static final String pathnameOutput = "./src/test/result4.txt";
     private static boolean flag = false;
 
     public static void main(String[] args)throws IOException {

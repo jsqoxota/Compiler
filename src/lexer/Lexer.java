@@ -27,6 +27,9 @@ public class Lexer {
     private static boolean commentsErrorFlag;                           //错误标志 未结束的注释
     private static boolean charErrorFlag;                               //错误标志 未结束的字符文字
     private static boolean stringErrorFlag;                             //错误标志 未结束的字符串文字
+    private static boolean hexErrorFlag;                                //错误标志 16进制数字必须包含至少1为16进制数
+    private static boolean floatErrorFlag;                              //错误标志 浮点文字的格式错误
+    private static boolean octErrorFlag;                                //错误标志 过大的整数
 
     private static char[] buffer;                                       //缓冲区
     private static BufferedReader bufferedReader = null;
@@ -36,6 +39,7 @@ public class Lexer {
         commentsErrorFlag = false;
         charErrorFlag = false;
         stringErrorFlag = false;
+        hexErrorFlag = false;
 
         if(file != null)
             bufferedReader = new BufferedReader(new FileReader(file));
@@ -88,6 +92,26 @@ public class Lexer {
         temp = isNumber();
         if(temp != null){
             return temp;
+        }
+        else{
+            if(hexErrorFlag){
+                printError.PrintError(errorMsg("16进制数字必须包含至少1为16进制数"));
+                ignoreThisSentence();
+                hexErrorFlag = false;
+                return null;
+            }
+            else if(floatErrorFlag){
+                printError.PrintError(errorMsg("浮点文字的格式错误"));
+                ignoreThisSentence();
+                floatErrorFlag = false;
+                return null;
+            }
+            else if (octErrorFlag){
+                printError.PrintError(errorMsg("过大的整数"));
+                ignoreThisSentence();
+                octErrorFlag = false;
+                return null;
+            }
         }
 
         //是否是字符
@@ -181,17 +205,58 @@ public class Lexer {
     //是否是实数
     private Token isNumber()throws IOException{
         if( Character.isDigit(buffer[forward])){
-            do{
-                readCh();
-            }while (Character.isDigit(buffer[forward]));
+            readCh();
+            //8进制或10进制
+            if(Character.isDigit(buffer[forward])){
+                do{
+                    readCh();
+                }while (Character.isDigit(buffer[forward]));
+            }
+            //16进制
+            else if(buffer[forward] == 'x' || buffer[forward] == 'X'){
+                do{
+                    readCh();
+                }while (isHex(buffer[forward]));
+            }
+            //是否是小数
             if(!cmpCh('.')){
+                //是否包含E
+                if(buffer[lexemeBegin] != '0') {
+                    Token token = isE();
+                    if (token != null) return token;
+                }
+
                 backCh();
-                return new Num(Integer.valueOf(generateLexeme()));
+                if(buffer[forward] == 'x' || buffer[forward] == 'X'){
+                    hexErrorFlag = true;
+                    return null;
+                }
+                //是否8进制
+                else if(buffer[lexemeBegin] == '0'&& buffer[lexemeBegin + 1] != 'x'&& buffer[lexemeBegin + 1] !='X'){
+                    if(!isOct()){
+                        octErrorFlag = true;
+                        return null;
+                    }
+                }
+                if(buffer[lexemeBegin + 1] == 'x'||buffer[lexemeBegin + 1] == 'X')return new Num(Integer.valueOf(generateLexeme().substring(2),16));
+                else return new Num(Integer.valueOf(generateLexeme()));
+            }
+            if(buffer[lexemeBegin+2]=='.'&&(buffer[lexemeBegin + 1] == 'x'|| buffer[lexemeBegin + 1] == 'X')){
+                hexErrorFlag = true;
+                return null;
+            }
+            else if(buffer[lexemeBegin + 1] == 'x'|| buffer[lexemeBegin + 1] == 'X'){
+                floatErrorFlag = true;
+                return null;
             }
             while (true){
                 readCh();
                 if (! Character.isDigit(buffer[forward]))break;
             }
+
+            Token token = isE();
+            if(token != null)return token;
+
             backCh();
             return new Real(Float.valueOf(generateLexeme()));
         }
@@ -424,5 +489,53 @@ public class Lexer {
     private void ignoreThisLine() throws IOException{
         while (!readCh('\n'));
         lexemeBegin = forward;
+    }
+
+    private void ignoreThisSentence()throws IOException{
+        while (!readCh(';'));
+        lexemeBegin = forward;
+    }
+
+    private boolean isHex(char c){
+        if(Character.isDigit(c))return true;
+        else if((c >= 'a'&& c<='f')||(c >= 'A'&&c<='F'))return true;
+        else return false;
+    }
+
+    private boolean isOct(){
+        for(int i = lexemeBegin + 1; i<= forward; i++){
+            if(!(buffer[i]>= '0' && buffer[i] <= '7'))return false;
+        }
+        return true;
+    }
+
+    private Token isE()throws IOException{
+        if(buffer[lexemeBegin + 1]!= 'x'&& buffer[lexemeBegin + 1] != 'X' && (buffer[forward] == 'E' || buffer[forward] == 'e')){
+            if(readCh('-')){
+                readCh();
+                if(Character.isDigit(buffer[forward])){
+                    while (true){
+                        readCh();
+                        if (! Character.isDigit(buffer[forward]))break;
+                    }
+                    backCh();
+                    return new Real(Float.valueOf(generateLexeme()));
+                }
+                else {
+                    backCh();
+                    backCh();
+                    return null;
+                }
+            }
+            else if(Character.isDigit((buffer[forward]))){
+                while (true){
+                    readCh();
+                    if (! Character.isDigit(buffer[forward]))break;
+                }
+                backCh();
+                return new Real(Float.valueOf(generateLexeme()));
+            }
+        }
+        return null;
     }
 }
