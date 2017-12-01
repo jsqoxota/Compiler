@@ -1,0 +1,33 @@
+<public,	key>
+<class,	key>
+<Main,	id>
+<{,	delimiter>
+<public,	key>
+<static,	key>
+<void,	key>
+<main,	id>
+<(,	bracket>
+<String,	id>
+<[,	bracket>
+<],	bracket>
+<args,	id>
+<),	bracket>
+<{,	delimiter>
+Error:(3) java: 非法字符: '\'
+<int,	key>
+<a,	id>
+<=,	assOp>
+<'2',	char>
+<;,	otherOp>
+<char,	key>
+<b,	id>
+<=,	assOp>
+Error:(5) java: 未结束的字符文字
+<a,	id>
+<++,	ariOp>
+<;,	otherOp>
+<String,	id>
+<s,	id>
+<=,	assOp>
+Error:(8) java: 未结束的字符串文字
+Error:(10) java: 未结束的注释

@@ -2,6 +2,9 @@ package operation;
 
 import lexer.Tag;
 
+/**
+ * 位运算符
+ */
 public class BitOp extends Operation {
     private BitOp(int tag, String lexeme) {
         super(tag, lexeme);

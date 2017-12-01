@@ -2,6 +2,9 @@ package operation;
 
 import lexer.Tag;
 
+/**
+ * 关系运算符
+ */
 public class RelationOp extends Operation {
     private RelationOp(int tag, String lexeme) {
         super(tag, lexeme);

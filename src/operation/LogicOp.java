@@ -2,6 +2,9 @@ package operation;
 
 import lexer.Tag;
 
+/**
+ * 逻辑运算符
+ */
 public class LogicOp extends Operation {
     private LogicOp(int tag, String lexeme) {
         super(tag, lexeme);

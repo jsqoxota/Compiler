@@ -1,0 +1,28 @@
+Error:(1) java: 非法字符: '\'
+<int,	key>
+<a,	id>
+<=,	assOp>
+<'2',	char>
+<;,	otherOp>
+<System,	id>
+<.,	otherOp>
+<out,	id>
+<.,	otherOp>
+<println,	id>
+<(,	bracket>
+<a,	id>
+<),	bracket>
+<;,	otherOp>
+<System,	id>
+<.,	otherOp>
+<out,	id>
+<.,	otherOp>
+<println,	id>
+<(,	bracket>
+<a,	id>
+<),	bracket>
+<;,	otherOp>
+</,	ariOp>
+Error:(5) java: 非法字符: '\'
+</,	ariOp>
+<sad,	id>

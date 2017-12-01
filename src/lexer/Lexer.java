@@ -123,6 +123,7 @@ public class Lexer {
             return temp;
         }
 
+        printError.PrintError(errorMsg("非法字符: '" + buffer[forward] + "'"));
         return null;
     }
 
@@ -172,6 +173,7 @@ public class Lexer {
                     }
                 }
             }
+            else backCh();
         }
         return false;
     }
@@ -246,13 +248,13 @@ public class Lexer {
             case '}':
                 return Delimiter.curlyBraR;
             case '[':
-                return Delimiter.squareBraL;
+                return BracketsOp.squareBraL;
             case ']':
-                return Delimiter.squareBraR;
+                return BracketsOp.squareBraR;
             case '(':
-                return Delimiter.roundBraL;
+                return BracketsOp.roundBraL;
             case ')':
-                return Delimiter.roundBraR;
+                return BracketsOp.roundBraR;
             case ';':
                 return OtherOp.semicolon;
             case ',':
@@ -296,7 +298,7 @@ public class Lexer {
         return null;
     }
 
-    //是否是String 错误提示
+    //是否是String
     private Str isString()throws IOException{
         if(cmpCh('"')){
             readCh();

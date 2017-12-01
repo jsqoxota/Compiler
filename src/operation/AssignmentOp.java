@@ -2,6 +2,9 @@ package operation;
 
 import lexer.Tag;
 
+/**
+ * 赋值运算符
+ */
 public class AssignmentOp extends Operation {
     private AssignmentOp(int tag, String lexeme) {
         super(tag, lexeme);

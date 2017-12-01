@@ -17,9 +17,5 @@ public class Delimiter extends Operation{
 
     public static final Delimiter
             curlyBraL  = new Delimiter('{', "{"),
-            roundBraL  = new Delimiter('(', "("),
-            squareBraL = new Delimiter('[', "["),
-            curlyBraR  = new Delimiter('}', "}"),
-            roundBraR  = new Delimiter(')', ")"),
-            squareBraR = new Delimiter(']', "]");
+            curlyBraR  = new Delimiter('}', "}");
 }
