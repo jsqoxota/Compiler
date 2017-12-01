@@ -1,63 +1,78 @@
 package lexer;
 
+import delegation.EndLexer;
+import delegation.PrintError;
 import operation.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
+import java.io.*;
 
 public class Lexer {
+    private static Lexer instance = null;
+    private static PrintError printError;
+    private static EndLexer endLexer;
 
     private static final int FIRST_BUFFER = 0;                          //第一个缓冲区
     private static final int SECOND_BUFFER = 1;                         //第二个缓冲区
     private static final int BUFFER_LENGTH = 1024 * 4;                  //buffer size
     private static final int FIRST_BUFFER_BEGIN = 0;                    //第一个缓冲区起始位置
-    private static final int FIRST_BUFFER_END = ( BUFFER_LENGTH >>1 )  - 1; //第一个缓冲区结束位置
+    private static final int FIRST_BUFFER_END = (BUFFER_LENGTH >>1)- 1; //第一个缓冲区结束位置
     private static final int SECOND_BUFFER_BEGIN = BUFFER_LENGTH >> 1;  //第二个缓冲区起始位置
     private static final int SECOND_BUFFER_END = BUFFER_LENGTH - 1;     //第二个缓冲区结束位置
-    private static final int EOF = -1;                                  //end of file
+    private static final int EOF = 0;                                  //end of file
 
+    public  static int line = 1;                                        //行数
     private static int lexemeBegin = 0;                                 //指针 词素开始位置
-    private static int forward = -1;                                     //指针 扫描位置
-    public static int line = 1;                                         //行数
-    private static boolean flag;                                        //文件是否读取结束
+    private static int forward = -1;                                    //指针 扫描位置
+    private static boolean fileEndFlag;                                 //文件是否读取结束
     private static boolean commentsErrorFlag;                           //错误标志 未结束的注释
+    private static boolean charErrorFlag;                               //错误标志 未结束的字符文字
+    private static boolean stringErrorFlag;                             //错误标志 未结束的字符串文字
 
-    private char[] buffer;                                              //缓冲区
+    private static char[] buffer;                                       //缓冲区
     private static BufferedReader bufferedReader = null;
-    private HashMap id;
 
-    public Lexer(File file)throws IOException{
-        flag = false;
+    private Lexer(File file)throws IOException{
+        fileEndFlag = false;
         commentsErrorFlag = false;
-        id = new HashMap();
+        charErrorFlag = false;
+        stringErrorFlag = false;
+
         if(file != null)
             bufferedReader = new BufferedReader(new FileReader(file));
         buffer = new char[BUFFER_LENGTH];
         readBuffered(FIRST_BUFFER);
     }
 
+    public static Lexer getInstance(File file)throws IOException {
+        if(instance == null){
+            instance = new Lexer(file);
+            return instance;
+        }
+        else return instance;
+    }
+
     //扫描
     public Token scan()throws IOException{
         readCh();
         while (true){
-            if(flag){
+            if(fileEndFlag){
                 bufferedReader.close();
+                endLexer.EndLexer();
                 return null;
             }
-            skipSeparator();                //跳过分隔符
-            if(!skipAnnotations())break;    //略过注释
+            skipSeparator();                                //跳过分隔符
+            if(!skipAnnotations())break;                    //略过注释
         }
 
-        if(commentsErrorFlag){              //未结束的注释
-            printError();
+        if(commentsErrorFlag){                              //未结束的注释
+            printError.PrintError(errorMsg("未结束的注释"));
+            commentsErrorFlag = false;
             return null;
         }
-        if(flag){
+        if(fileEndFlag){
             bufferedReader.close();
-            return null;                //文件读取结束
+            endLexer.EndLexer();
+            return null;                                    //文件读取结束
         }
         Token temp;
         lexemeBegin = forward;
@@ -75,10 +90,31 @@ public class Lexer {
             return temp;
         }
 
+        //是否是字符
+        temp = isChar();
+        if(temp != null){
+            return temp;
+        }
+        else {
+            if (charErrorFlag){
+                printError.PrintError(errorMsg("未结束的字符文字"));
+                ignoreThisLine();
+                charErrorFlag = false;
+                return null;
+            }
+        }
+
         //是否是字符串
         temp = isString();
         if(temp != null){
             return temp;
+        }
+        else {
+            if(stringErrorFlag){
+                printError.PrintError(errorMsg("未结束的字符串文字"));
+                stringErrorFlag = false;
+                return null;
+            }
         }
 
         //是否是id或关键字
@@ -88,6 +124,12 @@ public class Lexer {
         }
 
         return null;
+    }
+
+    //委托 输出错误 文件读取完成
+    public void delegate(PrintError printError1, EndLexer endLexer1){
+        printError = printError1;
+        endLexer = endLexer1;
     }
 
     //跳过分隔符 空格 回车 换行 横向制表
@@ -165,7 +207,6 @@ public class Lexer {
             Word w = (Word) ReservedWord.isReservedWord(s);
             if( w != null) return w;
             w = new Identifier(s);
-            id.put(s,w);
             return w;
         }
         return null;
@@ -212,6 +253,10 @@ public class Lexer {
                 return Delimiter.roundBraL;
             case ')':
                 return Delimiter.roundBraR;
+            case ';':
+                return OtherOp.semicolon;
+            case ',':
+                return OtherOp.comma;
             case '-':
                 if( readCh('-'))return ArithmeticOp.dec;
                 else if(cmpCh('='))return AssignmentOp.sz;
@@ -251,15 +296,43 @@ public class Lexer {
         return null;
     }
 
-    //是否是String
+    //是否是String 错误提示
     private Str isString()throws IOException{
         if(cmpCh('"')){
             readCh();
             while (!cmpCh('"')|| buffer[forward - 1] == '\\'){
                 readCh();
+                if(cmpCh('\n')){
+                    stringErrorFlag = true;
+                    generateLexeme();
+                    return null;
+                }
             }
-            backCh();
             return new Str(generateLexeme());
+        }
+        else return null;
+    }
+
+    //是否是字符
+    private Char isChar()throws IOException{
+        if(cmpCh('\'')){
+            if(readCh('\\')){
+                readCh();
+                if (readCh('\'')){
+                    return new Char(generateLexeme());
+                }
+                else{
+                    charErrorFlag = true;
+                    return null;
+                }
+            }
+            else if(readCh('\'')){
+                return new Char(generateLexeme());
+            }
+            else{
+                charErrorFlag = true;
+                return null;
+            }
         }
         else return null;
     }
@@ -268,11 +341,11 @@ public class Lexer {
     private void readBuffered(int bufferNum)throws IOException{
         if(bufferNum == FIRST_BUFFER){
             bufferedReader.read(buffer, FIRST_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1);
-            buffer[FIRST_BUFFER_END] = (char)EOF;
+            buffer[FIRST_BUFFER_END] = EOF;
         }
         else if(bufferNum == SECOND_BUFFER){
             bufferedReader.read(buffer, SECOND_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1);
-            buffer[SECOND_BUFFER_END] = (char)EOF;
+            buffer[SECOND_BUFFER_END] = EOF;
         }
     }
 
@@ -291,7 +364,7 @@ public class Lexer {
             }
             else
             {
-                flag = true;
+                fileEndFlag = true;
                 return false;
             }
         }
@@ -323,13 +396,6 @@ public class Lexer {
         return lexeme;
     }
 
-    //打印错误
-    private void printError(){
-        if(commentsErrorFlag){
-            System.out.println("Error("+ line +"):未结束的注释");
-        }
-    }
-
     //complex operation
     private Token isComplexOperation(char op1, char op2, Token token1, Token token2, Token token3)throws IOException {
         if (readCh(op1)) return token1;
@@ -345,5 +411,16 @@ public class Lexer {
             backCh();
             return token2;
         }
+    }
+
+    //错误信息
+    private String errorMsg(String errorMsg){
+        return "Error:("+ line +") java: " + errorMsg;
+    }
+
+    //忽略本行
+    private void ignoreThisLine() throws IOException{
+        while (!readCh('\n'));
+        lexemeBegin = forward;
     }
 }

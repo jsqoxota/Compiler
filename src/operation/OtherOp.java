@@ -16,5 +16,7 @@ public class OtherOp extends Operation {
         point       = new OtherOp('.', "."),
         questionM   = new OtherOp('?', "?"),
         quotationM  = new OtherOp(':', ":"),
-        lambda     = new OtherOp(Tag.LAMBDA ,"->");
+        semicolon   = new OtherOp(';', ";"),
+        comma       = new OtherOp(',', ","),
+        lambda      = new OtherOp(Tag.LAMBDA ,"->");
 }
