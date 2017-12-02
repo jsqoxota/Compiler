@@ -8,13 +8,18 @@ import java.util.ArrayList;
 public class LR1Item{
     private Production production;                  //产生式
     private int pointLocation;                      //点的位置
-    private ArrayList<Object> extraInfomations;     //额外信息
+    private ArrayList<Object> extraInformationS;    //额外信息
 
     //构造函数
     public LR1Item(Production production) {
         this.production = production;
         pointLocation = 0;
-        extraInfomations.add("$");
+        extraInformationS = new ArrayList<>();
+    }
+
+    //添加额外信息
+    public void addExtraInformationS(Object o){
+        extraInformationS.add(o);
     }
 
     @Override
@@ -28,9 +33,17 @@ public class LR1Item{
             stringBuilder.append(objects.toString());
         }
         stringBuilder.append(',');
-        for (Object o : extraInfomations){
+        for (Object o : extraInformationS){
             stringBuilder.append(o.toString());
         }
         return stringBuilder.toString();
+    }
+
+    public int getPointLocation() {
+        return pointLocation;
+    }
+
+    public ArrayList<Object> getExtraInformationS() {
+        return extraInformationS;
     }
 }
