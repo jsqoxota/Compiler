@@ -21,13 +21,13 @@ public class Production {
 
     @Override
     public String toString() {
-        String s = "";
-        s += nonTerminals.toString();
-        s += " -> ";
+        StringBuilder s = new StringBuilder();
+        s.append(nonTerminals.toString());
+        s.append(" -> ");
         for (Object object : elements){
-            s += object.toString();
-            s += ' ';
+            s.append(object.toString());
+            s.append(' ');
         }
-        return s;
+        return s.toString();
     }
 }

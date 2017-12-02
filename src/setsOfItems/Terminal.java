@@ -6,14 +6,14 @@ import lexer.Tag;
  * 终结符
  */
 public class Terminal {
-    private int tag;
+    private String lexeme;
 
-    public Terminal(int tag){
-        this.tag = tag;
+    public Terminal(String lexeme){
+        this.lexeme = lexeme;
     }
 
     @Override
     public String toString() {
-        return Tag.tagToString(tag);
+        return lexeme;
     }
 }

@@ -1,13 +1,15 @@
 package setsOfItems;
 
+import javafx.beans.binding.StringBinding;
+
 import java.util.ArrayList;
 
 /**
  * 项集
  */
 public class SetsOfItems {
-    private int number;     //编号
-    private ArrayList<Production> productions;
+    private int number;                             //编号
+    private ArrayList<Production> productions;      //产生式集合
 
     public SetsOfItems(int number){
         this.number = number;
@@ -21,11 +23,11 @@ public class SetsOfItems {
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (Production production : productions){
-            s += production.toString();
-            s += "\r\n";
+            s.append(production.toString());
+            s.append("\r\n");
         }
-        return s;
+        return s.toString();
     }
 }

@@ -2,10 +2,7 @@ package main;
 
 import lexer.Lexer;
 import lexer.Token;
-import setsOfItems.NonTerminals;
-import setsOfItems.Production;
-import setsOfItems.SetsOfItems;
-import setsOfItems.Terminal;
+import setsOfItems.*;
 
 import java.io.*;
 
@@ -15,15 +12,8 @@ public class Main {
     private static final String pathnameProduction = "./src/test/Production.txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
-        Terminal terminal = new Terminal('+');
-        NonTerminals nonTerminals = new NonTerminals("S");
-        Production production = new Production("S");
-        SetsOfItems setsOfItems = new SetsOfItems(0);
-        setsOfItems.addElement(production);
-        production.addElement(nonTerminals);
-        production.addElement(terminal);
-        production.addElement(nonTerminals);
-        System.out.println(setsOfItems.toString());
+        ConstructorItemSet constructorItemSet = ConstructorItemSet.getInstance(new File(pathnameProduction));
+        System.out.println(constructorItemSet.getAugmentedGrammar().toString());
     }
 
 //    public static void main(String[] args)throws IOException {
