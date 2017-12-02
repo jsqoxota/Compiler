@@ -40,14 +40,22 @@ public class ConstructorItemSet {
             Production production = new Production(strings[0]);         //设置产生式左边
             for (int i = 2; i < strings.length; i++) {                  //设置产生式右边
                 Object object;
-                if(strings[i].charAt(0) == '<'){
-                    object = new NonTerminals(strings[i]);
-                }
-                else object = new Terminal(strings[i]);
-                production.addElement(object);
+                if(isTerminals(strings[i]))
+                    object = new Terminal(strings[i]);                  //终结符
+                else object = new NonTerminals(strings[i]);             //非终结符
+
+                production.addElement(object);                          //添加产生式右边元素
             }
             setsOfItems.addElement(production);
         }
         return setsOfItems;
     }
+
+    //判断是否为终结符
+    private boolean isTerminals(String s){
+        if(s.charAt(0) == '<')return true;
+        else return false;
+    }
+
+
 }

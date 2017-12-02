@@ -30,4 +30,12 @@ public class Production {
         }
         return s.toString();
     }
+
+    public NonTerminals getNonTerminals() {
+        return nonTerminals;
+    }
+
+    public ArrayList<Object> getElements() {
+        return elements;
+    }
 }
