@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" afterPath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" afterPath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,17 +118,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstructorItemSet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConstructorItemSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="267">
+              <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ConstructorItemSet#0;class#ConstructorItemSet#0" expanded="false" />
                 <element signature="method#getInstance#0;class#ConstructorItemSet#0" expanded="false" />
                 <element signature="method#getAugmentedGrammar#0;class#ConstructorItemSet#0" expanded="false" />
                 <element signature="method#isTerminals#0;class#ConstructorItemSet#0" expanded="false" />
+                <element signature="method#changeToLR1Item#0;class#ConstructorItemSet#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -150,19 +151,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LR1Item.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LR1Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+            <state relative-caret-position="962">
+              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#501#502#0" expanded="true" />
                 <element signature="e#541#542#0" expanded="true" />
                 <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-                <element signature="e#1233#1234#0" expanded="true" />
-                <element signature="e#1269#1270#0" expanded="true" />
-                <element signature="e#1324#1325#0" expanded="true" />
-                <element signature="e#1364#1365#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -247,10 +244,10 @@
         <option value="$PROJECT_DIR$/src/test/Production" />
         <option value="$PROJECT_DIR$/src/test/Production.txt" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Production.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Terminal.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
       </list>
     </option>
   </component>
@@ -533,12 +530,12 @@
       <workItem from="1512194723010" duration="8211000" />
       <workItem from="1512209880477" duration="7371000" />
       <workItem from="1512220232241" duration="10558000" />
-      <workItem from="1512232850808" duration="3622000" />
+      <workItem from="1512232850808" duration="4136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193364000" />
+    <option name="totallyTimeSpent" value="193878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -984,32 +981,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="962">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#541#542#0" expanded="true" />
+            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="267">
+          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#ConstructorItemSet#0;class#ConstructorItemSet#0" expanded="false" />
             <element signature="method#getInstance#0;class#ConstructorItemSet#0" expanded="false" />
             <element signature="method#getAugmentedGrammar#0;class#ConstructorItemSet#0" expanded="false" />
             <element signature="method#isTerminals#0;class#ConstructorItemSet#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding>
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-            <element signature="e#1233#1234#0" expanded="true" />
-            <element signature="e#1269#1270#0" expanded="true" />
-            <element signature="e#1324#1325#0" expanded="true" />
-            <element signature="e#1364#1365#0" expanded="true" />
+            <element signature="method#changeToLR1Item#0;class#ConstructorItemSet#0" expanded="false" />
           </folding>
         </state>
       </provider>

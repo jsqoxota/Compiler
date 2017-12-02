@@ -57,5 +57,12 @@ public class ConstructorItemSet {
         else return false;
     }
 
-
+    //转化为LR(1)项
+    private LR1Item changeToLR1Item(Production production, ArrayList<Object> objects){
+        LR1Item lr1Item = new LR1Item(production);
+        for (Object o: objects){
+            lr1Item.addExtraInformationS(o);
+        }
+        return lr1Item;
+    }
 }
