@@ -22,5 +22,5 @@ public class BitOp extends Operation {
             not = new BitOp('~',    "~"),
             sal = new BitOp(Tag.SAL,    "<<"),
             sar = new BitOp(Tag.SAR,    ">>"),
-            shr = new BitOp(Tag.SHR,    "<<<");
+            shr = new BitOp(Tag.SHR,    ">>>");
 }

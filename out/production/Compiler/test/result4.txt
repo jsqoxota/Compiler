@@ -13,56 +13,37 @@
 <args,	id>
 <),	bracket>
 <{,	delimiter>
-<int,	key>
-<a,	id>
-<=,	assOp>
-<16,	num>
-<;,	otherOp>
-<int,	key>
-<a,	id>
-<=,	assOp>
-<238,	num>
-<;,	otherOp>
-<int,	key>
-<f,	id>
-<=,	assOp>
-<7,	num>
-<;,	otherOp>
 <double,	key>
 <g,	id>
 <=,	assOp>
-<1.8,	real>
+<1.7999999523162842,	real>
 <;,	otherOp>
 <double,	key>
 <h,	id>
 <=,	assOp>
-<1.79999998E11,	real>
+<1.79999997952E11,	real>
 <;,	otherOp>
 <double,	key>
 <b,	id>
 <=,	assOp>
-<1.11100002E11,	real>
+<1.11100002304E11,	real>
 <;,	otherOp>
 <double,	key>
 <k,	id>
 <=,	assOp>
-Error:(9) java: 16进制数字必须包含至少1为16进制数
+Error:(7) java: 16进制数字必须包含至少1为16进制数
 <double,	key>
 <c,	id>
-<=,	assOp>
-Error:(10) java: 16进制数字必须包含至少1为16进制数
 <double,	key>
 <d,	id>
 <=,	assOp>
-Error:(11) java: 浮点文字的格式错误
+Error:(8) java: 浮点文字的格式错误
 <int,	key>
 <e,	id>
 <=,	assOp>
-Error:(12) java: 过大的整数
+Error:(9) java: 过大的整数
 <double,	key>
 <x,	id>
-<=,	assOp>
-Error:(13) java: 16进制数字必须包含至少1为16进制数
 <double,	key>
 <y,	id>
 <=,	assOp>
@@ -72,3 +53,4 @@ Error:(13) java: 16进制数字必须包含至少1为16进制数
 <;,	otherOp>
 <},	delimiter>
 <},	delimiter>
+Error:(12) java: 非法字符: '￿'

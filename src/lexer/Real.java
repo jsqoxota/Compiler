@@ -1,8 +1,8 @@
 package lexer;
 
 public class Real extends Token {
-    public final float value;
-    public Real(float value){
+    public final double value;
+    public Real(double value){
         super(Tag.REAL);
         this.value = value;
     }

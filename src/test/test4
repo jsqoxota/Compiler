@@ -1,8 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        int _123 = 0x10;
-        int $123 = 0xEE;
-        int S23_3 = 07;
+
         double g = 18.0E-1;
         double h = 18E10;
         double b = 11.11e10;

@@ -18,7 +18,7 @@ public class Lexer {
     private static final int FIRST_BUFFER_END = (BUFFER_LENGTH >>1)- 1; //第一个缓冲区结束位置
     private static final int SECOND_BUFFER_BEGIN = BUFFER_LENGTH >> 1;  //第二个缓冲区起始位置
     private static final int SECOND_BUFFER_END = BUFFER_LENGTH - 1;     //第二个缓冲区结束位置
-    private static final int EOF = 0;                                  //end of file
+    private static final int EOF = 0;                                   //end of file
 
     public  static int line = 1;                                        //行数
     private static int lexemeBegin = 0;                                 //指针 词素开始位置
@@ -232,20 +232,20 @@ public class Lexer {
                     return null;
                 }
                 //是否8进制
-                else if(buffer[lexemeBegin] == '0'&& buffer[lexemeBegin + 1] != 'x'&& buffer[lexemeBegin + 1] !='X'){
+                else if(buffer[lexemeBegin] == '0'&& findNNum(1) != 'x'&& findNNum(1) !='X'){
                     if(!isOct()){
                         octErrorFlag = true;
                         return null;
                     }
                 }
-                if(buffer[lexemeBegin + 1] == 'x'||buffer[lexemeBegin + 1] == 'X')return new Num(Integer.valueOf(generateLexeme().substring(2),16));
+                if(findNNum(1) == 'x'||findNNum(1) == 'X')return new Num(Integer.valueOf(generateLexeme().substring(2),16));
                 else return new Num(Integer.valueOf(generateLexeme()));
             }
-            if(buffer[lexemeBegin+2]=='.'&&(buffer[lexemeBegin + 1] == 'x'|| buffer[lexemeBegin + 1] == 'X')){
+            if(findNNum(2)=='.'&&(findNNum(1) == 'x'|| findNNum(1) == 'X')){
                 hexErrorFlag = true;
                 return null;
             }
-            else if(buffer[lexemeBegin + 1] == 'x'|| buffer[lexemeBegin + 1] == 'X'){
+            else if(findNNum(1) == 'x'|| findNNum(1) == 'X'){
                 floatErrorFlag = true;
                 return null;
             }
@@ -407,13 +407,31 @@ public class Lexer {
     //读缓冲区
     private void readBuffered(int bufferNum)throws IOException{
         if(bufferNum == FIRST_BUFFER){
-            bufferedReader.read(buffer, FIRST_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1);
+            if(bufferedReader.read(buffer, FIRST_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1) == -1){
+                readBuffered2(bufferNum);
+            }
             buffer[FIRST_BUFFER_END] = EOF;
         }
         else if(bufferNum == SECOND_BUFFER){
-            bufferedReader.read(buffer, SECOND_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1);
+            if(bufferedReader.read(buffer, SECOND_BUFFER_BEGIN, ( BUFFER_LENGTH >> 1 ) - 1) == -1){
+                readBuffered2(bufferNum);
+            }
             buffer[SECOND_BUFFER_END] = EOF;
         }
+    }
+
+    private void readBuffered2(int bufferNum)throws IOException{
+        int begin = 0;
+        if(bufferNum == FIRST_BUFFER)begin = FIRST_BUFFER_BEGIN;
+        else if(bufferNum == SECOND_BUFFER)begin = SECOND_BUFFER_BEGIN;
+        int i = 0;
+        int c = 0;
+        while (c!=-1&& i != BUFFER_LENGTH / 2 -1 ){
+            c = bufferedReader.read();
+            buffer[begin + i] = (char) c;
+            i++;
+        }
+        buffer[begin + i] = EOF;
     }
 
     //read next char
@@ -422,11 +440,11 @@ public class Lexer {
         if(buffer[forward] == '\n')line ++;
         if(buffer[forward] == EOF ){
             if(forward == FIRST_BUFFER_END){
-                readBuffered(SECOND_BUFFER);
+                readBuffered2(SECOND_BUFFER);
                 forward = SECOND_BUFFER_BEGIN;
             }
             else if(forward == SECOND_BUFFER_END){
-                readBuffered(FIRST_BUFFER);
+                readBuffered2(FIRST_BUFFER);
                 forward = FIRST_BUFFER_BEGIN;
             }
             else
@@ -452,14 +470,37 @@ public class Lexer {
 
     //回退一个字符
     private void backCh(){
-        forward = (forward - 1) % BUFFER_LENGTH;
+        forward = (forward + BUFFER_LENGTH - 1) % BUFFER_LENGTH;
         if(buffer[forward] == EOF)forward --;
     }
 
     //生成词素
     private String generateLexeme(){
-        String lexeme = String.valueOf(buffer, lexemeBegin, forward - lexemeBegin + 1);
+        String lexeme = String.valueOf(readLexeme());
         lexemeBegin = forward;
+        return lexeme;
+    }
+
+    private String readLexeme(){
+        String lexeme = "";
+        int temp = lexemeBegin;
+        boolean flag = false;
+        while (temp != forward + 1){
+            if(buffer[temp] == EOF ){
+                if(temp == FIRST_BUFFER_END){
+                    temp = SECOND_BUFFER_BEGIN;
+                    //flag = true;
+                }
+                else if(temp == SECOND_BUFFER_END){
+                    temp = FIRST_BUFFER_BEGIN;
+                    //flag = true;
+                }
+            }
+            lexeme += buffer[temp];
+            temp++;
+            //if(!flag)
+            //else flag = false;
+        }
         return lexeme;
     }
 
@@ -486,22 +527,25 @@ public class Lexer {
     }
 
     //忽略本行
-    private void ignoreThisLine() throws IOException{
+    private void ignoreThisLine()throws IOException{
         while (!readCh('\n'));
         lexemeBegin = forward;
     }
 
+    //跳过这句
     private void ignoreThisSentence()throws IOException{
         while (!readCh(';'));
         lexemeBegin = forward;
     }
 
+    //是否是16进制
     private boolean isHex(char c){
         if(Character.isDigit(c))return true;
         else if((c >= 'a'&& c<='f')||(c >= 'A'&&c<='F'))return true;
         else return false;
     }
 
+    //是否是8进制
     private boolean isOct(){
         for(int i = lexemeBegin + 1; i<= forward; i++){
             if(!(buffer[i]>= '0' && buffer[i] <= '7'))return false;
@@ -509,6 +553,7 @@ public class Lexer {
         return true;
     }
 
+    //是否包含E
     private Token isE()throws IOException{
         if(buffer[lexemeBegin + 1]!= 'x'&& buffer[lexemeBegin + 1] != 'X' && (buffer[forward] == 'E' || buffer[forward] == 'e')){
             if(readCh('-')){
@@ -537,5 +582,24 @@ public class Lexer {
             }
         }
         return null;
+    }
+
+    //获取第n个字符
+    private char findNNum(int num){
+        char c = ' ';
+        int temp = lexemeBegin;
+        for(int i = 0; i <= num; i++){
+            if(buffer[temp] == EOF ){
+                if(temp == FIRST_BUFFER_END){
+                    temp = SECOND_BUFFER_BEGIN;
+                }
+                else if(temp == SECOND_BUFFER_END){
+                    temp = FIRST_BUFFER_BEGIN;
+                }
+            }
+            c = buffer[temp];
+            temp++;
+        }
+        return c;
     }
 }

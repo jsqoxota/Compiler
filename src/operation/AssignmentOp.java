@@ -28,5 +28,4 @@ public class AssignmentOp extends Operation {
             salZ    = new AssignmentOp(Tag.SALZ,    "<<="),
             sarZ    = new AssignmentOp(Tag.SARZ,    ">>="),
             shrZ    = new AssignmentOp(Tag.SHRZ,    ">>>=");
-
 }
