@@ -5,14 +5,12 @@ import javafx.beans.binding.StringBinding;
 import java.util.ArrayList;
 
 /**
- * 项集
+ * 文法
  */
-public class SetsOfItems {
-    private int number;                             //编号
+public class Grammar {
     private ArrayList<Production> productions;      //产生式集合
 
-    public SetsOfItems(int number){
-        this.number = number;
+    public Grammar(){
         productions = new ArrayList<>();
     }
 

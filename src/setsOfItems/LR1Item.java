@@ -22,6 +22,59 @@ public class LR1Item{
         extraInformationS.add(o);
     }
 
+    //[A -> alpha * B beta, a]
+    //获得A项
+    public NonTerminals getA(){
+        if(production != null){
+            return production.getNonTerminals();
+        }
+        return null;
+    }
+
+    //[A -> alpha * B beta, a]
+    //获得alpha项
+    public ArrayList<Object> getAlpha(){
+        if(production != null){
+            ArrayList<Object> elements = production.getElements();
+            ArrayList<Object> alpha = new ArrayList<>();
+            for (int i = 0; i < elements.size() && i < pointLocation; i++ ){
+                alpha.add(elements.get(i));
+            }
+            return alpha;
+        }
+        return null;
+    }
+
+    //[A -> alpha * B beta, a]
+    //获得B项
+    public Object getB(){
+        if(production != null){
+            return production.getElements().get(pointLocation);
+        }
+        return null;
+    }
+
+    //[A -> alpha * B beta, a]
+    //获得beta项
+    public ArrayList<Object> getBeta(){
+        if(production != null){
+            ArrayList<Object> elements = production.getElements();
+            ArrayList<Object> beta = new ArrayList<>();
+            for (int i = pointLocation + 1; i < elements.size(); i++ ){
+                beta.add(elements.get(i));
+            }
+            return beta;
+        }
+        return null;
+    }
+
+    //[A -> alpha * B beta, a]
+    //获得a项
+    public ArrayList<Object> geta(){
+        return extraInformationS;
+    }
+
+
     @Override
     public String toString() {      //输出LR(0)项
         StringBuilder stringBuilder = new StringBuilder();

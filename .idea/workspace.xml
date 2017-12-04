@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" afterPath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" afterPath="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" afterPath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" afterPath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,52 +17,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
+      <file leaf-file-name="Grammar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
-              <folding>
-                <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
-                <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
-                <element signature="method#scan#0;class#Lexer#0" expanded="false" />
-                <element signature="method#delegate#0;class#Lexer#0" expanded="false" />
-                <element signature="method#skipSeparator#0;class#Lexer#0" expanded="false" />
-                <element signature="method#skipAnnotations#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isNumber#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isId#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isOperator#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isString#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isChar#0;class#Lexer#0" expanded="false" />
-                <element signature="method#readBuffered#0;class#Lexer#0" expanded="false" />
-                <element signature="method#readBuffered2#0;class#Lexer#0" expanded="false" />
-                <element signature="method#readCh#0;class#Lexer#0" expanded="false" />
-                <element signature="method#readCh#1;class#Lexer#0" expanded="false" />
-                <element signature="method#cmpCh#0;class#Lexer#0" expanded="false" />
-                <element signature="method#backCh#0;class#Lexer#0" expanded="false" />
-                <element signature="method#generateLexeme#0;class#Lexer#0" expanded="false" />
-                <element signature="method#readLexeme#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isComplexOperation#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isComplexOperation#1;class#Lexer#0" expanded="false" />
-                <element signature="method#ignoreThisLine#0;class#Lexer#0" expanded="false" />
-                <element signature="method#ignoreThisSentence#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isHex#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isOct#0;class#Lexer#0" expanded="false" />
-                <element signature="method#isE#0;class#Lexer#0" expanded="false" />
-                <element signature="method#findNNum#0;class#Lexer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            <state relative-caret-position="606">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="29" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="e#213#214#0" expanded="true" />
+                <element signature="e#260#261#0" expanded="true" />
+                <element signature="e#324#325#0" expanded="true" />
+                <element signature="e#367#368#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,7 +36,7 @@
       <file leaf-file-name="Terminal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
+            <state relative-caret-position="555">
               <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <element signature="e#224#225#0" expanded="true" />
@@ -91,8 +59,8 @@
       <file leaf-file-name="NonTerminals.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="370">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -101,8 +69,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+            <state relative-caret-position="629">
+              <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -118,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstructorItemSet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConstructorItemSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+            <state relative-caret-position="599">
+              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ConstructorItemSet#0;class#ConstructorItemSet#0" expanded="false" />
@@ -135,30 +103,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Production.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+      <file leaf-file-name="SetOfItems.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="10" column="60" lean-forward="true" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
               <folding>
-                <element signature="method#toString#0;class#Production#0" expanded="false" />
-                <element signature="e#743#744#0" expanded="true" />
-                <element signature="e#778#779#0" expanded="true" />
-                <element signature="e#824#825#0" expanded="true" />
-                <element signature="e#855#856#0" expanded="true" />
+                <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LR1Item.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Production.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding>
+                <element signature="method#toString#0;class#Production#0" expanded="false" />
+                <element signature="e#743#744#0" expanded="true" />
+                <element signature="e#778#779#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LR1Item.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="962">
-              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="192">
+              <caret line="73" column="33" lean-forward="false" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
               <folding>
-                <element signature="e#501#502#0" expanded="true" />
-                <element signature="e#541#542#0" expanded="true" />
+                <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
+                <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
+                <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
+                <element signature="method#getB#0;class#LR1Item#0" expanded="false" />
+                <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
+                <element signature="e#1890#1891#0" expanded="true" />
+                <element signature="e#1930#1931#0" expanded="true" />
                 <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
               </folding>
             </state>
@@ -197,8 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/lexer/ArithmeticOp.java" />
-        <option value="$PROJECT_DIR$/src/lexer/AssignmentOp.java" />
         <option value="$PROJECT_DIR$/src/lexer/LogicOp.java" />
         <option value="$PROJECT_DIR$/src/lexer/CompoundOperator.java" />
         <option value="$PROJECT_DIR$/src/lexer/RelationOp.java" />
@@ -240,14 +221,16 @@
         <option value="$PROJECT_DIR$/src/SetsOfItems/Terminal.java" />
         <option value="$PROJECT_DIR$/src/operation/BitOp.java" />
         <option value="$PROJECT_DIR$/src/lexer/Tag.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
         <option value="$PROJECT_DIR$/src/test/Production" />
         <option value="$PROJECT_DIR$/src/test/Production.txt" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Production.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Terminal.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
       </list>
     </option>
   </component>
@@ -281,8 +264,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -323,6 +304,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -349,6 +332,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -382,13 +372,6 @@
       <module name="Compiler" />
       <envs />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -401,6 +384,25 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
+      <envs />
+    </configuration>
+    <configuration name="test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="test.test1" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Compiler" />
       <envs />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -460,25 +462,6 @@
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
-    <configuration name="test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="test.test1" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Compiler" />
-      <envs />
-    </configuration>
     <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="Application.PrimeNum" />
@@ -530,12 +513,17 @@
       <workItem from="1512194723010" duration="8211000" />
       <workItem from="1512209880477" duration="7371000" />
       <workItem from="1512220232241" duration="10558000" />
-      <workItem from="1512232850808" duration="4136000" />
+      <workItem from="1512232850808" duration="4631000" />
+      <workItem from="1512321553382" duration="418000" />
+      <workItem from="1512322465405" duration="266000" />
+      <workItem from="1512322769243" duration="132000" />
+      <workItem from="1512375172002" duration="1880000" />
+      <workItem from="1512386329046" duration="2539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193878000" />
+    <option name="totallyTimeSpent" value="199608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -548,7 +536,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -559,7 +546,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30182233" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17060086" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18186696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -612,13 +599,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/inter/Expr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inter/Id.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
@@ -670,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,10 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
           <caret line="84" column="58" lean-forward="false" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="58" />
-          <folding>
-            <element signature="method#isReservedWord#0;class#ReservedWord#0" expanded="false" />
-            <element signature="method#reserveReservedWord#0;class#ReservedWord#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -801,7 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
           <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,7 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="23" column="54" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -873,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="777">
           <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -913,26 +885,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/Production.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -945,20 +901,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+        <state relative-caret-position="629">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#ConstructorItemSet#0;class#ConstructorItemSet#0" expanded="false" />
+            <element signature="method#getInstance#0;class#ConstructorItemSet#0" expanded="false" />
+            <element signature="method#getAugmentedGrammar#0;class#ConstructorItemSet#0" expanded="false" />
+            <element signature="method#isTerminals#0;class#ConstructorItemSet#0" expanded="false" />
+            <element signature="method#changeToLR1Item#0;class#ConstructorItemSet#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#213#214#0" expanded="true" />
+            <element signature="e#260#261#0" expanded="true" />
+            <element signature="e#324#325#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="method#toString#0;class#Production#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="10" column="60" lean-forward="true" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+          <folding>
+            <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
+        <state relative-caret-position="555">
           <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="e#224#225#0" expanded="true" />
@@ -967,43 +971,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="method#toString#0;class#Production#0" expanded="false" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#778#779#0" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="370">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="962">
-          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="192">
+          <caret line="73" column="33" lean-forward="false" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
           <folding>
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
+            <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getB#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
+            <element signature="e#1890#1891#0" expanded="true" />
+            <element signature="e#1930#1931#0" expanded="true" />
             <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/ConstructorItemSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ConstructorItemSet#0;class#ConstructorItemSet#0" expanded="false" />
-            <element signature="method#getInstance#0;class#ConstructorItemSet#0" expanded="false" />
-            <element signature="method#getAugmentedGrammar#0;class#ConstructorItemSet#0" expanded="false" />
-            <element signature="method#isTerminals#0;class#ConstructorItemSet#0" expanded="false" />
-            <element signature="method#changeToLR1Item#0;class#ConstructorItemSet#0" expanded="false" />
           </folding>
         </state>
       </provider>

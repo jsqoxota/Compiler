@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class ConstructorItemSet {
     private static ConstructorItemSet constructorItemSet;
-    private ArrayList<SetsOfItems> collection;            //项集族
+    private ArrayList<Grammar> collection;            //项集族
     private static BufferedReader bufferedReader;
 
     //构造函数 初始化
@@ -32,8 +32,8 @@ public class ConstructorItemSet {
     }
 
     //获得增广文法
-    public SetsOfItems getAugmentedGrammar()throws IOException{
-        SetsOfItems setsOfItems = new SetsOfItems(0);
+    private Grammar getAugmentedGrammar()throws IOException{
+        Grammar grammar = new Grammar();
         String s;
         while ((s = bufferedReader.readLine()) != null){
             String []strings = s.split(" ");                        //分割字符串
@@ -46,9 +46,9 @@ public class ConstructorItemSet {
 
                 production.addElement(object);                          //添加产生式右边元素
             }
-            setsOfItems.addElement(production);
+            grammar.addElement(production);
         }
-        return setsOfItems;
+        return grammar;
     }
 
     //判断是否为终结符
@@ -57,12 +57,17 @@ public class ConstructorItemSet {
         else return false;
     }
 
-    //转化为LR(1)项
+    //转化化为LR(1)项
     private LR1Item changeToLR1Item(Production production, ArrayList<Object> objects){
         LR1Item lr1Item = new LR1Item(production);
         for (Object o: objects){
             lr1Item.addExtraInformationS(o);
         }
         return lr1Item;
+    }
+
+    //求闭包
+    private SetOfItems closure(SetOfItems setOfItems){
+
     }
 }
