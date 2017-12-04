@@ -19,6 +19,22 @@ public class Grammar {
         productions.add(production);
     }
 
+    //获得产生式
+    public Production getProduction(int index){
+        return productions.get(index);
+    }
+
+    //获得产生式集合
+    public ArrayList<Production> getProduction(NonTerminals nonTerminals){
+        ArrayList<Production> productions = new ArrayList<>();
+        for (Production production : productions){
+            if(production.getNonTerminals() == nonTerminals){
+                productions.add(production);
+            }
+        }
+        return productions;
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();

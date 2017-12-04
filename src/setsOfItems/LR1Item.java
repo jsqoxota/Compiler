@@ -22,6 +22,11 @@ public class LR1Item{
         extraInformationS.add(o);
     }
 
+    //点的位置+1
+    public void pointLocationInc(){
+        pointLocation++;
+    }
+
     //[A -> alpha * B beta, a]
     //获得A项
     public NonTerminals getA(){
@@ -40,6 +45,7 @@ public class LR1Item{
             for (int i = 0; i < elements.size() && i < pointLocation; i++ ){
                 alpha.add(elements.get(i));
             }
+            if(alpha.size() == 0)alpha.add(new Terminal("ε"));
             return alpha;
         }
         return null;
@@ -63,6 +69,7 @@ public class LR1Item{
             for (int i = pointLocation + 1; i < elements.size(); i++ ){
                 beta.add(elements.get(i));
             }
+            if(beta.size() == 0)beta.add(new Terminal("ε"));
             return beta;
         }
         return null;
@@ -73,7 +80,6 @@ public class LR1Item{
     public ArrayList<Object> geta(){
         return extraInformationS;
     }
-
 
     @Override
     public String toString() {      //输出LR(0)项

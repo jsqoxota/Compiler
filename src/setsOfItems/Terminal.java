@@ -16,4 +16,17 @@ public class Terminal {
     public String toString() {
         return lexeme;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null)return false;
+
+        if(this == obj)return true;
+
+        if(!(obj instanceof Terminal))return false;
+
+        Terminal terminal = (Terminal)obj;
+        if(this.lexeme == terminal.lexeme)return true;
+        else return false;
+    }
 }

@@ -5,7 +5,7 @@ import symbol.Type;
 import java.util.HashMap;
 
 public class ReservedWord extends Word {
-    private static final HashMap reservedWords = new HashMap();
+    private static final HashMap<String, ReservedWord> reservedWords = new HashMap<>();
 
     protected ReservedWord(String lexeme, int tag){
         super(lexeme, tag);

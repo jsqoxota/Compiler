@@ -1,7 +1,5 @@
 package main;
 
-import lexer.Lexer;
-import lexer.Token;
 import setsOfItems.*;
 
 import java.io.*;
@@ -12,8 +10,7 @@ public class Main {
     private static final String pathnameProduction = "./src/test/Production.txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
-        ConstructorItemSet constructorItemSet = ConstructorItemSet.getInstance(new File(pathnameProduction));
-        System.out.println(constructorItemSet.getAugmentedGrammar().toString());
+        SetsOfItems setsOfItems = SetsOfItems.getInstance(new File(pathnameProduction));
     }
 
 //    public static void main(String[] args)throws IOException {
