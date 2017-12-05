@@ -124,7 +124,7 @@ public class SetsOfItems {
     private ArrayList<SetOfItems> goTo(final SetOfItems setOfItems, final Object X){
         ArrayList<LR1Item> J = new ArrayList<>();                    //文法符号集合
         for(LR1Item lr1Item : setOfItems.getItems()){
-            if(lr1Item.getB().toString().equals(X.toString())){
+            if(lr1Item.getB() != null && lr1Item.getB().toString().equals(X.toString())){
                 LR1Item temp = new LR1Item(lr1Item);
                 temp.pointLocationInc();
                 J.add(temp);
@@ -144,8 +144,11 @@ public class SetsOfItems {
             else{                               //非终结符
                 ArrayList<Production> productions = grammar.getProduction((NonTerminals)o);
                 for (Production production : productions){
-                    HashSet<Terminal> temp = first(production.getElements());
-                    firstSet.addAll(temp);
+                    ArrayList<Object> objectArrayList = production.getElements();
+                    if(objectArrayList.size() > 0 && !objectArrayList.get(0).equals(o)){
+                        HashSet<Terminal> temp = first(production.getElements());
+                        firstSet.addAll(temp);
+                    }
                 }
             }
             if(!firstSet.contains(epsilon)) return firstSet;            //不包含epsilon则返回

@@ -1,0 +1,40 @@
+<program> → <block> .
+<block> → <const-decl> <var-decl> <proc-decl> <statement>
+<const-decl> → const <const-assignment-list> ;
+<const-decl> →ε
+<const-assignment-list> → <ident> = <number>
+<const-assignment-list> → <const-assignment-list> , <ident> = <number>
+<var-decl> → var <ident-list> ;
+<var-decl> → ε
+<ident-list> → <ident>
+<ident-list> → <ident-list> , <ident>
+<proc-decl> → <proc-decl> procedure <ident> ; <block> ;
+<proc-decl> → ε
+<statement> → <ident> := <expression>
+<statement> → call <ident>
+<statement> → begin <statement-list> end
+<statement> → if <condition> then <statement>
+<statement> → while <condition> do <statement>
+<statement> → ε
+<statement-list> → <statement>
+<statement-list> → <statement-list> ; <statement>
+<condition> → odd <expression>
+<condition> → <expression> <relation> <expression>
+<relation> → =
+<relation> → <>
+<relation> → <
+<relation> → >
+<relation> → <=
+<relation> → >=
+<expression> → <term>
+<expression> → <adding-operator> <term>
+<expression> → <expression> <adding-operator> <term>
+<adding-operator> → +
+<adding-operator> -
+<term> → <factor>
+<term> → <term> <multiplying-operator> <factor>
+<multiplying-operator> → *
+<multiplying-operator> → /
+<factor> → <ident>
+<factor> → <number>
+<factor> → ( <expression> )

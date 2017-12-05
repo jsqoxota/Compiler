@@ -12,6 +12,8 @@ public class Terminal{
         this.lexeme = lexeme;
     }
 
+
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {
         return lexeme;

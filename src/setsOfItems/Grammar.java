@@ -19,6 +19,7 @@ public class Grammar {
         productions.add(production);
     }
 
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     //获得产生式
     public Production getProduction(int index){
         return productions.get(index);

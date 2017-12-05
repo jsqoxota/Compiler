@@ -10,6 +10,8 @@ public class NonTerminals{
         this.name = name;
     }
 
+
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     public String getName() {
         return name;
     }

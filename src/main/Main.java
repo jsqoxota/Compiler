@@ -7,12 +7,18 @@ import java.io.*;
 public class Main {
     private static final String pathnameInput = "./src/test/test3";
     private static final String pathnameOutput = "./src/test/result3.txt";
-    private static final String pathnameProduction = "./src/test/Production.txt";
+    private static final String pathnameProduction = "./src/test/Production2.txt";
+    private static final String pathnameProductionRes = "./src/test/ProductionRes2.txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
-        SetsOfItems setsOfItems = SetsOfItems.getInstance(new File(pathnameProduction));
+        File inputFile = new File(pathnameProduction);
+        File outputFile = new File(pathnameProductionRes);
+        checkFile(inputFile,outputFile);
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
+        SetsOfItems setsOfItems = SetsOfItems.getInstance(inputFile);
         setsOfItems.constructorSetsOfItems();
-        System.out.println(setsOfItems.toString());
+        bufferedWriter.write(setsOfItems.toString());
+        bufferedWriter.close();
     }
 
 //    public static void main(String[] args)throws IOException {
