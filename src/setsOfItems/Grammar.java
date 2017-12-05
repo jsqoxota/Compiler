@@ -26,13 +26,13 @@ public class Grammar {
 
     //获得产生式集合
     public ArrayList<Production> getProduction(NonTerminals nonTerminals){
-        ArrayList<Production> productions = new ArrayList<>();
+        ArrayList<Production> productionArrayList = new ArrayList<>();
         for (Production production : productions){
-            if(production.getNonTerminals() == nonTerminals){
-                productions.add(production);
+            if(production.getNonTerminals().equals(nonTerminals)){
+                productionArrayList.add(production);
             }
         }
-        return productions;
+        return productionArrayList;
     }
 
     @Override

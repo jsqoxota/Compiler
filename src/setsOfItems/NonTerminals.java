@@ -3,7 +3,7 @@ package setsOfItems;
 /**
  * 非终结符
  */
-public class NonTerminals {
+public class NonTerminals{
     private String name;
 
     public NonTerminals(String name){
@@ -25,10 +25,9 @@ public class NonTerminals {
 
         if(this == obj)return true;
 
-        if(!(obj instanceof Terminal))return false;
+        if(!(obj instanceof NonTerminals))return false;
 
-        NonTerminals nonTerminals = (NonTerminals) obj;
-        if(this.name == nonTerminals.name)return true;
+        if(this.name.equals(((NonTerminals) obj).name))return true;
         else return false;
     }
 }

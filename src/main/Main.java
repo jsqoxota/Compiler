@@ -11,6 +11,8 @@ public class Main {
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
         SetsOfItems setsOfItems = SetsOfItems.getInstance(new File(pathnameProduction));
+        setsOfItems.constructorSetsOfItems();
+        System.out.println(setsOfItems.toString());
     }
 
 //    public static void main(String[] args)throws IOException {

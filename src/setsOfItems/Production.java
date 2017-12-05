@@ -19,16 +19,34 @@ public class Production {
         elements.add(o);
     }
 
+
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(nonTerminals.toString());
         s.append(" -> ");
-        for (Object object : elements){
-            s.append(object.toString());
+        for (Object Object : elements){
+            s.append(Object.toString());
             s.append(' ');
         }
         return s.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Production))return false;
+        if( !nonTerminals.equals(((Production) obj).nonTerminals))return false;
+
+        if (this.elements.size() != ((Production) obj).elements.size()){
+            return false;
+        }
+
+        for (Object o : this.elements){
+            if(!(((Production) obj).elements.contains(o)))return false;
+        }
+
+        return true;
     }
 
     public NonTerminals getNonTerminals() {

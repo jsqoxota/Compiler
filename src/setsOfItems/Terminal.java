@@ -5,7 +5,7 @@ import lexer.Tag;
 /**
  * 终结符
  */
-public class Terminal {
+public class Terminal{
     private String lexeme;
 
     public Terminal(String lexeme){
@@ -25,8 +25,12 @@ public class Terminal {
 
         if(!(obj instanceof Terminal))return false;
 
-        Terminal terminal = (Terminal)obj;
-        if(this.lexeme == terminal.lexeme)return true;
+        if(this.lexeme.equals(((Terminal) obj).lexeme))return true;
         else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return lexeme.hashCode();
     }
 }
