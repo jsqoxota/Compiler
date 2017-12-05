@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" afterPath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
-      <change beforePath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" afterPath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" />
       <change beforePath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" afterPath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
-      <change beforePath="$PROJECT_DIR$/src/setsOfItems/Terminal.java" afterPath="$PROJECT_DIR$/src/setsOfItems/Terminal.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/ProductionRes2.txt" afterPath="$PROJECT_DIR$/src/test/ProductionRes2.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,15 +74,15 @@
       <file leaf-file-name="SetOfItems.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="266">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#424#425#0" expanded="true" />
                 <element signature="e#458#459#0" expanded="true" />
                 <element signature="method#getElementAfterPoint#0;class#SetOfItems#0" expanded="false" />
+                <element signature="e#955#956#0" expanded="true" />
                 <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1024#1025#0" expanded="true" />
                 <element signature="e#1063#1064#0" expanded="true" />
                 <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
                 <element signature="method#equals#0;class#SetOfItems#0" expanded="false" />
@@ -143,16 +141,15 @@
       <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="129" column="28" lean-forward="true" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
+            <state relative-caret-position="212">
+              <caret line="103" column="90" lean-forward="true" selection-start-line="103" selection-start-column="90" selection-end-line="103" selection-end-column="90" />
               <folding>
                 <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
                 <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
                 <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="e#7459#7460#0" expanded="true" />
-                <element signature="e#7503#7504#0" expanded="true" />
+                <element signature="e#7669#7670#0" expanded="true" />
+                <element signature="e#7713#7714#0" expanded="true" />
                 <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
               </folding>
             </state>
@@ -541,12 +538,12 @@
       <workItem from="1512375172002" duration="1880000" />
       <workItem from="1512386329046" duration="25031000" />
       <workItem from="1512442242312" duration="4389000" />
-      <workItem from="1512454090742" duration="9488000" />
+      <workItem from="1512454090742" duration="10573000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235977000" />
+    <option name="totallyTimeSpent" value="237062000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -559,6 +556,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -567,7 +565,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39179954" sideWeight="0.50214595" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47890535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47890535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16362661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -614,7 +612,7 @@
           <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="98" />
+      <option name="time" value="99" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1046,24 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="method#getElementAfterPoint#0;class#SetOfItems#0" expanded="false" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1024#1025#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
-            <element signature="method#equals#0;class#SetOfItems#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -1095,18 +1075,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="method#getElementAfterPoint#0;class#SetOfItems#0" expanded="false" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+            <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
+            <element signature="method#equals#0;class#SetOfItems#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="129" column="28" lean-forward="true" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
+        <state relative-caret-position="212">
+          <caret line="103" column="90" lean-forward="true" selection-start-line="103" selection-start-column="90" selection-end-line="103" selection-end-column="90" />
           <folding>
             <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="e#7459#7460#0" expanded="true" />
-            <element signature="e#7503#7504#0" expanded="true" />
+            <element signature="e#7669#7670#0" expanded="true" />
+            <element signature="e#7713#7714#0" expanded="true" />
             <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
           </folding>
         </state>

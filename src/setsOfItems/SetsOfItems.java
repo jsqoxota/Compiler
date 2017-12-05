@@ -51,6 +51,7 @@ public class SetsOfItems {
             ArrayList<Object> X = setOfItemsS.get(i).getElementAfterPoint();
             for (Object x : X){     //goTo(I,X);
                 setOfItemsS.addAll(goTo(setOfItemsS.get(i),x));
+                System.out.println(setOfItemsS.toString());
             }
         }
     }
@@ -87,6 +88,7 @@ public class SetsOfItems {
         setOfItems.addItem(lr1Item);                                                    //第一项
         int count = 0;                                                                  //LR(1)项数量 - 1
         while (true) {
+            if(count == setOfItems.getItems().size())break;
             LR1Item item = setOfItems.getItems(count);
             Object B = item.getB();                                                     //获得B
             if (B == null || isTerminal(B)) break;                                      //终结符或null
@@ -98,7 +100,8 @@ public class SetsOfItems {
             }
             ArrayList<Production> productions = grammar.getProduction((NonTerminals) B);
             for (Production production : productions) {
-                setOfItems.addItem(changeToLR1Item(production, extraInformationS));
+                LR1Item lr1Item1 = changeToLR1Item(production, extraInformationS);
+                if(!setOfItems.getItems().contains(lr1Item1))setOfItems.addItem(lr1Item1);
             }
 
             count++;
