@@ -36,6 +36,11 @@ public class Grammar {
         return productionArrayList;
     }
 
+    //获得所有产生式
+    public int getProductionSize(){
+        return productions.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();

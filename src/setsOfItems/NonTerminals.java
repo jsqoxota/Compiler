@@ -32,4 +32,9 @@ public class NonTerminals{
         if(this.name.equals(((NonTerminals) obj).name))return true;
         else return false;
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

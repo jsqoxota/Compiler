@@ -1,60 +1,64 @@
 I0
+<program'> -> . <program>, $
 <program> -> . <block>., $
 <block> -> . <const-decl><var-decl><proc-decl><statement>, .
 <const-decl> -> . const<const-assignment-list>;, call/var/while/begin/if/.
 <const-decl> -> . , call/var/while/begin/if/.
 
 I1
-<program> -><block> . ., $
+<program'> -><program> . , $
 
 I2
+<program> -><block> . ., $
+
+I3
 <block> -><const-decl> . <var-decl><proc-decl><statement>, .
 <var-decl> -> . var<ident-list>;, call/while/begin/if/.
 <var-decl> -> . ε, call/while/begin/if/.
 
-I3
+I4
 <const-decl> ->const . <const-assignment-list>;, call/var/while/begin/if/.
 <const-assignment-list> -> . <ident>=<number>, ;
 <const-assignment-list> -> . <const-assignment-list>,<ident>=<number>, ;
 <const-assignment-list> -> . <ident>=<number>, ,
 <const-assignment-list> -> . <const-assignment-list>,<ident>=<number>, ,
 
-I4
+I5
 <program> -><block>. . , $
 
-I5
+I6
 <block> -><const-decl><var-decl> . <proc-decl><statement>, .
 <proc-decl> -> . <proc-decl>procedure<ident>;<block>;, call/while/begin/if/.
 <proc-decl> -> . ε, call/while/begin/if/.
 <proc-decl> -> . <proc-decl>procedure<ident>;<block>;, procedure
 <proc-decl> -> . ε, procedure
 
-I6
+I7
 <var-decl> ->var . <ident-list>;, call/while/begin/if/.
 <ident-list> -> . <ident>, ;
 <ident-list> -> . <ident-list>,<ident>, ;
 <ident-list> -> . <ident>, ,
 <ident-list> -> . <ident-list>,<ident>, ,
 
-I7
+I8
 <var-decl> ->ε . , call/while/begin/if/.
 
-I8
+I9
 <const-decl> ->const<const-assignment-list> . ;, call/var/while/begin/if/.
 
-I9
+I10
 <const-assignment-list> -><const-assignment-list> . ,<ident>=<number>, ;
 
-I10
+I11
 <const-assignment-list> -><const-assignment-list> . ,<ident>=<number>, ,
 
-I11
+I12
 <const-assignment-list> -><ident> . =<number>, ;
 
-I12
+I13
 <const-assignment-list> -><ident> . =<number>, ,
 
-I13
+I14
 <block> -><const-decl><var-decl><proc-decl> . <statement>, .
 <statement> -> . <ident>:=<expression>, .
 <statement> -> . call<ident>, .
@@ -63,58 +67,58 @@ I13
 <statement> -> . while<condition>do<statement>, .
 <statement> -> . ε, .
 
-I14
+I15
 <proc-decl> -><proc-decl> . procedure<ident>;<block>;, call/while/begin/if/.
 
-I15
+I16
 <proc-decl> -><proc-decl> . procedure<ident>;<block>;, procedure
 
-I16
+I17
 <proc-decl> ->ε . , call/while/begin/if/.
 
-I17
+I18
 <proc-decl> ->ε . , procedure
 
-I18
+I19
 <var-decl> ->var<ident-list> . ;, call/while/begin/if/.
 
-I19
+I20
 <ident-list> -><ident-list> . ,<ident>, ;
 
-I20
+I21
 <ident-list> -><ident-list> . ,<ident>, ,
 
-I21
+I22
 <ident-list> -><ident> . , ;
 
-I22
+I23
 <ident-list> -><ident> . , ,
 
-I23
+I24
 <const-decl> ->const<const-assignment-list>; . , call/var/while/begin/if/.
 
-I24
+I25
 <const-assignment-list> -><const-assignment-list>, . <ident>=<number>, ;
 
-I25
+I26
 <const-assignment-list> -><const-assignment-list>, . <ident>=<number>, ,
 
-I26
+I27
 <const-assignment-list> -><ident>= . <number>, ;
 
-I27
+I28
 <const-assignment-list> -><ident>= . <number>, ,
 
-I28
+I29
 <block> -><const-decl><var-decl><proc-decl><statement> . , .
 
-I29
+I30
 <statement> -><ident> . :=<expression>, .
 
-I30
+I31
 <statement> ->call . <ident>, .
 
-I31
+I32
 <statement> ->begin . <statement-list>end, .
 <statement-list> -> . <statement>, end
 <statement-list> -> . <statement-list>;<statement>, end
@@ -127,47 +131,47 @@ I31
 <statement-list> -> . <statement>, ;
 <statement-list> -> . <statement-list>;<statement>, ;
 
-I32
+I33
 <statement> ->if . <condition>then<statement>, .
 <condition> -> . odd<expression>, then
 <condition> -> . <expression><relation><expression>, then
 
-I33
+I34
 <statement> ->while . <condition>do<statement>, .
 <condition> -> . odd<expression>, do
 <condition> -> . <expression><relation><expression>, do
 
-I34
+I35
 <statement> ->ε . , .
 
-I35
+I36
 <proc-decl> -><proc-decl>procedure . <ident>;<block>;, call/while/begin/if/.
 
-I36
+I37
 <proc-decl> -><proc-decl>procedure . <ident>;<block>;, procedure
 
-I37
+I38
 <var-decl> ->var<ident-list>; . , call/while/begin/if/.
 
-I38
+I39
 <ident-list> -><ident-list>, . <ident>, ;
 
-I39
+I40
 <ident-list> -><ident-list>, . <ident>, ,
 
-I40
+I41
 <const-assignment-list> -><const-assignment-list>,<ident> . =<number>, ;
 
-I41
+I42
 <const-assignment-list> -><const-assignment-list>,<ident> . =<number>, ,
 
-I42
+I43
 <const-assignment-list> -><ident>=<number> . , ;
 
-I43
+I44
 <const-assignment-list> -><ident>=<number> . , ,
 
-I44
+I45
 <statement> -><ident>:= . <expression>, .
 <expression> -> . <term>, .
 <expression> -> . <adding-operator><term>, .
@@ -185,31 +189,31 @@ I44
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I45
+I46
 <statement> ->call<ident> . , .
 
-I46
+I47
 <statement> ->begin<statement-list> . end, .
 
-I47
+I48
 <statement-list> -><statement-list> . ;<statement>, end
 
-I48
+I49
 <statement-list> -><statement-list> . ;<statement>, ;
 
-I49
+I50
 <statement-list> -><statement> . , end
 
-I50
+I51
 <statement-list> -><statement> . , ;
 
-I51
+I52
 <statement> -><ident> . :=<expression>, end
 
-I52
+I53
 <statement> ->call . <ident>, end
 
-I53
+I54
 <statement> ->begin . <statement-list>end, end
 <statement-list> -> . <statement>, end
 <statement-list> -> . <statement-list>;<statement>, end
@@ -222,23 +226,23 @@ I53
 <statement-list> -> . <statement>, ;
 <statement-list> -> . <statement-list>;<statement>, ;
 
-I54
+I55
 <statement> ->if . <condition>then<statement>, end
 <condition> -> . odd<expression>, then
 <condition> -> . <expression><relation><expression>, then
 
-I55
+I56
 <statement> ->while . <condition>do<statement>, end
 <condition> -> . odd<expression>, do
 <condition> -> . <expression><relation><expression>, do
 
-I56
+I57
 <statement> ->ε . , end
 
-I57
+I58
 <statement> ->if<condition> . then<statement>, .
 
-I58
+I59
 <condition> ->odd . <expression>, then
 <expression> -> . <term>, then
 <expression> -> . <adding-operator><term>, then
@@ -256,7 +260,7 @@ I58
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I59
+I60
 <condition> -><expression> . <relation><expression>, then
 <relation> -> . =, (/+
 <relation> -> . <>, (/+
@@ -265,10 +269,10 @@ I59
 <relation> -> . <=, (/+
 <relation> -> . >=, (/+
 
-I60
+I61
 <statement> ->while<condition> . do<statement>, .
 
-I61
+I62
 <condition> ->odd . <expression>, do
 <expression> -> . <term>, do
 <expression> -> . <adding-operator><term>, do
@@ -286,7 +290,7 @@ I61
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I62
+I63
 <condition> -><expression> . <relation><expression>, do
 <relation> -> . =, (/+
 <relation> -> . <>, (/+
@@ -295,54 +299,54 @@ I62
 <relation> -> . <=, (/+
 <relation> -> . >=, (/+
 
-I63
+I64
 <proc-decl> -><proc-decl>procedure<ident> . ;<block>;, call/while/begin/if/.
 
-I64
+I65
 <proc-decl> -><proc-decl>procedure<ident> . ;<block>;, procedure
 
-I65
+I66
 <ident-list> -><ident-list>,<ident> . , ;
 
-I66
+I67
 <ident-list> -><ident-list>,<ident> . , ,
 
-I67
+I68
 <const-assignment-list> -><const-assignment-list>,<ident>= . <number>, ;
 
-I68
+I69
 <const-assignment-list> -><const-assignment-list>,<ident>= . <number>, ,
 
-I69
+I70
 <statement> -><ident>:=<expression> . , .
 
-I70
+I71
 <expression> -><expression> . <adding-operator><term>, .
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I71
+I72
 <expression> -><expression> . <adding-operator><term>, +
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I72
+I73
 <expression> -><term> . , .
 
-I73
+I74
 <term> -><term> . <multiplying-operator><factor>, .
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I74
+I75
 <expression> -><term> . , +
 
-I75
+I76
 <term> -><term> . <multiplying-operator><factor>, *//
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I76
+I77
 <expression> -><adding-operator> . <term>, .
 <term> -> . <factor>, .
 <term> -> . <term><multiplying-operator><factor>, .
@@ -352,7 +356,7 @@ I76
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I77
+I78
 <expression> -><adding-operator> . <term>, +
 <term> -> . <factor>, +
 <term> -> . <term><multiplying-operator><factor>, +
@@ -362,22 +366,22 @@ I77
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I78
+I79
 <term> -><factor> . , .
 
-I79
+I80
 <term> -><factor> . , *//
 
-I80
+I81
 <adding-operator> ->+ . , (
 
-I81
+I82
 <factor> -><ident> . , .
 
-I82
+I83
 <factor> -><number> . , .
 
-I83
+I84
 <factor> ->( . <expression>), .
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -395,10 +399,10 @@ I83
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I84
+I85
 <statement> ->begin<statement-list>end . , .
 
-I85
+I86
 <statement-list> -><statement-list>; . <statement>, end
 <statement> -> . <ident>:=<expression>, end
 <statement> -> . call<ident>, end
@@ -407,7 +411,7 @@ I85
 <statement> -> . while<condition>do<statement>, end
 <statement> -> . ε, end
 
-I86
+I87
 <statement-list> -><statement-list>; . <statement>, ;
 <statement> -> . <ident>:=<expression>, ;
 <statement> -> . call<ident>, ;
@@ -416,7 +420,7 @@ I86
 <statement> -> . while<condition>do<statement>, ;
 <statement> -> . ε, ;
 
-I87
+I88
 <statement> -><ident>:= . <expression>, end
 <expression> -> . <term>, end
 <expression> -> . <adding-operator><term>, end
@@ -434,19 +438,19 @@ I87
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I88
+I89
 <statement> ->call<ident> . , end
 
-I89
+I90
 <statement> ->begin<statement-list> . end, end
 
-I90
+I91
 <statement> ->if<condition> . then<statement>, end
 
-I91
+I92
 <statement> ->while<condition> . do<statement>, end
 
-I92
+I93
 <statement> ->if<condition>then . <statement>, .
 <statement> -> . <ident>:=<expression>, .
 <statement> -> . call<ident>, .
@@ -455,23 +459,23 @@ I92
 <statement> -> . while<condition>do<statement>, .
 <statement> -> . ε, .
 
-I93
+I94
 <condition> ->odd<expression> . , then
 
-I94
+I95
 <expression> -><expression> . <adding-operator><term>, then
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I95
+I96
 <expression> -><term> . , then
 
-I96
+I97
 <term> -><term> . <multiplying-operator><factor>, then
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I97
+I98
 <expression> -><adding-operator> . <term>, then
 <term> -> . <factor>, then
 <term> -> . <term><multiplying-operator><factor>, then
@@ -481,16 +485,16 @@ I97
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I98
+I99
 <term> -><factor> . , then
 
-I99
+I100
 <factor> -><ident> . , then
 
-I100
+I101
 <factor> -><number> . , then
 
-I101
+I102
 <factor> ->( . <expression>), then
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -508,7 +512,7 @@ I101
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I102
+I103
 <condition> -><expression><relation> . <expression>, then
 <expression> -> . <term>, then
 <expression> -> . <adding-operator><term>, then
@@ -526,25 +530,25 @@ I102
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I103
+I104
 <relation> ->= . , (/+
 
-I104
+I105
 <relation> -><> . , (/+
 
-I105
+I106
 <relation> ->< . , (/+
 
-I106
+I107
 <relation> ->> . , (/+
 
-I107
+I108
 <relation> -><= . , (/+
 
-I108
+I109
 <relation> ->>= . , (/+
 
-I109
+I110
 <statement> ->while<condition>do . <statement>, .
 <statement> -> . <ident>:=<expression>, .
 <statement> -> . call<ident>, .
@@ -553,23 +557,23 @@ I109
 <statement> -> . while<condition>do<statement>, .
 <statement> -> . ε, .
 
-I110
+I111
 <condition> ->odd<expression> . , do
 
-I111
+I112
 <expression> -><expression> . <adding-operator><term>, do
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I112
+I113
 <expression> -><term> . , do
 
-I113
+I114
 <term> -><term> . <multiplying-operator><factor>, do
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I114
+I115
 <expression> -><adding-operator> . <term>, do
 <term> -> . <factor>, do
 <term> -> . <term><multiplying-operator><factor>, do
@@ -579,16 +583,16 @@ I114
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I115
+I116
 <term> -><factor> . , do
 
-I116
+I117
 <factor> -><ident> . , do
 
-I117
+I118
 <factor> -><number> . , do
 
-I118
+I119
 <factor> ->( . <expression>), do
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -606,7 +610,7 @@ I118
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I119
+I120
 <condition> -><expression><relation> . <expression>, do
 <expression> -> . <term>, do
 <expression> -> . <adding-operator><term>, do
@@ -624,25 +628,25 @@ I119
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I120
+I121
 <proc-decl> -><proc-decl>procedure<ident>; . <block>;, call/while/begin/if/.
 <block> -> . <const-decl><var-decl><proc-decl><statement>, ;
 <const-decl> -> . const<const-assignment-list>;, call/var/;/while/begin/if
 <const-decl> -> . , call/var/;/while/begin/if
 
-I121
+I122
 <proc-decl> -><proc-decl>procedure<ident>; . <block>;, procedure
 <block> -> . <const-decl><var-decl><proc-decl><statement>, ;
 <const-decl> -> . const<const-assignment-list>;, call/var/;/while/begin/if
 <const-decl> -> . , call/var/;/while/begin/if
 
-I122
+I123
 <const-assignment-list> -><const-assignment-list>,<ident>=<number> . , ;
 
-I123
+I124
 <const-assignment-list> -><const-assignment-list>,<ident>=<number> . , ,
 
-I124
+I125
 <expression> -><expression><adding-operator> . <term>, .
 <term> -> . <factor>, .
 <term> -> . <term><multiplying-operator><factor>, .
@@ -652,7 +656,7 @@ I124
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I125
+I126
 <expression> -><expression><adding-operator> . <term>, +
 <term> -> . <factor>, +
 <term> -> . <term><multiplying-operator><factor>, +
@@ -662,45 +666,45 @@ I125
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I126
+I127
 <term> -><term><multiplying-operator> . <factor>, .
 <factor> -> . <ident>, .
 <factor> -> . <number>, .
 <factor> -> . (<expression>), .
 
-I127
+I128
 <multiplying-operator> ->* . , (
 
-I128
+I129
 <multiplying-operator> ->/ . , (
 
-I129
+I130
 <term> -><term><multiplying-operator> . <factor>, *//
 <factor> -> . <ident>, *//
 <factor> -> . <number>, *//
 <factor> -> . (<expression>), *//
 
-I130
+I131
 <expression> -><adding-operator><term> . , .
 
-I131
+I132
 <expression> -><adding-operator><term> . , +
 
-I132
+I133
 <term> -><term> . <multiplying-operator><factor>, +
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I133
+I134
 <term> -><factor> . , +
 
-I134
+I135
 <factor> -><ident> . , +
 
-I135
+I136
 <factor> -><number> . , +
 
-I136
+I137
 <factor> ->( . <expression>), +
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -718,23 +722,23 @@ I136
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I137
+I138
 <factor> ->(<expression> . ), .
 
-I138
+I139
 <expression> -><expression> . <adding-operator><term>, )
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I139
+I140
 <expression> -><term> . , )
 
-I140
+I141
 <term> -><term> . <multiplying-operator><factor>, )
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I141
+I142
 <expression> -><adding-operator> . <term>, )
 <term> -> . <factor>, )
 <term> -> . <term><multiplying-operator><factor>, )
@@ -744,16 +748,16 @@ I141
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I142
+I143
 <term> -><factor> . , )
 
-I143
+I144
 <factor> -><ident> . , )
 
-I144
+I145
 <factor> -><number> . , )
 
-I145
+I146
 <factor> ->( . <expression>), )
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -771,19 +775,19 @@ I145
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I146
+I147
 <statement-list> -><statement-list>;<statement> . , end
 
-I147
+I148
 <statement-list> -><statement-list>;<statement> . , ;
 
-I148
+I149
 <statement> -><ident> . :=<expression>, ;
 
-I149
+I150
 <statement> ->call . <ident>, ;
 
-I150
+I151
 <statement> ->begin . <statement-list>end, ;
 <statement-list> -> . <statement>, end
 <statement-list> -> . <statement-list>;<statement>, end
@@ -796,36 +800,36 @@ I150
 <statement-list> -> . <statement>, ;
 <statement-list> -> . <statement-list>;<statement>, ;
 
-I151
+I152
 <statement> ->if . <condition>then<statement>, ;
 <condition> -> . odd<expression>, then
 <condition> -> . <expression><relation><expression>, then
 
-I152
+I153
 <statement> ->while . <condition>do<statement>, ;
 <condition> -> . odd<expression>, do
 <condition> -> . <expression><relation><expression>, do
 
-I153
+I154
 <statement> ->ε . , ;
 
-I154
+I155
 <statement> -><ident>:=<expression> . , end
 
-I155
+I156
 <expression> -><expression> . <adding-operator><term>, end
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I156
+I157
 <expression> -><term> . , end
 
-I157
+I158
 <term> -><term> . <multiplying-operator><factor>, end
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I158
+I159
 <expression> -><adding-operator> . <term>, end
 <term> -> . <factor>, end
 <term> -> . <term><multiplying-operator><factor>, end
@@ -835,16 +839,16 @@ I158
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I159
+I160
 <term> -><factor> . , end
 
-I160
+I161
 <factor> -><ident> . , end
 
-I161
+I162
 <factor> -><number> . , end
 
-I162
+I163
 <factor> ->( . <expression>), end
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -862,10 +866,10 @@ I162
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I163
+I164
 <statement> ->begin<statement-list>end . , end
 
-I164
+I165
 <statement> ->if<condition>then . <statement>, end
 <statement> -> . <ident>:=<expression>, end
 <statement> -> . call<ident>, end
@@ -874,7 +878,7 @@ I164
 <statement> -> . while<condition>do<statement>, end
 <statement> -> . ε, end
 
-I165
+I166
 <statement> ->while<condition>do . <statement>, end
 <statement> -> . <ident>:=<expression>, end
 <statement> -> . call<ident>, end
@@ -883,10 +887,10 @@ I165
 <statement> -> . while<condition>do<statement>, end
 <statement> -> . ε, end
 
-I166
+I167
 <statement> ->if<condition>then<statement> . , .
 
-I167
+I168
 <expression> -><expression><adding-operator> . <term>, then
 <term> -> . <factor>, then
 <term> -> . <term><multiplying-operator><factor>, then
@@ -896,25 +900,25 @@ I167
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I168
+I169
 <term> -><term><multiplying-operator> . <factor>, then
 <factor> -> . <ident>, then
 <factor> -> . <number>, then
 <factor> -> . (<expression>), then
 
-I169
+I170
 <expression> -><adding-operator><term> . , then
 
-I170
+I171
 <factor> ->(<expression> . ), then
 
-I171
+I172
 <condition> -><expression><relation><expression> . , then
 
-I172
+I173
 <statement> ->while<condition>do<statement> . , .
 
-I173
+I174
 <expression> -><expression><adding-operator> . <term>, do
 <term> -> . <factor>, do
 <term> -> . <term><multiplying-operator><factor>, do
@@ -924,58 +928,58 @@ I173
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I174
+I175
 <term> -><term><multiplying-operator> . <factor>, do
 <factor> -> . <ident>, do
 <factor> -> . <number>, do
 <factor> -> . (<expression>), do
 
-I175
+I176
 <expression> -><adding-operator><term> . , do
 
-I176
+I177
 <factor> ->(<expression> . ), do
 
-I177
+I178
 <condition> -><expression><relation><expression> . , do
 
-I178
+I179
 <proc-decl> -><proc-decl>procedure<ident>;<block> . ;, call/while/begin/if/.
 
-I179
+I180
 <block> -><const-decl> . <var-decl><proc-decl><statement>, ;
 <var-decl> -> . var<ident-list>;, call/;/while/begin/if
 <var-decl> -> . ε, call/;/while/begin/if
 
-I180
+I181
 <const-decl> ->const . <const-assignment-list>;, call/var/;/while/begin/if
 <const-assignment-list> -> . <ident>=<number>, ;
 <const-assignment-list> -> . <const-assignment-list>,<ident>=<number>, ;
 <const-assignment-list> -> . <ident>=<number>, ,
 <const-assignment-list> -> . <const-assignment-list>,<ident>=<number>, ,
 
-I181
+I182
 <proc-decl> -><proc-decl>procedure<ident>;<block> . ;, procedure
 
-I182
+I183
 <expression> -><expression><adding-operator><term> . , .
 
-I183
+I184
 <expression> -><expression><adding-operator><term> . , +
 
-I184
+I185
 <term> -><term><multiplying-operator><factor> . , .
 
-I185
+I186
 <term> -><term><multiplying-operator><factor> . , *//
 
-I186
+I187
 <factor> -><ident> . , *//
 
-I187
+I188
 <factor> -><number> . , *//
 
-I188
+I189
 <factor> ->( . <expression>), *//
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -993,19 +997,19 @@ I188
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I189
+I190
 <term> -><term><multiplying-operator> . <factor>, +
 <factor> -> . <ident>, +
 <factor> -> . <number>, +
 <factor> -> . (<expression>), +
 
-I190
+I191
 <factor> ->(<expression> . ), +
 
-I191
+I192
 <factor> ->(<expression>) . , .
 
-I192
+I193
 <expression> -><expression><adding-operator> . <term>, )
 <term> -> . <factor>, )
 <term> -> . <term><multiplying-operator><factor>, )
@@ -1015,19 +1019,19 @@ I192
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I193
+I194
 <term> -><term><multiplying-operator> . <factor>, )
 <factor> -> . <ident>, )
 <factor> -> . <number>, )
 <factor> -> . (<expression>), )
 
-I194
+I195
 <expression> -><adding-operator><term> . , )
 
-I195
+I196
 <factor> ->(<expression> . ), )
 
-I196
+I197
 <statement> -><ident>:= . <expression>, ;
 <expression> -> . <term>, ;
 <expression> -> . <adding-operator><term>, ;
@@ -1045,19 +1049,19 @@ I196
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I197
+I198
 <statement> ->call<ident> . , ;
 
-I198
+I199
 <statement> ->begin<statement-list> . end, ;
 
-I199
+I200
 <statement> ->if<condition> . then<statement>, ;
 
-I200
+I201
 <statement> ->while<condition> . do<statement>, ;
 
-I201
+I202
 <expression> -><expression><adding-operator> . <term>, end
 <term> -> . <factor>, end
 <term> -> . <term><multiplying-operator><factor>, end
@@ -1067,103 +1071,103 @@ I201
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I202
+I203
 <term> -><term><multiplying-operator> . <factor>, end
 <factor> -> . <ident>, end
 <factor> -> . <number>, end
 <factor> -> . (<expression>), end
 
-I203
+I204
 <expression> -><adding-operator><term> . , end
 
-I204
+I205
 <factor> ->(<expression> . ), end
 
-I205
+I206
 <statement> ->if<condition>then<statement> . , end
 
-I206
+I207
 <statement> ->while<condition>do<statement> . , end
 
-I207
+I208
 <expression> -><expression><adding-operator><term> . , then
 
-I208
+I209
 <term> -><term><multiplying-operator><factor> . , then
 
-I209
+I210
 <factor> ->(<expression>) . , then
 
-I210
+I211
 <expression> -><expression><adding-operator><term> . , do
 
-I211
+I212
 <term> -><term><multiplying-operator><factor> . , do
 
-I212
+I213
 <factor> ->(<expression>) . , do
 
-I213
+I214
 <proc-decl> -><proc-decl>procedure<ident>;<block>; . , call/while/begin/if/.
 
-I214
+I215
 <block> -><const-decl><var-decl> . <proc-decl><statement>, ;
 <proc-decl> -> . <proc-decl>procedure<ident>;<block>;, call/;/while/begin/if
 <proc-decl> -> . ε, call/;/while/begin/if
 <proc-decl> -> . <proc-decl>procedure<ident>;<block>;, procedure
 <proc-decl> -> . ε, procedure
 
-I215
+I216
 <var-decl> ->var . <ident-list>;, call/;/while/begin/if
 <ident-list> -> . <ident>, ;
 <ident-list> -> . <ident-list>,<ident>, ;
 <ident-list> -> . <ident>, ,
 <ident-list> -> . <ident-list>,<ident>, ,
 
-I216
+I217
 <var-decl> ->ε . , call/;/while/begin/if
 
-I217
+I218
 <const-decl> ->const<const-assignment-list> . ;, call/var/;/while/begin/if
 
-I218
+I219
 <proc-decl> -><proc-decl>procedure<ident>;<block>; . , procedure
 
-I219
+I220
 <factor> ->(<expression> . ), *//
 
-I220
+I221
 <term> -><term><multiplying-operator><factor> . , +
 
-I221
+I222
 <factor> ->(<expression>) . , +
 
-I222
+I223
 <expression> -><expression><adding-operator><term> . , )
 
-I223
+I224
 <term> -><term><multiplying-operator><factor> . , )
 
-I224
+I225
 <factor> ->(<expression>) . , )
 
-I225
+I226
 <statement> -><ident>:=<expression> . , ;
 
-I226
+I227
 <expression> -><expression> . <adding-operator><term>, ;
 <adding-operator> -> . +, (
 <adding-operator> -> . , (
 
-I227
+I228
 <expression> -><term> . , ;
 
-I228
+I229
 <term> -><term> . <multiplying-operator><factor>, ;
 <multiplying-operator> -> . *, (
 <multiplying-operator> -> . /, (
 
-I229
+I230
 <expression> -><adding-operator> . <term>, ;
 <term> -> . <factor>, ;
 <term> -> . <term><multiplying-operator><factor>, ;
@@ -1173,16 +1177,16 @@ I229
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I230
+I231
 <term> -><factor> . , ;
 
-I231
+I232
 <factor> -><ident> . , ;
 
-I232
+I233
 <factor> -><number> . , ;
 
-I233
+I234
 <factor> ->( . <expression>), ;
 <expression> -> . <term>, )
 <expression> -> . <adding-operator><term>, )
@@ -1200,10 +1204,10 @@ I233
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I234
+I235
 <statement> ->begin<statement-list>end . , ;
 
-I235
+I236
 <statement> ->if<condition>then . <statement>, ;
 <statement> -> . <ident>:=<expression>, ;
 <statement> -> . call<ident>, ;
@@ -1212,7 +1216,7 @@ I235
 <statement> -> . while<condition>do<statement>, ;
 <statement> -> . ε, ;
 
-I236
+I237
 <statement> ->while<condition>do . <statement>, ;
 <statement> -> . <ident>:=<expression>, ;
 <statement> -> . call<ident>, ;
@@ -1221,16 +1225,16 @@ I236
 <statement> -> . while<condition>do<statement>, ;
 <statement> -> . ε, ;
 
-I237
+I238
 <expression> -><expression><adding-operator><term> . , end
 
-I238
+I239
 <term> -><term><multiplying-operator><factor> . , end
 
-I239
+I240
 <factor> ->(<expression>) . , end
 
-I240
+I241
 <block> -><const-decl><var-decl><proc-decl> . <statement>, ;
 <statement> -> . <ident>:=<expression>, ;
 <statement> -> . call<ident>, ;
@@ -1239,22 +1243,22 @@ I240
 <statement> -> . while<condition>do<statement>, ;
 <statement> -> . ε, ;
 
-I241
+I242
 <proc-decl> -><proc-decl> . procedure<ident>;<block>;, call/;/while/begin/if
 
-I242
+I243
 <proc-decl> ->ε . , call/;/while/begin/if
 
-I243
+I244
 <var-decl> ->var<ident-list> . ;, call/;/while/begin/if
 
-I244
+I245
 <const-decl> ->const<const-assignment-list>; . , call/var/;/while/begin/if
 
-I245
+I246
 <factor> ->(<expression>) . , *//
 
-I246
+I247
 <expression> -><expression><adding-operator> . <term>, ;
 <term> -> . <factor>, ;
 <term> -> . <term><multiplying-operator><factor>, ;
@@ -1264,54 +1268,54 @@ I246
 <term> -> . <factor>, *//
 <term> -> . <term><multiplying-operator><factor>, *//
 
-I247
+I248
 <term> -><term><multiplying-operator> . <factor>, ;
 <factor> -> . <ident>, ;
 <factor> -> . <number>, ;
 <factor> -> . (<expression>), ;
 
-I248
+I249
 <expression> -><adding-operator><term> . , ;
 
-I249
+I250
 <factor> ->(<expression> . ), ;
 
-I250
+I251
 <statement> ->if<condition>then<statement> . , ;
 
-I251
+I252
 <statement> ->while<condition>do<statement> . , ;
 
-I252
+I253
 <block> -><const-decl><var-decl><proc-decl><statement> . , ;
 
-I253
+I254
 <proc-decl> -><proc-decl>procedure . <ident>;<block>;, call/;/while/begin/if
 
-I254
+I255
 <var-decl> ->var<ident-list>; . , call/;/while/begin/if
 
-I255
+I256
 <expression> -><expression><adding-operator><term> . , ;
 
-I256
+I257
 <term> -><term><multiplying-operator><factor> . , ;
 
-I257
+I258
 <factor> ->(<expression>) . , ;
 
-I258
+I259
 <proc-decl> -><proc-decl>procedure<ident> . ;<block>;, call/;/while/begin/if
 
-I259
+I260
 <proc-decl> -><proc-decl>procedure<ident>; . <block>;, call/;/while/begin/if
 <block> -> . <const-decl><var-decl><proc-decl><statement>, ;
 <const-decl> -> . const<const-assignment-list>;, call/var/;/while/begin/if
 <const-decl> -> . , call/var/;/while/begin/if
 
-I260
+I261
 <proc-decl> -><proc-decl>procedure<ident>;<block> . ;, call/;/while/begin/if
 
-I261
+I262
 <proc-decl> -><proc-decl>procedure<ident>;<block>; . , call/;/while/begin/if
 

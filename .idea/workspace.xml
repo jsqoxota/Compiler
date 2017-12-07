@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/test/Production2.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/Production2.txt" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes2.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes2.txt" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" afterPath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" afterPath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
       <change beforePath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" afterPath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/Production2.txt" afterPath="$PROJECT_DIR$/src/test/Production2.txt" />
       <change beforePath="$PROJECT_DIR$/src/test/ProductionRes2.txt" afterPath="$PROJECT_DIR$/src/test/ProductionRes2.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,15 +26,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="AnalysisTable.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#AnalysisTable#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#getNumber#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#constructorAnalysisTable#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#ACTION#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#ACTION#1;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#ACTION#2;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#GOTO#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Grammar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="628">
+              <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+              <folding>
+                <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
+                <element signature="e#993#994#0" expanded="true" />
+                <element signature="e#1034#1035#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/delegation/AddTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
-                <element signature="method#toString#0;class#Grammar#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -39,8 +75,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="10" column="82" lean-forward="false" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
+            <state relative-caret-position="629">
+              <caret line="40" column="15" lean-forward="true" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
               <folding>
                 <element signature="method#checkFile#0;class#Main#0" expanded="false" />
               </folding>
@@ -48,25 +84,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Terminal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
+      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="1110">
+              <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
               <folding>
-                <element signature="e#651#652#0" expanded="true" />
-                <element signature="e#691#692#0" expanded="true" />
+                <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
+                <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
+                <element signature="method#scan#0;class#Lexer#0" expanded="false" />
+                <element signature="method#delegate#0;class#Lexer#0" expanded="false" />
+                <element signature="method#skipSeparator#0;class#Lexer#0" expanded="false" />
+                <element signature="method#skipAnnotations#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isNumber#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isId#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isOperator#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isString#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isChar#0;class#Lexer#0" expanded="false" />
+                <element signature="method#readBuffered#0;class#Lexer#0" expanded="false" />
+                <element signature="method#readBuffered2#0;class#Lexer#0" expanded="false" />
+                <element signature="method#readCh#0;class#Lexer#0" expanded="false" />
+                <element signature="method#readCh#1;class#Lexer#0" expanded="false" />
+                <element signature="method#cmpCh#0;class#Lexer#0" expanded="false" />
+                <element signature="method#backCh#0;class#Lexer#0" expanded="false" />
+                <element signature="method#generateLexeme#0;class#Lexer#0" expanded="false" />
+                <element signature="method#readLexeme#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isComplexOperation#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isComplexOperation#1;class#Lexer#0" expanded="false" />
+                <element signature="method#ignoreThisLine#0;class#Lexer#0" expanded="false" />
+                <element signature="method#ignoreThisSentence#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isHex#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isOct#0;class#Lexer#0" expanded="false" />
+                <element signature="method#isE#0;class#Lexer#0" expanded="false" />
+                <element signature="method#findNNum#0;class#Lexer#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductionRes.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/ProductionRes.txt">
+      <file leaf-file-name="NonTerminals.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="631">
+              <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+              <folding>
+                <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,7 +137,7 @@
       <file leaf-file-name="SetOfItems.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="293">
               <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -91,77 +154,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NonTerminals.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LR1Item.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
-              <folding>
-                <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
-                <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
-                <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
-                <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-                <element signature="method#equals#0;class#LR1Item#0" expanded="false" />
-                <element signature="e#4308#4309#0" expanded="true" />
-                <element signature="e#4341#4342#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Production.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-              <folding>
-                <element signature="method#toString#0;class#Production#0" expanded="false" />
-                <element signature="method#equals#0;class#Production#0" expanded="false" />
-                <element signature="e#1377#1378#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="103" column="90" lean-forward="true" selection-start-line="103" selection-start-column="90" selection-end-line="103" selection-end-column="90" />
+            <state relative-caret-position="335">
+              <caret line="197" column="14" lean-forward="false" selection-start-line="197" selection-start-column="14" selection-end-line="197" selection-end-column="14" />
               <folding>
                 <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
                 <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
                 <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
                 <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="e#7669#7670#0" expanded="true" />
-                <element signature="e#7713#7714#0" expanded="true" />
                 <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Production2.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/Production2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -171,8 +182,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -204,9 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/operation/ArithmeticOp.java" />
-        <option value="$PROJECT_DIR$/src/lexer/Char.java" />
-        <option value="$PROJECT_DIR$/src/delegation/delegation.java" />
         <option value="$PROJECT_DIR$/src/delegation/printError.java" />
         <option value="$PROJECT_DIR$/src/delegation/ConcreteDelegation.java" />
         <option value="$PROJECT_DIR$/src/lexer/Str.java" />
@@ -250,11 +258,14 @@
         <option value="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Terminal.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
         <option value="$PROJECT_DIR$/src/test/Production2.txt" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/AnalysicTable.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
+        <option value="$PROJECT_DIR$/src/delegation/AddTable.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java" />
       </list>
     </option>
   </component>
@@ -288,8 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -302,6 +311,12 @@
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="delegation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -325,6 +340,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -538,12 +555,15 @@
       <workItem from="1512375172002" duration="1880000" />
       <workItem from="1512386329046" duration="25031000" />
       <workItem from="1512442242312" duration="4389000" />
-      <workItem from="1512454090742" duration="10573000" />
+      <workItem from="1512454090742" duration="10796000" />
+      <workItem from="1512471573440" duration="743000" />
+      <workItem from="1512580507816" duration="3189000" />
+      <workItem from="1512642617745" duration="7654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237062000" />
+    <option name="totallyTimeSpent" value="248871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,28 +580,28 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39179954" sideWeight="0.50214595" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47890535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47890535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16362661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17006437" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42759407" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33751425" sideWeight="0.49785408" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42759407" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,12 +627,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java</url>
-          <line>52</line>
+          <line>55</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java</url>
+          <line>25</line>
+          <properties class="setsOfItems.AnalysisTable" method="getNumber">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="99" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -676,21 +704,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/inter/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/test.java" />
-    <entry file="file://$PROJECT_DIR$/src/lexer/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lexer/Char.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -761,31 +774,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/result1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6253">
-          <caret line="169" column="15" lean-forward="false" selection-start-line="169" selection-start-column="15" selection-end-line="169" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/test1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1147">
           <caret line="31" column="58" lean-forward="false" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/delegation/EndLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/delegation/PrintError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -873,42 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
-          <folding>
-            <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
-            <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
-            <element signature="method#scan#0;class#Lexer#0" expanded="false" />
-            <element signature="method#delegate#0;class#Lexer#0" expanded="false" />
-            <element signature="method#skipSeparator#0;class#Lexer#0" expanded="false" />
-            <element signature="method#skipAnnotations#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isNumber#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isId#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isOperator#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isString#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isChar#0;class#Lexer#0" expanded="false" />
-            <element signature="method#readBuffered#0;class#Lexer#0" expanded="false" />
-            <element signature="method#readBuffered2#0;class#Lexer#0" expanded="false" />
-            <element signature="method#readCh#0;class#Lexer#0" expanded="false" />
-            <element signature="method#readCh#1;class#Lexer#0" expanded="false" />
-            <element signature="method#cmpCh#0;class#Lexer#0" expanded="false" />
-            <element signature="method#backCh#0;class#Lexer#0" expanded="false" />
-            <element signature="method#generateLexeme#0;class#Lexer#0" expanded="false" />
-            <element signature="method#readLexeme#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isComplexOperation#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isComplexOperation#1;class#Lexer#0" expanded="false" />
-            <element signature="method#ignoreThisLine#0;class#Lexer#0" expanded="false" />
-            <element signature="method#ignoreThisSentence#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isHex#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isOct#0;class#Lexer#0" expanded="false" />
-            <element signature="method#isE#0;class#Lexer#0" expanded="false" />
-            <element signature="method#findNNum#0;class#Lexer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lexer/Word.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -927,13 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Production.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -977,23 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-          <folding>
-            <element signature="e#7389#7390#0" expanded="false" />
-            <element signature="e#7430#7431#0" expanded="false" />
-            <element signature="e#8035#8036#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
-            <element signature="method#toString#0;class#Grammar#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,83 +933,100 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="10" column="82" lean-forward="false" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
+        <state relative-caret-position="1443">
+          <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
           <folding>
-            <element signature="method#checkFile#0;class#Main#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Production2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
+            <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
+            <element signature="e#817#818#0" expanded="false" />
+            <element signature="e#848#849#0" expanded="false" />
+            <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#equals#0;class#LR1Item#0" expanded="false" />
+            <element signature="e#4308#4309#0" expanded="false" />
+            <element signature="e#4341#4342#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
+        <state relative-caret-position="1110">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
             <element signature="method#toString#0;class#Production#0" expanded="false" />
             <element signature="method#equals#0;class#Production#0" expanded="false" />
-            <element signature="e#1377#1378#0" expanded="true" />
+            <element signature="e#1377#1378#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
+    <entry file="file://$PROJECT_DIR$/src/test/result1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+        <state relative-caret-position="6253">
+          <caret line="169" column="15" lean-forward="false" selection-start-line="169" selection-start-column="15" selection-end-line="169" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/ProductionRes2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4659">
+          <caret line="914" column="4" lean-forward="true" selection-start-line="914" selection-start-column="4" selection-end-line="914" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#equals#0;class#LR1Item#0" expanded="false" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="false" />
+            <element signature="e#691#692#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/EndLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/PrintError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="293">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1093,18 +1042,119 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+          <folding>
+            <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1034#1035#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+          <folding>
+            <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="103" column="90" lean-forward="true" selection-start-line="103" selection-start-column="90" selection-end-line="103" selection-end-column="90" />
+        <state relative-caret-position="335">
+          <caret line="197" column="14" lean-forward="false" selection-start-line="197" selection-start-column="14" selection-end-line="197" selection-end-column="14" />
           <folding>
             <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="e#7669#7670#0" expanded="true" />
-            <element signature="e#7713#7714#0" expanded="true" />
             <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+          <folding>
+            <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
+            <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
+            <element signature="method#scan#0;class#Lexer#0" expanded="false" />
+            <element signature="method#delegate#0;class#Lexer#0" expanded="false" />
+            <element signature="method#skipSeparator#0;class#Lexer#0" expanded="false" />
+            <element signature="method#skipAnnotations#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isNumber#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isId#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isOperator#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isString#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isChar#0;class#Lexer#0" expanded="false" />
+            <element signature="method#readBuffered#0;class#Lexer#0" expanded="false" />
+            <element signature="method#readBuffered2#0;class#Lexer#0" expanded="false" />
+            <element signature="method#readCh#0;class#Lexer#0" expanded="false" />
+            <element signature="method#readCh#1;class#Lexer#0" expanded="false" />
+            <element signature="method#cmpCh#0;class#Lexer#0" expanded="false" />
+            <element signature="method#backCh#0;class#Lexer#0" expanded="false" />
+            <element signature="method#generateLexeme#0;class#Lexer#0" expanded="false" />
+            <element signature="method#readLexeme#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isComplexOperation#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isComplexOperation#1;class#Lexer#0" expanded="false" />
+            <element signature="method#ignoreThisLine#0;class#Lexer#0" expanded="false" />
+            <element signature="method#ignoreThisSentence#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isHex#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isOct#0;class#Lexer#0" expanded="false" />
+            <element signature="method#isE#0;class#Lexer#0" expanded="false" />
+            <element signature="method#findNNum#0;class#Lexer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/AddTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="40" column="15" lean-forward="true" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+          <folding>
+            <element signature="method#checkFile#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#AnalysisTable#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#getNumber#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#constructorAnalysisTable#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#1;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#2;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#GOTO#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
           </folding>
         </state>
       </provider>

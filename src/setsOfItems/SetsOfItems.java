@@ -1,5 +1,7 @@
 package setsOfItems;
 
+import delegation.AddTable;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,12 +15,14 @@ import java.util.HashSet;
 public class SetsOfItems {
     private static SetsOfItems setsOfItems;                             //实例
     private static Grammar grammar;                                     //文法
-    private static ArrayList<SetOfItems> setOfItemsS;                    //项集族
+    private static ArrayList<SetOfItems> setOfItemsS;                   //项集族
     private static HashSet<Terminal> terminals;                         //终结符集合
+    private static HashSet<NonTerminals> nonTerminals;                  //非终结符
     private static int count = 0;                                       //项集数量
     private static BufferedReader bufferedReader;
     private static Terminal epsilon;
     private static Terminal $;
+    private static AddTable addTableMethod;
 
     //构造函数 初始化
     private SetsOfItems(File file) throws IOException {
@@ -39,7 +43,6 @@ public class SetsOfItems {
 
     //构造项集族
     public void constructorSetsOfItems() throws IOException {
-        getAugmentedGrammar();                                                                  //获得增广文法
         HashSet<Terminal> extraInformationS = new HashSet<>();                                  //额外信息
         extraInformationS.add($);
         LR1Item lr1Item = changeToLR1Item(grammar.getProduction(0), extraInformationS);  //获得初始项
@@ -57,9 +60,10 @@ public class SetsOfItems {
     }
 
     //获得增广文法
-    private void getAugmentedGrammar() throws IOException {
+    public void getAugmentedGrammar() throws IOException {
         grammar = new Grammar();
         terminals = new HashSet<>();
+        nonTerminals = new HashSet<>();
         terminals.add($);
         terminals.add(epsilon);
         String s;
@@ -67,15 +71,16 @@ public class SetsOfItems {
             String[] strings = s.split(" ");                        //分割字符串
             Production production = new Production(strings[0]);         //设置产生式左边
             for (int i = 2; i < strings.length; i++) {                  //设置产生式右边
-                Object Object;
+                Object object;
                 if (isTerminal(strings[i])){
-                    Object = new Terminal(strings[i]);                  //终结符
-                    terminals.add((Terminal) Object);
+                    object = new Terminal(strings[i]);                  //终结符
+                    terminals.add((Terminal) object);
                 }
-                else                                                    //非终结符
-                    Object = new NonTerminals(strings[i]);
-
-                production.addElement(Object);                          //添加产生式右边元素
+                else {                                                   //非终结符
+                    object = new NonTerminals(strings[i]);
+                    nonTerminals.add((NonTerminals)object);
+                }
+                production.addElement(object);                          //添加产生式右边元素
             }
             grammar.addElement(production);
         }
@@ -190,6 +195,11 @@ public class SetsOfItems {
         return terminals.contains(o);
     }
 
+    //获得构造表的方法
+    public void getAddTableMethod(AddTable addTable){
+        this.addTableMethod = addTable;
+    }
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -198,5 +208,17 @@ public class SetsOfItems {
             stringBuilder.append("\r\n");
         }
         return stringBuilder.toString();
+    }
+
+    public Grammar getGrammar() {
+        return grammar;
+    }
+
+    public HashSet<Terminal> getTerminals() {
+        return terminals;
+    }
+
+    public HashSet<NonTerminals> getNonTerminals() {
+        return nonTerminals;
     }
 }
