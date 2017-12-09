@@ -1,4 +1,6 @@
-package setsOfItems;
+package parser;
+
+import setsOfItems.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +51,6 @@ public class AnalysisTable {
         grammar = setsOfItems.getGrammar();
 
         setsOfItems.constructorSetsOfItems();                   //构造项集族
-        //System.out.println(setsOfItems);
-
 
         int row = setsOfItems.getCount();
         int col = getNumber();
@@ -60,7 +60,7 @@ public class AnalysisTable {
         System.out.println(goTo.toString());
 
         relevanceInfs = setsOfItems.getRelevanceInfs();
-        for (int i = 1; i < relevanceInfs.size(); i++){
+        for (int i = 0; i < relevanceInfs.size(); i++){
             RelevanceInf relevanceInf = relevanceInfs.get(i);
             addTable(relevanceInf.getX(), relevanceInf.getLr1Item(), relevanceInf.getFirstSetOfItemNum(), relevanceInf.getSecondSetOfItemNum());
         }
@@ -85,7 +85,7 @@ public class AnalysisTable {
     }
 
     //构造分析表 终结符 规约 [A -> alpha *, a]      Action[i, a]设置为 规约A->alpha
-    public void ACTION(int setOfItemsNumber, ArrayList<Terminal> terminals, int productionNumber){
+    public void ACTION(int setOfItemsNumber, HashSet<Terminal> terminals, int productionNumber){
         for (Terminal terminal : terminals)
             analysisTable[setOfItemsNumber][action.get(terminal)] = "r" + productionNumber;
     }
@@ -111,6 +111,7 @@ public class AnalysisTable {
         else return true;
     }
 
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -130,5 +131,9 @@ public class AnalysisTable {
             stringBuilder.append("\r\n");
         }
         return stringBuilder.toString();
+    }
+
+    public SetsOfItems getSetsOfItems() {
+        return setsOfItems;
     }
 }

@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 构造项集族
@@ -24,6 +25,7 @@ public class SetsOfItems {
     private static Terminal epsilon;
     private static Terminal $;
     private static int location;                                        //正在处理的项集编号
+    private static int nextSetOfItemsNum;                               //下一项项集编号
     private static ArrayList<RelevanceInf> relevanceInfs;               //关联信息
     private static Object object;                                       //X GOTO(I,X)
     private static LR1Item I;                                           //I GOTO(I,X)
@@ -52,15 +54,17 @@ public class SetsOfItems {
         extraInformationS.add($);
         LR1Item lr1Item = changeToLR1Item(grammar.getProduction(0), extraInformationS);  //获得初始项
         //第0个项集
-        setOfItemsS.add(closure(lr1Item, count));
+
+        setOfItemsS.add(mergeLR1Item(closure(lr1Item, count)));
         count++;
         I = lr1Item;
 
         for (int i = 0; i < setOfItemsS.size(); i++){
             location = i;
             ArrayList<Object> X = setOfItemsS.get(i).getElementAfterPoint();
-            for (Object x : X){     //goTo(I,X);
-                setOfItemsS.addAll(goTo(setOfItemsS.get(i),x));
+            for (Object x : X){     //goTo(I,X)
+                SetOfItems setOfItems = goTo(setOfItemsS.get(i),x);
+                if(setOfItems != null)setOfItemsS.add(setOfItems);
             }
         }
     }
@@ -104,52 +108,58 @@ public class SetsOfItems {
             Object B = item.getB();                                                     //获得B
             if (B == null || isTerminal(B)) break;                                      //终结符或null
             ArrayList<Object> beta = item.getBeta();                                    //获得beta
-            ArrayList<Terminal> a = item.geta();                                        //获得a
+            HashSet<Terminal> a = item.geta();                                          //获得a
             HashSet<Terminal> extraInformationS = new HashSet<>();
-            for (int i = 0; i < a.size(); i++) {
-                extraInformationS.addAll(first(beta, a.get(i)));                        //获得b
+            for (Terminal terminal: a) {
+                extraInformationS.addAll(first(beta, terminal));                        //获得b
             }
-            ArrayList<Production> productions = grammar.getProduction((NonTerminals) B);
+            ArrayList<Production> productions = grammar.getProduction((NonTerminals) B);//添加LR(1)项
             for (Production production : productions) {
                 LR1Item lr1Item1 = changeToLR1Item(production, extraInformationS);
                 if(!setOfItems.getItems().contains(lr1Item1))setOfItems.addItem(lr1Item1);
             }
-
             count++;
         }
-        for (SetOfItems items : setOfItemsS){                                               //判断是否已存在
-            if(setOfItems.equals(items)){
-                if(lr1Item.getProduction().getElements().size() == lr1Item.getPointLocation()){
-                    relevanceInfs.add(new RelevanceInf(location, null, items.getNumber(), lr1Item));
-                }
-                relevanceInfs.add(new RelevanceInf(location, object, items.getNumber(), I));   //添加关联信息
-                return null;
-            }
-        }
-        if(lr1Item.getProduction().getElements().size() == lr1Item.getPointLocation()){
-            relevanceInfs.add(new RelevanceInf(location, null, number, lr1Item));
-        }
-        relevanceInfs.add(new RelevanceInf(location, object, number, I));
         return setOfItems;
     }
 
     //多个LR(1)项求项集
-    private ArrayList<SetOfItems> closure(final ArrayList<LR1Item> lr1Items){
-        ArrayList<SetOfItems> setOfItems = new ArrayList<>();
+    private SetOfItems closure(final ArrayList<LR1Item> lr1Items){
+        SetOfItems items = null;
+        boolean flag = true;
         for (LR1Item lr1Item : lr1Items){
             I = new LR1Item(lr1Item);
             I.pointLocationDec();
-            SetOfItems items = closure(lr1Item,count);
-            if(items != null){
-                setOfItems.add(items);
-                count++;
+            if(flag){
+                items = closure(lr1Item,count);
+                if(items != null)flag = false;
+            }
+            else items.getItems().addAll(closure(lr1Item,count).getItems());
+        }
+        if(items != null)mergeLR1Item(items);
+        for (SetOfItems setOfItems : setOfItemsS){                                               //判断是否已存在
+            if(items.equals(setOfItems)){
+                nextSetOfItemsNum = setOfItems.getNumber();
+                addRelevance(nextSetOfItemsNum, lr1Items);
+                return null;
             }
         }
-        return setOfItems;
+        nextSetOfItemsNum = count;
+        count++;
+        addRelevance(nextSetOfItemsNum, lr1Items);
+        return items;
+    }
+
+    //添加关联信息
+    private void addRelevance(int setOfItemsNum, ArrayList<LR1Item> lr1Items){
+        for (LR1Item lr1Item : lr1Items)
+            if(lr1Item.getProduction().getElements().size() == lr1Item.getPointLocation()){
+                relevanceInfs.add(new RelevanceInf(0, null, setOfItemsNum, lr1Item));
+            }
     }
 
     //goto  项集:setOfItems   文法符号:X
-    private ArrayList<SetOfItems> goTo(final SetOfItems setOfItems, final Object X){
+    private SetOfItems goTo(final SetOfItems setOfItems, final Object X){
         object = X;
         ArrayList<LR1Item> J = new ArrayList<>();                    //文法符号集合
         for(LR1Item lr1Item : setOfItems.getItems()){
@@ -159,7 +169,13 @@ public class SetsOfItems {
                 J.add(temp);
             }
         }
-        return closure(J);
+        SetOfItems setOfItems1 = closure(J);
+        for (LR1Item lr1Item : J) {
+            LR1Item temp = new LR1Item(lr1Item);
+            temp.pointLocationDec();
+            relevanceInfs.add(new RelevanceInf(setOfItems.getNumber(), X, nextSetOfItemsNum, temp));
+        }
+        return setOfItems1;
     }
 
     //First(o)
@@ -223,6 +239,24 @@ public class SetsOfItems {
     //判断是否是终结符
     private boolean isTerminal(Object o){
         return terminals.contains(o);
+    }
+
+    //合并同类项
+    private SetOfItems mergeLR1Item(SetOfItems setOfItems){
+        int num = setOfItems.getItems().size();         //LR(1)项数量
+        for (int i = 0; i < num; i++){
+            LR1Item lr1Item = setOfItems.getItems(i);
+            for (int j = i + 1; j < num; j++){
+                LR1Item lr1Item2 = setOfItems.getItems(j);
+                if(lr1Item.getProduction().equals(lr1Item2.getProduction()) && lr1Item.getPointLocation() == lr1Item2.getPointLocation()){
+                    lr1Item.getExtraInformationS().addAll(lr1Item2.getExtraInformationS());
+                    setOfItems.getItems().remove(j);
+                    num--;
+                    j--;
+                }
+            }
+        }
+        return setOfItems;
     }
 
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/

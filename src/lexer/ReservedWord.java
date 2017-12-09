@@ -71,6 +71,7 @@ public class ReservedWord extends Word {
         reserve(new ReservedWord("void",        Tag.VOID        ));
         reserve(new ReservedWord("volatile",    Tag.VOLATILE    ));
         reserve(new ReservedWord("while",       Tag.WHILE       ));
+        reserve(new ReservedWord("id",          Tag.ID          ));
         reserve(Type.getByte());
         reserve(Type.getShort());
         reserve(Type.getInt());

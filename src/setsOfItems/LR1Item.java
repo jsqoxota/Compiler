@@ -1,6 +1,7 @@
 package setsOfItems;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * LR(1)项
@@ -8,13 +9,13 @@ import java.util.ArrayList;
 public class LR1Item{
     private Production production;                      //产生式
     private int pointLocation;                          //点的位置
-    private ArrayList<Terminal> extraInformationS;      //额外信息
+    private HashSet<Terminal> extraInformationS;      //额外信息
 
     //构造函数
     public LR1Item(Production production) {
         this.production = production;
         pointLocation = 0;
-        extraInformationS = new ArrayList<>();
+        extraInformationS = new HashSet<>();
     }
 
     public LR1Item(LR1Item lr1Item){
@@ -86,7 +87,7 @@ public class LR1Item{
 
     //[A -> alpha * B beta, a]
     //获得a项
-    public ArrayList<Terminal> geta(){
+    public HashSet<Terminal> geta(){
         return extraInformationS;
     }
 
@@ -105,11 +106,11 @@ public class LR1Item{
         ArrayList<Object> Objects = production.getElements();
         int i;
         for (i = 0; i < Objects.size(); i++) {
-            if (pointLocation == i) stringBuilder.append(" . ");
+            if (pointLocation == i) stringBuilder.append("·");
             stringBuilder.append(Objects.get(i).toString());
             stringBuilder.append(" ");
         }
-        if (pointLocation == i) stringBuilder.append(" . ");
+        if (pointLocation == i) stringBuilder.append("·");
         stringBuilder.append(", ");
         boolean flag = true;
         for (Object o : extraInformationS){
@@ -143,7 +144,7 @@ public class LR1Item{
         return pointLocation;
     }
 
-    public ArrayList<Terminal> getExtraInformationS() {
+    public HashSet<Terminal> getExtraInformationS() {
         return extraInformationS;
     }
 

@@ -1,24 +1,36 @@
 package main;
 
-import setsOfItems.*;
+import parser.Parser;
 
 import java.io.*;
 
 public class Main {
     private static final String pathnameInput = "./src/test/test3";
     private static final String pathnameOutput = "./src/test/result3.txt";
-    private static final String pathnameProduction = "./src/test/Production2.txt";
-    private static final String pathnameProductionRes = "./src/test/ProductionRes2.txt";
+    private static final String pathnameProduction = "./src/test/Production4.txt";
+    private static final String pathnameSetsOfItems = "./src/test/SetsOfItems4.txt";
+    private static final String pathnameAnalysisTable = "./src/test/AnalysisTable4.txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
-        File inputFile = new File(pathnameProduction);
-        File outputFile = new File(pathnameProductionRes);
-        checkFile(inputFile,outputFile);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
-        AnalysisTable analysisTable = new AnalysisTable(inputFile);
-        analysisTable.constructorAnalysisTable();
-        bufferedWriter.write(analysisTable.toString());
-        bufferedWriter.close();
+        File productionFile = new File(pathnameProduction);
+        File setsOfItemsFile = new File(pathnameSetsOfItems);
+        File analysisTableFile = new File(pathnameAnalysisTable);
+        Parser parser = Parser.getInstance(productionFile);
+
+        //检查文件
+        checkInputFile(productionFile);
+        checkOutputFile(setsOfItemsFile);
+        checkOutputFile(analysisTableFile);
+        if(flag)return;
+
+        //输出到文件
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
+        BufferedWriter bufferedWriter1 = new BufferedWriter(new FileWriter(analysisTableFile));
+        parser.delegate(msg ->{ bufferedWriter.write(msg); bufferedWriter.close();},
+                msg -> { bufferedWriter1.write(msg);bufferedWriter1.close();});
+
+
+        parser.getAnalysisTable();
     }
 
 //    public static void main(String[] args)throws IOException {
@@ -55,15 +67,20 @@ public class Main {
 //        bufferedWriter.close();
 //    }
 
-    //检测文件是否存在
-    private static void checkFile(File inputFile, File outputFile)throws IOException{
-        if(!inputFile.exists()){
-            System.out.println("无法找到源文件");
-        }
+    //检测输出文件是否存在
+    private static void checkOutputFile(File outputFile)throws IOException{
         if(outputFile.exists()){
             outputFile.delete();
             outputFile.createNewFile();
         }
         else outputFile.createNewFile();
+    }
+
+    //检查输入文件是否存在
+    private static void checkInputFile(File inputFile)throws IOException{
+        if(!inputFile.exists()){
+            System.out.println("无法找到指定文件!\n");
+            flag = true;
+        }
     }
 }
