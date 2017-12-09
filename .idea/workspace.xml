@@ -3,12 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/test/Production2.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/Production2.txt" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/main/Main.class" afterPath="$PROJECT_DIR$/out/production/Compiler/main/Main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/Grammar.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/Grammar.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/LR1Item.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/LR1Item.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/NonTerminals.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/NonTerminals.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetOfItems.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetOfItems.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" afterPath="$PROJECT_DIR$/out/production/Compiler/setsOfItems/SetsOfItems.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes.txt" />
       <change beforePath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes2.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/ProductionRes2.txt" />
+      <change beforePath="$PROJECT_DIR$/src/delegation/AddTable.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java" afterPath="$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java" />
       <change beforePath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" afterPath="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
-      <change beforePath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" afterPath="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" afterPath="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+      <change beforePath="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" afterPath="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" />
       <change beforePath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" afterPath="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/Production2.txt" afterPath="$PROJECT_DIR$/src/test/Production2.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/ProductionRes.txt" afterPath="$PROJECT_DIR$/src/test/ProductionRes.txt" />
       <change beforePath="$PROJECT_DIR$/src/test/ProductionRes2.txt" afterPath="$PROJECT_DIR$/src/test/ProductionRes2.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,47 +36,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="AnalysisTable.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java">
+      <file leaf-file-name="ProductionRes2.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/ProductionRes2.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+            <state relative-caret-position="111">
+              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NonTerminals.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="814">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#AnalysisTable#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#getNumber#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#constructorAnalysisTable#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#ACTION#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#ACTION#1;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#ACTION#2;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-                <element signature="method#GOTO#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+                <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
+                <element signature="e#731#732#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grammar.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
+      <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="628">
-              <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-              <folding>
-                <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
-                <element signature="e#993#994#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddTable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/delegation/AddTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+            <state relative-caret-position="-1769">
+              <caret line="13" column="76" lean-forward="true" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,8 +86,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="40" column="15" lean-forward="true" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+            <state relative-caret-position="466">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="method#checkFile#0;class#Main#0" expanded="false" />
               </folding>
@@ -84,11 +95,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Char.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Char.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+            <state relative-caret-position="740">
+              <caret line="33" column="77" lean-forward="true" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
               <folding>
                 <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
                 <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
@@ -122,56 +153,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NonTerminals.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
+      <file leaf-file-name="Num.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Num.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-              <folding>
-                <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="222">
+              <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetOfItems.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
+      <file leaf-file-name="Real.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Real.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-                <element signature="method#getElementAfterPoint#0;class#SetOfItems#0" expanded="false" />
-                <element signature="e#955#956#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1063#1064#0" expanded="true" />
-                <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
-                <element signature="method#equals#0;class#SetOfItems#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="74">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetsOfItems.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
+      <file leaf-file-name="ReservedWord.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lexer/ReservedWord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="197" column="14" lean-forward="false" selection-start-line="197" selection-start-column="14" selection-end-line="197" selection-end-column="14" />
+            <state relative-caret-position="507">
+              <caret line="91" column="5" lean-forward="false" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
               <folding>
-                <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#getAugmentedGrammar#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-                <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
+                <element signature="method#reserveReservedWord#0;class#ReservedWord#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -182,8 +190,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -215,9 +223,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/delegation/printError.java" />
-        <option value="$PROJECT_DIR$/src/delegation/ConcreteDelegation.java" />
-        <option value="$PROJECT_DIR$/src/lexer/Str.java" />
         <option value="$PROJECT_DIR$/src/operation/OtherOp.java" />
         <option value="$PROJECT_DIR$/src/delegation/PrintError.java" />
         <option value="$PROJECT_DIR$/src/delegation/EndLexer.java" />
@@ -254,18 +259,21 @@
         <option value="$PROJECT_DIR$/src/setsOfItems/ConstructorSetsOfItems.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/ProductionElement.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Production.java" />
-        <option value="$PROJECT_DIR$/src/lexer/ReservedWord.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/Terminal.java" />
-        <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/test/Production2.txt" />
         <option value="$PROJECT_DIR$/src/setsOfItems/AnalysicTable.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/NonTerminals.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
-        <option value="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
+        <option value="$PROJECT_DIR$/src/test/Production3.txt" />
         <option value="$PROJECT_DIR$/src/delegation/AddTable.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/Grammar.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/SetOfItems.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/StatusTransferInf.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/RelevanceInf.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/LR1Item.java" />
+        <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java" />
+        <option value="$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java" />
+        <option value="$PROJECT_DIR$/src/lexer/ReservedWord.java" />
       </list>
     </option>
   </component>
@@ -299,7 +307,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,6 +327,12 @@
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="delegation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lexer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -340,8 +356,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -558,12 +572,15 @@
       <workItem from="1512454090742" duration="10796000" />
       <workItem from="1512471573440" duration="743000" />
       <workItem from="1512580507816" duration="3189000" />
-      <workItem from="1512642617745" duration="7654000" />
+      <workItem from="1512642617745" duration="8706000" />
+      <workItem from="1512747818610" duration="7085000" />
+      <workItem from="1512783000991" duration="12906000" />
+      <workItem from="1512800072025" duration="314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248871000" />
+    <option name="totallyTimeSpent" value="270228000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -576,7 +593,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -587,7 +603,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47890535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17006437" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17650215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -626,31 +642,54 @@
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java</url>
-          <line>25</line>
-          <properties class="setsOfItems.AnalysisTable" method="getNumber">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="99" />
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="100" />
+      <option name="time" value="117" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="lr1Item.getB().toString()" language="JAVA" />
-        <watch expression="X.toString()" language="JAVA" />
+        <watch expression="relevanceInfs" language="JAVA" />
+        <watch expression="relevanceInf.lr1Item" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>relevanceInfs</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>analysisTable</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>row</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>goTo.get(X)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>grammar</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>X.toString()</expression-string>
         <language-id>JAVA</language-id>
@@ -676,69 +715,9 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>this.name == nonTerminals.name</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>production.getNonTerminals().equals(nonTerminals)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>production.getNonTerminals() == nonTerminals</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>production.getNonTerminals()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>pointLocation &gt;= production.getElements().size()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/lexer/Char.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Num.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Real.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Str.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/lang/NumberFormatException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/test2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -785,13 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -915,55 +887,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/ProductionElement.java" />
-    <entry file="file://$PROJECT_DIR$/src/lexer/ReservedWord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/util/HashSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="219" column="0" lean-forward="false" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/ProductionRes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1443">
-          <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
-          <folding>
-            <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
-            <element signature="e#817#818#0" expanded="false" />
-            <element signature="e#848#849#0" expanded="false" />
-            <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
-            <element signature="method#equals#0;class#LR1Item#0" expanded="false" />
-            <element signature="e#4308#4309#0" expanded="false" />
-            <element signature="e#4341#4342#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="method#toString#0;class#Production#0" expanded="false" />
-            <element signature="method#equals#0;class#Production#0" expanded="false" />
-            <element signature="e#1377#1378#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -978,7 +905,109 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/EndLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/PrintError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/delegation/AddTable.java" />
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1147">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#691#692#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/LR1Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="36" column="52" lean-forward="false" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+          <folding>
+            <element signature="method#LR1Item#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#LR1Item#1;class#LR1Item#0" expanded="false" />
+            <element signature="method#getA#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getAlpha#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getB#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getBeta#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#getElementAfterPoint#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#toString#0;class#LR1Item#0" expanded="false" />
+            <element signature="method#equals#0;class#LR1Item#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/ProductionRes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/RelevanceInf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2738">
+          <caret line="111" column="48" lean-forward="false" selection-start-line="111" selection-start-column="48" selection-end-line="111" selection-end-column="48" />
+          <folding>
+            <element signature="method#AnalysisTable#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#addTable#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#1;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#ACTION#2;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#GOTO#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#isTerminal#0;class#AnalysisTable#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -992,83 +1021,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/ProductionRes2.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4659">
-          <caret line="914" column="4" lean-forward="true" selection-start-line="914" selection-start-column="4" selection-end-line="914" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#651#652#0" expanded="false" />
-            <element signature="e#691#692#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/delegation/EndLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/delegation/PrintError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="method#getElementAfterPoint#0;class#SetOfItems#0" expanded="false" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="method#toString#0;class#SetOfItems#0" expanded="false" />
-            <element signature="method#equals#0;class#SetOfItems#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Grammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-          <folding>
-            <element signature="method#getProduction#1;class#Grammar#0" expanded="false" />
-            <element signature="e#993#994#0" expanded="true" />
-            <element signature="e#1034#1035#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/NonTerminals.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+        <state relative-caret-position="814">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="method#equals#0;class#NonTerminals#0" expanded="false" />
+            <element signature="e#731#732#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="197" column="14" lean-forward="false" selection-start-line="197" selection-start-column="14" selection-end-line="197" selection-end-column="14" />
+        <state relative-caret-position="-1769">
+          <caret line="13" column="76" lean-forward="true" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
             <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
@@ -1085,10 +1060,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="method#checkFile#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lexer/Char.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lexer/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="34" column="56" lean-forward="false" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+        <state relative-caret-position="740">
+          <caret line="33" column="77" lean-forward="true" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
           <folding>
             <element signature="method#Lexer#0;class#Lexer#0" expanded="false" />
             <element signature="method#getInstance#0;class#Lexer#0" expanded="false" />
@@ -1121,40 +1122,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/delegation/AddTable.java">
+    <entry file="file://$PROJECT_DIR$/src/lexer/Num.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="222">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/lexer/Real.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="40" column="15" lean-forward="true" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
-          <folding>
-            <element signature="method#checkFile#0;class#Main#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="74">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/AnalysisTable.java">
+    <entry file="file://$PROJECT_DIR$/src/lexer/ReservedWord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+        <state relative-caret-position="507">
+          <caret line="91" column="5" lean-forward="false" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#AnalysisTable#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#getNumber#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#constructorAnalysisTable#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#ACTION#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#ACTION#1;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#ACTION#2;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
-            <element signature="method#GOTO#0;class#AddTableMethod#0;class#AnalysisTable#0" expanded="false" />
+            <element signature="method#reserveReservedWord#0;class#ReservedWord#0" expanded="false" />
           </folding>
         </state>
       </provider>

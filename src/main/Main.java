@@ -15,9 +15,9 @@ public class Main {
         File outputFile = new File(pathnameProductionRes);
         checkFile(inputFile,outputFile);
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
-        SetsOfItems setsOfItems = SetsOfItems.getInstance(inputFile);
-        setsOfItems.constructorSetsOfItems();
-        bufferedWriter.write(setsOfItems.toString());
+        AnalysisTable analysisTable = new AnalysisTable(inputFile);
+        analysisTable.constructorAnalysisTable();
+        bufferedWriter.write(analysisTable.toString());
         bufferedWriter.close();
     }
 

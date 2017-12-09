@@ -33,6 +33,9 @@ public class LR1Item{
         pointLocation++;
     }
 
+    //点的位置-1
+    public void pointLocationDec(){pointLocation--;}
+
     //[A -> alpha * B beta, a]
     //获得A项
     public NonTerminals getA(){

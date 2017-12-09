@@ -1,39 +1,11 @@
-I0
-<S'> -> . <S>, $
-<S> -> . <C><C>, $
-<C> -> . c<C>, c/d
-<C> -> . d, c/d
-
-I1
-<S'> -><S> . , $
-
-I2
-<S> -><C> . <C>, $
-<C> -> . c<C>, $
-<C> -> . d, $
-
-I3
-<C> ->c . <C>, c/d
-<C> -> . c<C>, c/d
-<C> -> . d, c/d
-
-I4
-<C> ->d . , c/d
-
-I5
-<S> -><C><C> . , $
-
-I6
-<C> ->c . <C>, $
-<C> -> . c<C>, $
-<C> -> . d, $
-
-I7
-<C> ->d . , $
-
-I8
-<C> ->c<C> . , c/d
-
-I9
-<C> ->c<C> . , $
-
+状态    c       $       d       <S>     <C>     
+0        s3      null    s4      1       2      
+1        null    acc     null    null    null   
+2        s6      null    s7      null    5      
+3        s3      null    s4      null    8      
+4        r3      null    r3      null    null   
+5        null    r1      null    null    null   
+6        s6      null    s7      null    9      
+7        null    r3      null    null    null   
+8        r2      null    r2      null    null   
+9        null    r2      null    null    null   

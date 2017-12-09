@@ -19,6 +19,13 @@ public class Grammar {
         productions.add(production);
     }
 
+    //获得产生式编号
+    public int getProductionNumber(Production production){
+        for(int i = 0; i < productions.size(); i++)
+            if(production.equals(productions.get(i)))return i;
+        return -1;
+    }
+
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     //获得产生式
     public Production getProduction(int index){

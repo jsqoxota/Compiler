@@ -33,6 +33,15 @@ public class SetOfItems {
     }
 
 
+    public ArrayList<LR1Item> getLR1Item(Object X){
+        ArrayList<LR1Item> lr1Items = new ArrayList<>();
+        for (LR1Item lr1Item : items){
+            if (lr1Item.getB().equals(X))
+            lr1Items.add(lr1Item);
+        }
+        return lr1Items;
+    }
+
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     public int getNumber() {
         return number;
