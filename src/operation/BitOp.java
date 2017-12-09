@@ -23,4 +23,17 @@ public class BitOp extends Operation {
             sal = new BitOp(Tag.SAL,    "<<"),
             sar = new BitOp(Tag.SAR,    ">>"),
             shr = new BitOp(Tag.SHR,    ">>>");
+
+
+    public static boolean isBitOp(String lexeme){
+        if( or.toString().equals(lexeme))return true;
+        if( and.toString().equals(lexeme))return true;
+        if( xor.toString().equals(lexeme))return true;
+        if( not.toString().equals(lexeme))return true;
+        if( sal.toString().equals(lexeme))return true;
+        if( sar.toString().equals(lexeme))return true;
+        if( shr.toString().equals(lexeme))return true;
+        return false;
+    }
+
 }

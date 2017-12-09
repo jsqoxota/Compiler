@@ -2,7 +2,7 @@ program → block
 block → { decls stmts }
 decls → decls decl
 decls → ε
-decl → type id;
+decl → type id ;
 type → type [ num ]
 type → basic
 stmts → stmts stmt
@@ -18,7 +18,7 @@ Loc → loc [ bool ]
 Loc → id
 bool → bool || join
 bool → join
-join → join  ＆＆  equality
+join → join && equality
 join → equality
 equality → equality == rel
 equality → equality != rel
@@ -37,7 +37,7 @@ term → unary
 unary → ! unary
 unary → - unary
 unary → factor
-factor → (bool)
+factor → ( bool )
 factor → loc
 factor → num
 factor → real

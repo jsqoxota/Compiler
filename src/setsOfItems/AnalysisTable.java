@@ -49,10 +49,15 @@ public class AnalysisTable {
         grammar = setsOfItems.getGrammar();
 
         setsOfItems.constructorSetsOfItems();                   //构造项集族
+        //System.out.println(setsOfItems);
+
 
         int row = setsOfItems.getCount();
         int col = getNumber();
         initTable(row, col);                                    //初始化构造分析表
+
+        System.out.println(action.toString());
+        System.out.println(goTo.toString());
 
         relevanceInfs = setsOfItems.getRelevanceInfs();
         for (int i = 1; i < relevanceInfs.size(); i++){

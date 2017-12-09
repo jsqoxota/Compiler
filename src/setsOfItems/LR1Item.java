@@ -107,6 +107,7 @@ public class LR1Item{
         for (i = 0; i < Objects.size(); i++) {
             if (pointLocation == i) stringBuilder.append(" . ");
             stringBuilder.append(Objects.get(i).toString());
+            stringBuilder.append(" ");
         }
         if (pointLocation == i) stringBuilder.append(" . ");
         stringBuilder.append(", ");

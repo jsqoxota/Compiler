@@ -1,11 +1,11 @@
-状态    c       $       d       <S>     <C>     
-0        s3      null    s4      1       2      
-1        null    acc     null    null    null   
-2        s6      null    s7      null    5      
-3        s3      null    s4      null    8      
-4        r3      null    r3      null    null   
-5        null    r1      null    null    null   
-6        s6      null    s7      null    9      
-7        null    r3      null    null    null   
-8        r2      null    r2      null    null   
-9        null    r2      null    null    null   
+状态           $              ε              +              -              <S>            <C>            
+0              null           null           s3             s4             1              2              
+1              acc            null           null           null           null           null           
+2              null           null           s6             s7             null           5              
+3              null           null           s3             s4             null           8              
+4              null           null           r3             r3             null           null           
+5              r1             null           null           null           null           null           
+6              null           null           s6             s7             null           9              
+7              r3             null           null           null           null           null           
+8              null           null           r2             r2             null           null           
+9              r2             null           null           null           null           null           

@@ -1,5 +1,8 @@
 package setsOfItems;
 
+import lexer.ReservedWord;
+import operation.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -204,8 +207,17 @@ public class SetsOfItems {
 
     //判断是否为终结符
     private boolean isTerminal(String s) {
-        if (s.charAt(0) == '<') return false;
-        else return true;
+        if(s.equals("ε"))return true;
+        if(ReservedWord.isReservedWord(s)!=null)return true;
+        if(ArithmeticOp.isArithmeticOp(s))return true;
+        if(AssignmentOp.isAssignmentOp(s))return true;
+        if(BitOp.isBitOp(s))return true;
+        if(BracketsOp.isBracketsOp(s))return true;
+        if(Delimiter.isDelimiter(s))return true;
+        if(LogicOp.isLogicOp(s))return true;
+        if(OtherOp.isOtherOp(s))return true;
+        if(RelationOp.isRelationOp(s))return true;
+        else return false;
     }
 
     //判断是否是终结符

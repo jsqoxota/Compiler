@@ -28,4 +28,21 @@ public class AssignmentOp extends Operation {
             salZ    = new AssignmentOp(Tag.SALZ,    "<<="),
             sarZ    = new AssignmentOp(Tag.SARZ,    ">>="),
             shrZ    = new AssignmentOp(Tag.SHRZ,    ">>>=");
+
+    public static boolean isAssignmentOp(String lexeme){
+        if( equal.toString() .equals(lexeme))return true;
+        if( az.toString() .equals(lexeme))return true;
+        if( sz.toString() .equals(lexeme))return true;
+        if( mz.toString() .equals(lexeme))return true;
+        if( dz.toString() .equals(lexeme))return true;
+        if( pz.toString() .equals(lexeme))return true;
+        if( andZ.toString().equals(lexeme))return true;
+        if( orz.toString().equals(lexeme))return true;
+        if( xorZ.toString().equals(lexeme))return true;
+        if( salZ.toString().equals(lexeme))return true;
+        if( sarZ.toString().equals(lexeme))return true;
+        if( shrZ.toString().equals(lexeme))return true;
+        return false;
+    }
+
 }

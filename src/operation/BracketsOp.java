@@ -23,4 +23,12 @@ public class BracketsOp extends Operation {
             squareBraL = new BracketsOp('[', "["),
             roundBraR  = new BracketsOp(')', ")"),
             squareBraR = new BracketsOp(']', "]");
+
+    public static boolean isBracketsOp(String lexeme){
+        if( roundBraL.toString().equals(lexeme))return true;
+        if( squareBraL.toString().equals(lexeme))return true;
+        if( roundBraR.toString().equals(lexeme))return true;
+        if( squareBraR.toString().equals(lexeme))return true;
+        return false;
+    }
 }

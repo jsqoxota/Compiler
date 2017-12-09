@@ -22,4 +22,14 @@ public class RelationOp extends Operation {
             ne  = new RelationOp(Tag.NE,"!="),
             le  = new RelationOp(Tag.LE,"<="),
             ge  = new RelationOp(Tag.GE,">=");
+
+    public static boolean isRelationOp(String lexeme){
+        if(ab.toString().equals(lexeme)) return true;
+        if(be.toString().equals(lexeme)) return true;
+        if(eq.toString().equals(lexeme)) return true;
+        if(ne.toString().equals(lexeme)) return true;
+        if(le.toString().equals(lexeme)) return true;
+        if(ge.toString().equals(lexeme)) return true;
+        return false;
+    }
 }
