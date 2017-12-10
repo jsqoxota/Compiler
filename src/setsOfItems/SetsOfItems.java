@@ -1,5 +1,6 @@
 package setsOfItems;
 
+import lexer.OtherWord;
 import lexer.ReservedWord;
 import operation.*;
 
@@ -233,6 +234,7 @@ public class SetsOfItems {
         if(LogicOp.isLogicOp(s))return true;
         if(OtherOp.isOtherOp(s))return true;
         if(RelationOp.isRelationOp(s))return true;
+        if(OtherWord.isOtherWord(s))return true;
         else return false;
     }
 

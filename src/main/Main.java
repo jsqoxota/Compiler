@@ -1,71 +1,65 @@
 package main;
 
+import lexer.Lexer;
+import lexer.Token;
 import parser.Parser;
 
 import java.io.*;
 
 public class Main {
-    private static final String pathnameInput = "./src/test/test3";
-    private static final String pathnameOutput = "./src/test/result3.txt";
-    private static final String pathnameProduction = "./src/test/Production4.txt";
-    private static final String pathnameSetsOfItems = "./src/test/SetsOfItems4.txt";
-    private static final String pathnameAnalysisTable = "./src/test/AnalysisTable4.txt";
+    private static final String selectPathname = "3";
+    private static final String pathnameSourceCode = "./src/test/SourceCode" + selectPathname +".txt";
+    private static final String pathnameToken = "./src/test/Token" + selectPathname +".txt";
+    private static final String pathnameProduction = "./src/test/Production" + selectPathname + ".txt";
+    private static final String pathnameSetsOfItems = "./src/test/SetsOfItems" + selectPathname +".txt";
+    private static final String pathnameAnalysisTable = "./src/test/AnalysisTable" + selectPathname + ".txt";
+    private static final String pathnameAnalysisProcess = "./src/test/AnalysisProcess" + selectPathname +".txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
+        File sourceCodeFile = new File(pathnameSourceCode);
+        File tokenFile = new File(pathnameToken);
         File productionFile = new File(pathnameProduction);
         File setsOfItemsFile = new File(pathnameSetsOfItems);
         File analysisTableFile = new File(pathnameAnalysisTable);
-        Parser parser = Parser.getInstance(productionFile);
+        File analysisProcessFile = new File(pathnameAnalysisProcess);
 
         //检查文件
+        checkInputFile(sourceCodeFile);
         checkInputFile(productionFile);
+        checkOutputFile(tokenFile);
         checkOutputFile(setsOfItemsFile);
         checkOutputFile(analysisTableFile);
+        checkOutputFile(analysisProcessFile);
         if(flag)return;
 
-        //输出到文件
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
-        BufferedWriter bufferedWriter1 = new BufferedWriter(new FileWriter(analysisTableFile));
-        parser.delegate(msg ->{ bufferedWriter.write(msg); bufferedWriter.close();},
-                msg -> { bufferedWriter1.write(msg);bufferedWriter1.close();});
+        /******************词法分析************************/
+        Lexer lexer = Lexer.getInstance(sourceCodeFile);
+        //输出Token和错误到文件
+        BufferedWriter bufferedWriter1 = new BufferedWriter(new FileWriter(tokenFile));
+        lexer.delegate((msg)->{ bufferedWriter1.write(msg);bufferedWriter1.newLine();},()-> flag = true);
+        Token token;
+        while (true) {
+            if ((token = lexer.scan()) != null) {
+                String temp = token.getToken();
+                bufferedWriter1.write(temp);
+                bufferedWriter1.newLine();
+            }
+            if(flag)break;
+        }
+        bufferedWriter1.close();
 
-
+        /******************语法分析************************/
+        Parser parser = Parser.getInstance(productionFile, tokenFile);
+        //输出项集族和分析表到文件
+        parser.delegate(msg ->{ BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
+                                bufferedWriter.write(msg); bufferedWriter.close();},
+                                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisTableFile));
+                                bufferedWriter.write(msg);bufferedWriter.close();},
+                                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisProcessFile));
+                                bufferedWriter.write(msg);bufferedWriter.close();});
+        //获得分析表
         parser.getAnalysisTable();
     }
-
-//    public static void main(String[] args)throws IOException {
-//        File inputFile = new File(pathnameInput);
-//        File outputFile = new File(pathnameOutput);
-//        //检查文件是否存在
-//        checkFile(inputFile, outputFile);
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
-//
-//        Lexer lexer = Lexer.getInstance(inputFile);
-//        //委托输出错误
-//        lexer.delegate((s)->{
-//            try {
-//                bufferedWriter.write(s);
-//                bufferedWriter.newLine();
-//                System.out.println(s);
-//            }
-//            catch (IOException e){
-//                e.printStackTrace();
-//            }
-//        },()-> flag = true);
-//        Token token;
-//
-//        while (true) {
-//            if ((token = lexer.scan()) != null) {
-//                String temp = token.getToken();
-//                //输出Token
-//                bufferedWriter.write(temp);
-//                bufferedWriter.newLine();
-//                System.out.println(temp);
-//            }
-//            if(flag)break;
-//        }
-//        bufferedWriter.close();
-//    }
 
     //检测输出文件是否存在
     private static void checkOutputFile(File outputFile)throws IOException{

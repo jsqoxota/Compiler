@@ -19,9 +19,9 @@ public class Delimiter extends Operation{
             curlyBraL  = new Delimiter('{', "{"),
             curlyBraR  = new Delimiter('}', "}");
 
-    public static boolean isDelimiter(String lexeme){
-        if( curlyBraL.toString().equals(lexeme))return true;
-        if( curlyBraR.toString().equals(lexeme))return true;
-        return false;
+    public static Delimiter isDelimiter(String lexeme){
+        if( curlyBraL.toString().equals(lexeme))return curlyBraL;
+        if( curlyBraR.toString().equals(lexeme))return curlyBraR;
+        return null;
     }
 }

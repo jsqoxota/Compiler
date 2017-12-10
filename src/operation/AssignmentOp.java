@@ -29,20 +29,20 @@ public class AssignmentOp extends Operation {
             sarZ    = new AssignmentOp(Tag.SARZ,    ">>="),
             shrZ    = new AssignmentOp(Tag.SHRZ,    ">>>=");
 
-    public static boolean isAssignmentOp(String lexeme){
-        if( equal.toString() .equals(lexeme))return true;
-        if( az.toString() .equals(lexeme))return true;
-        if( sz.toString() .equals(lexeme))return true;
-        if( mz.toString() .equals(lexeme))return true;
-        if( dz.toString() .equals(lexeme))return true;
-        if( pz.toString() .equals(lexeme))return true;
-        if( andZ.toString().equals(lexeme))return true;
-        if( orz.toString().equals(lexeme))return true;
-        if( xorZ.toString().equals(lexeme))return true;
-        if( salZ.toString().equals(lexeme))return true;
-        if( sarZ.toString().equals(lexeme))return true;
-        if( shrZ.toString().equals(lexeme))return true;
-        return false;
+    public static AssignmentOp isAssignmentOp(String lexeme){
+        if( equal.toString() .equals(lexeme))return equal;
+        if( az.toString() .equals(lexeme))return az;
+        if( sz.toString() .equals(lexeme))return sz;
+        if( mz.toString() .equals(lexeme))return mz;
+        if( dz.toString() .equals(lexeme))return dz;
+        if( pz.toString() .equals(lexeme))return pz;
+        if( andZ.toString().equals(lexeme))return andZ;
+        if( orz.toString().equals(lexeme))return orz;
+        if( xorZ.toString().equals(lexeme))return xorZ;
+        if( salZ.toString().equals(lexeme))return salZ;
+        if( sarZ.toString().equals(lexeme))return sarZ;
+        if( shrZ.toString().equals(lexeme))return shrZ;
+        return null;
     }
 
 }

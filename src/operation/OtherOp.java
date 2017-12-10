@@ -1,5 +1,6 @@
 package operation;
 
+import lexer.OtherWord;
 import lexer.Tag;
 
 public class OtherOp extends Operation {
@@ -20,13 +21,13 @@ public class OtherOp extends Operation {
         comma       = new OtherOp(',', ","),
         lambda      = new OtherOp(Tag.LAMBDA ,"->");
 
-    public static boolean isOtherOp(String lexeme){
-        if(point.toString().equals(lexeme))return true;
-        if(questionM.toString().equals(lexeme))return true;
-        if(quotationM.toString().equals(lexeme))return true;
-        if(semicolon.toString().equals(lexeme))return true;
-        if(comma.toString().equals(lexeme))return true;
-        if(lambda.toString().equals(lexeme))return true;
-        return false;
+    public static OtherOp isOtherOp(String lexeme){
+        if(point.toString().equals(lexeme))return point;
+        if(questionM.toString().equals(lexeme))return questionM;
+        if(quotationM.toString().equals(lexeme))return quotationM;
+        if(semicolon.toString().equals(lexeme))return semicolon;
+        if(comma.toString().equals(lexeme))return comma;
+        if(lambda.toString().equals(lexeme))return lambda;
+        return null;
     }
 }

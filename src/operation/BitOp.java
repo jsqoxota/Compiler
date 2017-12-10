@@ -25,15 +25,15 @@ public class BitOp extends Operation {
             shr = new BitOp(Tag.SHR,    ">>>");
 
 
-    public static boolean isBitOp(String lexeme){
-        if( or.toString().equals(lexeme))return true;
-        if( and.toString().equals(lexeme))return true;
-        if( xor.toString().equals(lexeme))return true;
-        if( not.toString().equals(lexeme))return true;
-        if( sal.toString().equals(lexeme))return true;
-        if( sar.toString().equals(lexeme))return true;
-        if( shr.toString().equals(lexeme))return true;
-        return false;
+    public static BitOp isBitOp(String lexeme){
+        if( or.toString().equals(lexeme))return or;
+        if( and.toString().equals(lexeme))return and;
+        if( xor.toString().equals(lexeme))return xor;
+        if( not.toString().equals(lexeme))return not;
+        if( sal.toString().equals(lexeme))return sar;
+        if( sar.toString().equals(lexeme))return sar;
+        if( shr.toString().equals(lexeme))return shr;
+        return null;
     }
 
 }

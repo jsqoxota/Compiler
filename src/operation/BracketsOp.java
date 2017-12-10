@@ -24,11 +24,11 @@ public class BracketsOp extends Operation {
             roundBraR  = new BracketsOp(')', ")"),
             squareBraR = new BracketsOp(']', "]");
 
-    public static boolean isBracketsOp(String lexeme){
-        if( roundBraL.toString().equals(lexeme))return true;
-        if( squareBraL.toString().equals(lexeme))return true;
-        if( roundBraR.toString().equals(lexeme))return true;
-        if( squareBraR.toString().equals(lexeme))return true;
-        return false;
+    public static BracketsOp isBracketsOp(String lexeme){
+        if( roundBraL.toString().equals(lexeme))return roundBraL;
+        if( squareBraL.toString().equals(lexeme))return squareBraL;
+        if( roundBraR.toString().equals(lexeme))return roundBraR;
+        if( squareBraR.toString().equals(lexeme))return squareBraR;
+        return null;
     }
 }

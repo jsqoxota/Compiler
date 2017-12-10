@@ -23,13 +23,13 @@ public class RelationOp extends Operation {
             le  = new RelationOp(Tag.LE,"<="),
             ge  = new RelationOp(Tag.GE,">=");
 
-    public static boolean isRelationOp(String lexeme){
-        if(ab.toString().equals(lexeme)) return true;
-        if(be.toString().equals(lexeme)) return true;
-        if(eq.toString().equals(lexeme)) return true;
-        if(ne.toString().equals(lexeme)) return true;
-        if(le.toString().equals(lexeme)) return true;
-        if(ge.toString().equals(lexeme)) return true;
-        return false;
+    public static RelationOp isRelationOp(String lexeme){
+        if(ab.toString().equals(lexeme)) return ab;
+        if(be.toString().equals(lexeme)) return be;
+        if(eq.toString().equals(lexeme)) return eq;
+        if(ne.toString().equals(lexeme)) return ne;
+        if(le.toString().equals(lexeme)) return le;
+        if(ge.toString().equals(lexeme)) return ge;
+        return null;
     }
 }

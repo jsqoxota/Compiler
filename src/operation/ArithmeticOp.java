@@ -24,15 +24,15 @@ public class ArithmeticOp extends Operation {
             inc = new ArithmeticOp(Tag.INC,     "++"),
             dec = new ArithmeticOp(Tag.DEC,     "--");
 
-    public static boolean isArithmeticOp(String lexeme){
-        if( add.toString().equals(lexeme))return true;
-        if( sub.toString().equals(lexeme))return true;
-        if( div.toString().equals(lexeme))return true;
-        if( mul.toString().equals(lexeme))return true;
-        if( rem.toString().equals(lexeme))return true;
-        if( inc.toString().equals(lexeme))return true;
-        if( dec.toString().equals(lexeme))return true;
-        return false;
+    public static ArithmeticOp isArithmeticOp(String lexeme){
+        if( add.toString().equals(lexeme))return add;
+        if( sub.toString().equals(lexeme))return sub;
+        if( div.toString().equals(lexeme))return div;
+        if( mul.toString().equals(lexeme))return mul;
+        if( rem.toString().equals(lexeme))return rem;
+        if( inc.toString().equals(lexeme))return inc;
+        if( dec.toString().equals(lexeme))return dec;
+        return null;
     }
 
 }

@@ -20,10 +20,10 @@ public class LogicOp extends Operation {
             and     = new LogicOp(Tag.AND,  "&&"),
             or      = new LogicOp(Tag.OR,   "||");
 
-    public static boolean isLogicOp(String lexeme){
-        if( not.toString().equals(lexeme))return true;
-        if( and.toString().equals(lexeme))return true;
-        if (or.toString().equals(lexeme))return true;
-        return false;
+    public static LogicOp isLogicOp(String lexeme){
+        if( not.toString().equals(lexeme))return not;
+        if( and.toString().equals(lexeme))return and;
+        if (or.toString().equals(lexeme))return or;
+        return null;
     }
 }
