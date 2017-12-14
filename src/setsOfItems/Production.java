@@ -25,7 +25,7 @@ public class Production {
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(nonTerminals.toString());
-        s.append(" -> ");
+        s.append(" → ");
         for (Object Object : elements){
             s.append(Object.toString());
             s.append(' ');

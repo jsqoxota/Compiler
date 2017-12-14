@@ -1,23 +1,23 @@
-状态           $              ε              (              )              *              +              id             T              E              F              
-0              null           null           s4             null           null           null           s5             2              1              3              
-1              acc            null           null           null           null           s6             null           null           null           null           
-2              r2             null           null           null           s7             r2             null           null           null           null           
-3              r4             null           null           null           r4             r4             null           null           null           null           
-4              null           null           s11            null           null           null           s12            9              8              10             
-5              r6             null           null           null           r6             r6             null           null           null           null           
-6              null           null           s4             null           null           null           s5             13             null           3              
-7              null           null           s4             null           null           null           s5             null           null           14             
-8              null           null           null           s15            null           s16            null           null           null           null           
-9              null           null           null           r2             s17            r2             null           null           null           null           
-10             null           null           null           r4             r4             r4             null           null           null           null           
-11             null           null           s11            null           null           null           s12            9              18             10             
-12             null           null           null           r6             r6             r6             null           null           null           null           
-13             r1             null           null           null           s7             r1             null           null           null           null           
-14             r3             null           null           null           r3             r3             null           null           null           null           
-15             r5             null           null           null           r5             r5             null           null           null           null           
-16             null           null           s11            null           null           null           s12            19             null           10             
-17             null           null           s11            null           null           null           s12            null           null           20             
-18             null           null           null           s21            null           s16            null           null           null           null           
-19             null           null           null           r1             s17            r1             null           null           null           null           
-20             null           null           null           r3             r3             r3             null           null           null           null           
-21             null           null           null           r5             r5             r5             null           null           null           null           
+状态           $              (              )              *              +              id             T              E              F              
+0              null           s4             null           null           null           s5             2              1              3              
+1              acc            null           null           null           s6             null           null           null           null           
+2              r2             null           null           s7             r2             null           null           null           null           
+3              r4             null           null           r4             r4             null           null           null           null           
+4              null           s11            null           null           null           s12            9              8              10             
+5              r6             null           null           r6             r6             null           null           null           null           
+6              null           s4             null           null           null           s5             13             null           3              
+7              null           s4             null           null           null           s5             null           null           14             
+8              null           null           s15            null           s16            null           null           null           null           
+9              null           null           r2             s17            r2             null           null           null           null           
+10             null           null           r4             r4             r4             null           null           null           null           
+11             null           s11            null           null           null           s12            9              18             10             
+12             null           null           r6             r6             r6             null           null           null           null           
+13             r1             null           null           s7             r1             null           null           null           null           
+14             r3             null           null           r3             r3             null           null           null           null           
+15             r5             null           null           r5             r5             null           null           null           null           
+16             null           s11            null           null           null           s12            19             null           10             
+17             null           s11            null           null           null           s12            null           null           20             
+18             null           null           s21            null           s16            null           null           null           null           
+19             null           null           r1             s17            r1             null           null           null           null           
+20             null           null           r3             r3             r3             null           null           null           null           
+21             null           null           r5             r5             r5             null           null           null           null           

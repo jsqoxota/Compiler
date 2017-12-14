@@ -1,5 +1,6 @@
 package parser;
 
+import lexer.Token;
 import setsOfItems.*;
 
 import java.io.File;
@@ -23,11 +24,11 @@ public class AnalysisTable {
     }
 
     //规定编号
-    private int getNumber(){
+    private int prescribeNumber(){
         int count = 0;
         HashSet<Terminal> terminals = setsOfItems.getTerminals();
         HashSet<NonTerminals> nonTerminals = setsOfItems.getNonTerminals();
-        //terminals.remove(new Terminal("ε"));
+        terminals.remove(new Terminal("ε"));
         nonTerminals.remove(grammar.getProduction(0).getNonTerminals());
         for (Terminal terminal : terminals){
             action.put(terminal, count);
@@ -53,7 +54,7 @@ public class AnalysisTable {
         setsOfItems.constructorSetsOfItems();                   //构造项集族
 
         int row = setsOfItems.getCount();
-        int col = getNumber();
+        int col = prescribeNumber();
         initTable(row, col);                                    //初始化构造分析表
 
         System.out.println(action.toString());
@@ -135,5 +136,32 @@ public class AnalysisTable {
 
     public SetsOfItems getSetsOfItems() {
         return setsOfItems;
+    }
+
+    public String[][] getAnalysisTable() {
+        return analysisTable;
+    }
+
+    public int getNumber(Token token){
+        Terminal terminal = new Terminal(token.toString());
+        Integer integer = action.get(terminal);
+        if(integer != null)return integer;
+        else {
+            terminal = new Terminal(token.getTag());
+            integer = action.get(terminal);
+            return integer;
+        }
+    }
+
+    public int getNumber(NonTerminals nonTerminals){
+        return goTo.get(nonTerminals);
+    }
+
+    public Grammar getGrammar() {
+        return grammar;
+    }
+
+    public ArrayList<RelevanceInf> getRelevanceInfs() {
+        return relevanceInfs;
     }
 }

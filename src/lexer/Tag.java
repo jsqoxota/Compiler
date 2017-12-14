@@ -17,8 +17,8 @@ public class Tag {
         VOLATILE    = 316,  WHILE       = 317,  INC         = 318,  DEC         = 319,  AZ          = 320,
         SZ          = 321,  MZ          = 322,  DZ          = 323,  PZ          = 324,  SAL         = 325,
         SAR         = 326,  SHR         = 327,  ANDZ        = 328,  ORZ         = 329,  XORZ        = 330,
-        SALZ        = 331,  SARZ        = 332,  LAMBDA      = 333,  SHRZ        = 334,  STRING      = 335;
-
+        SALZ        = 331,  SARZ        = 332,  LAMBDA      = 333,  SHRZ        = 334,  STRING      = 335,
+        EPSILON     = 336,  $           = 337,  OTHER       = 338;
     public static final String tagToString(int tag){
         if(tag < 0)return null;
         else if(tag < 256) return "" + (char)tag;

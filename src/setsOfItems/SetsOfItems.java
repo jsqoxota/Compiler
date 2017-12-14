@@ -23,18 +23,14 @@ public class SetsOfItems {
     private static HashSet<NonTerminals> nonTerminals;                  //非终结符
     private static int count = 0;                                       //项集数量
     private static BufferedReader bufferedReader;
-    private static Terminal epsilon;
+    public static Terminal epsilon = new Terminal("ε");
     private static Terminal $;
-    private static int location;                                        //正在处理的项集编号
     private static int nextSetOfItemsNum;                               //下一项项集编号
     private static ArrayList<RelevanceInf> relevanceInfs;               //关联信息
-    private static Object object;                                       //X GOTO(I,X)
-    private static LR1Item I;                                           //I GOTO(I,X)
 
     //构造函数 初始化
     private SetsOfItems(File file) throws IOException {
         setOfItemsS = new ArrayList<>();
-        epsilon  = new Terminal("ε");
         relevanceInfs = new ArrayList<>();
         $ = new Terminal("$");
         if (file != null)
@@ -55,18 +51,16 @@ public class SetsOfItems {
         extraInformationS.add($);
         LR1Item lr1Item = changeToLR1Item(grammar.getProduction(0), extraInformationS);  //获得初始项
         //第0个项集
-
         setOfItemsS.add(mergeLR1Item(closure(lr1Item, count)));
         count++;
-        I = lr1Item;
 
         for (int i = 0; i < setOfItemsS.size(); i++){
-            location = i;
             ArrayList<Object> X = setOfItemsS.get(i).getElementAfterPoint();
             for (Object x : X){     //goTo(I,X)
                 SetOfItems setOfItems = goTo(setOfItemsS.get(i),x);
                 if(setOfItems != null)setOfItemsS.add(setOfItems);
             }
+            addRelevance(setOfItemsS.get(i));
         }
     }
 
@@ -95,6 +89,7 @@ public class SetsOfItems {
             }
             grammar.addElement(production);
         }
+        System.out.println(grammar.toString());
     }
 
     //求闭包   [A -> alpha * B beta, a]    LR(1)项:LR1Item  项集编号:number
@@ -107,7 +102,7 @@ public class SetsOfItems {
             if(count == setOfItems.getItems().size())break;
             LR1Item item = setOfItems.getItems(count);
             Object B = item.getB();                                                     //获得B
-            if (B == null || isTerminal(B)) break;                                      //终结符或null
+            if (B == null || isTerminal(B)) { count ++;continue; }                      //终结符或null
             ArrayList<Object> beta = item.getBeta();                                    //获得beta
             HashSet<Terminal> a = item.geta();                                          //获得a
             HashSet<Terminal> extraInformationS = new HashSet<>();
@@ -129,8 +124,6 @@ public class SetsOfItems {
         SetOfItems items = null;
         boolean flag = true;
         for (LR1Item lr1Item : lr1Items){
-            I = new LR1Item(lr1Item);
-            I.pointLocationDec();
             if(flag){
                 items = closure(lr1Item,count);
                 if(items != null)flag = false;
@@ -141,27 +134,25 @@ public class SetsOfItems {
         for (SetOfItems setOfItems : setOfItemsS){                                               //判断是否已存在
             if(items.equals(setOfItems)){
                 nextSetOfItemsNum = setOfItems.getNumber();
-                addRelevance(nextSetOfItemsNum, lr1Items);
                 return null;
             }
         }
         nextSetOfItemsNum = count;
         count++;
-        addRelevance(nextSetOfItemsNum, lr1Items);
         return items;
     }
 
-    //添加关联信息
-    private void addRelevance(int setOfItemsNum, ArrayList<LR1Item> lr1Items){
-        for (LR1Item lr1Item : lr1Items)
+    //添加分析表的规约项   点在末尾
+    private void addRelevance(SetOfItems setOfItems){
+        for (LR1Item lr1Item : setOfItems.getItems()){
             if(lr1Item.getProduction().getElements().size() == lr1Item.getPointLocation()){
-                relevanceInfs.add(new RelevanceInf(0, null, setOfItemsNum, lr1Item));
+                relevanceInfs.add(new RelevanceInf(0, null, setOfItems.getNumber(), lr1Item));
             }
+        }
     }
 
     //goto  项集:setOfItems   文法符号:X
     private SetOfItems goTo(final SetOfItems setOfItems, final Object X){
-        object = X;
         ArrayList<LR1Item> J = new ArrayList<>();                    //文法符号集合
         for(LR1Item lr1Item : setOfItems.getItems()){
             if(lr1Item.getB() != null && lr1Item.getB().toString().equals(X.toString())){
@@ -182,6 +173,8 @@ public class SetsOfItems {
     //First(o)
     private HashSet<Terminal> first(final ArrayList<Object> Objects){
         HashSet<Terminal> firstSet = new HashSet<>();                       //first集合
+        boolean epsilonflag = false;
+        ArrayList<Production> others = new ArrayList<>();
 
         for(Object o : Objects){                //终结符或epsilon
             if(isTerminal(o)) {
@@ -192,9 +185,23 @@ public class SetsOfItems {
                 for (Production production : productions){
                     ArrayList<Object> objectArrayList = production.getElements();
                     if(objectArrayList.size() > 0 && !objectArrayList.get(0).equals(o)){
+                        if(objectArrayList.get(0).equals(SetsOfItems.epsilon))epsilonflag = true;
                         HashSet<Terminal> temp = first(production.getElements());
                         firstSet.addAll(temp);
                     }
+                    else if(objectArrayList.get(0).equals(o))others.add(production);
+                }
+                if(epsilonflag){
+                    epsilonflag = false;
+                    for (Production production : others){
+                        ArrayList<Object> os = new ArrayList<>();
+                        for (int i = 1; i < production.getElements().size(); i++){
+                            os.add(production.getElements().get(i));
+                        }
+                        HashSet<Terminal> temp = first(os);
+                        firstSet.addAll(temp);
+                    }
+                    others.clear();
                 }
             }
             if(!firstSet.contains(epsilon)) return firstSet;            //不包含epsilon则返回
@@ -224,17 +231,16 @@ public class SetsOfItems {
 
     //判断是否为终结符
     private boolean isTerminal(String s) {
-        if(s.equals("ε"))return true;
-        if(ReservedWord.isReservedWord(s)!=null)return true;
-        if(ArithmeticOp.isArithmeticOp(s))return true;
-        if(AssignmentOp.isAssignmentOp(s))return true;
-        if(BitOp.isBitOp(s))return true;
-        if(BracketsOp.isBracketsOp(s))return true;
-        if(Delimiter.isDelimiter(s))return true;
-        if(LogicOp.isLogicOp(s))return true;
-        if(OtherOp.isOtherOp(s))return true;
-        if(RelationOp.isRelationOp(s))return true;
-        if(OtherWord.isOtherWord(s))return true;
+        if(ReservedWord.isReservedWord(s) != null) return true;
+        if(ArithmeticOp.isArithmeticOp(s) != null) return true;
+        if(AssignmentOp.isAssignmentOp(s) != null) return true;
+        if(BitOp.isBitOp(s) != null) return true;
+        if(BracketsOp.isBracketsOp(s) != null) return true;
+        if(Delimiter.isDelimiter(s) != null) return true;
+        if(LogicOp.isLogicOp(s) != null) return true;
+        if(OtherOp.isOtherOp(s) != null) return true;
+        if(RelationOp.isRelationOp(s) != null) return true;
+        if(OtherWord.isOtherWord(s)) return true;
         else return false;
     }
 

@@ -1,0 +1,11 @@
+状态           a              b              $              {              }              S              X              Y              M              N              
+0              null           null           null           s2             null           1              null           null           null           null           
+1              null           null           acc            null           null           null           null           null           null           null           
+2              r3             r3             null           null           r3             null           null           null           3              null           
+3              s6             r5             null           null           r5             null           5              null           null           4              
+4              null           s9             null           null           s7             null           null           8              null           null           
+5              r2             r2             null           null           r2             null           null           null           null           null           
+6              r6             r6             null           null           r6             null           null           null           null           null           
+7              null           null           r1             null           null           null           null           null           null           null           
+8              null           r4             null           null           r4             null           null           null           null           null           
+9              null           r7             null           null           r7             null           null           null           null           null           

@@ -61,4 +61,9 @@ public class Type extends ReservedWord {
     public static Type getLong() {
         return Long;
     }
+
+    @Override
+    public String getTag() {
+        return "basic";
+    }
 }

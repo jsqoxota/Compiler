@@ -1,0 +1,11 @@
+状态           c              $              d              S              C              
+0              s3             null           s4             1              2              
+1              null           acc            null           null           null           
+2              s6             null           s7             null           5              
+3              s3             null           s4             null           8              
+4              r3             null           r3             null           null           
+5              null           r1             null           null           null           
+6              s6             null           s7             null           9              
+7              null           r3             null           null           null           
+8              r2             null           r2             null           null           
+9              null           r2             null           null           null           

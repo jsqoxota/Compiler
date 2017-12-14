@@ -1,1522 +1,3264 @@
 I0
-program ->·block , $
-block ->·{ decls stmts } , $
+program' →·program , $
+program →·block , $
+block →·{ decls stmts } , $
 
 I1
-program ->block ·, $
+program' →program ·, $
 
 I2
-block ->{ ·decls stmts } , $
-decls ->·decls decl , 
-decls ->·ε , 
+program →block ·, $
 
 I3
-block ->{ decls ·stmts } , $
-stmts ->·stmts stmt , break/do/{/while/}/if
-stmts ->·, break/do/{/while/}/if
-decls ->decls ·decl , 
-decl ->·type id ; , 
-type ->·type [ num ] , 
-type ->·basic , 
+block →{ ·decls stmts } , $
+decls →·decls decl , break/id/do/{/while/basic/if/}
+decls → ·, break/id/do/{/while/basic/if/}
 
 I4
-decls ->ε ·, 
+block →{ decls ·stmts } , $
+stmts →·stmts stmt , break/id/do/{/while/}/if
+stmts → ·, break/id/do/{/while/}/if
+decls →decls ·decl , break/id/do/{/while/basic/if/}
+decl →·type id ; , break/id/do/{/while/basic/if/}
+type →·type [ num ] , id/[
+type →·basic , id/[
 
 I5
-block ->{ decls stmts ·} , $
-stmts ->stmts ·stmt , break/do/{/while/}/if
-stmt ->·loc = bool ; , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/do/{/while/}/if
-stmt ->·break ; , break/do/{/while/}/if
-stmt ->·block , break/do/{/while/}/if
+block →{ decls stmts ·} , $
+stmts →stmts ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
 
 I6
-decls ->decls decl ·, 
+decls →decls decl ·, break/id/do/{/while/basic/if/}
 
 I7
-decl ->type ·id ; , 
-type ->type ·[ num ] , 
+decl →type ·id ; , break/id/do/{/while/basic/if/}
+type →type ·[ num ] , id/[
 
 I8
-type ->basic ·, 
+type →basic ·, id/[
 
 I9
-block ->{ decls stmts } ·, $
+block →{ decls stmts } ·, $
 
 I10
-stmts ->stmts stmt ·, break/do/{/while/}/if
+stmts →stmts stmt ·, break/id/do/{/while/}/if
 
 I11
-stmt ->loc ·= bool ; , break/do/{/while/}/if
+stmt →loc ·= bool ; , break/id/do/{/while/}/if
+loc →loc ·[ bool ] , [/=
 
 I12
-stmt ->if ·( bool ) stmt , break/do/{/while/}/if
-stmt ->if ·( bool ) stmt else stmt , break/do/{/while/}/if
+stmt →if ·( bool ) stmt , break/id/do/{/while/}/if
+stmt →if ·( bool ) stmt else stmt , break/id/do/{/while/}/if
 
 I13
-stmt ->while ·( bool ) stmt , break/do/{/while/}/if
+stmt →while ·( bool ) stmt , break/id/do/{/while/}/if
 
 I14
-stmt ->do ·stmt while ( bool ) ; , break/do/{/while/}/if
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+stmt →do ·stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
 
 I15
-stmt ->break ·; , break/do/{/while/}/if
+stmt →break ·; , break/id/do/{/while/}/if
 
 I16
-stmt ->block ·, break/do/{/while/}/if
+stmt →block ·, break/id/do/{/while/}/if
 
 I17
-decl ->type id ·; , 
+loc →id ·, [/=
 
 I18
-type ->type [ ·num ] , 
+block →{ ·decls stmts } , break/id/do/{/while/}/if
+decls →·decls decl , break/id/do/{/while/basic/if/}
+decls → ·, break/id/do/{/while/basic/if/}
 
 I19
-stmt ->loc = ·bool ; , break/do/{/while/}/if
-bool ->·bool || join , ||/;
-bool ->·join , ||/;
-join ->·join && equality , ||/&&/;
-join ->·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+decl →type id ·; , break/id/do/{/while/basic/if/}
 
 I20
-stmt ->if ( ·bool ) stmt , break/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-stmt ->if ( ·bool ) stmt else stmt , break/do/{/while/}/if
+type →type [ ·num ] , id/[
 
 I21
-stmt ->while ( ·bool ) stmt , break/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+stmt →loc = ·bool ; , break/id/do/{/while/}/if
+bool →·bool || join , ||/;
+bool →·join , ||/;
+join →·join && equality , ||/&&/;
+join →·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I22
-stmt ->do stmt ·while ( bool ) ; , break/do/{/while/}/if
+loc →loc [ ·bool ] , [/=
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I23
-stmt ->loc ·= bool ; , while
+stmt →if ( ·bool ) stmt , break/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+stmt →if ( ·bool ) stmt else stmt , break/id/do/{/while/}/if
 
 I24
-stmt ->if ·( bool ) stmt , while
-stmt ->if ·( bool ) stmt else stmt , while
+stmt →while ( ·bool ) stmt , break/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I25
-stmt ->while ·( bool ) stmt , while
+stmt →do stmt ·while ( bool ) ; , break/id/do/{/while/}/if
 
 I26
-stmt ->do ·stmt while ( bool ) ; , while
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+stmt →loc ·= bool ; , while
+loc →loc ·[ bool ] , [/=
 
 I27
-stmt ->break ·; , while
+stmt →if ·( bool ) stmt , while
+stmt →if ·( bool ) stmt else stmt , while
 
 I28
-stmt ->block ·, while
+stmt →while ·( bool ) stmt , while
 
 I29
-stmt ->break ; ·, break/do/{/while/}/if
+stmt →do ·stmt while ( bool ) ; , while
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
 
 I30
-decl ->type id ; ·, 
+stmt →break ·; , while
 
 I31
-type ->type [ num ·] , 
+stmt →block ·, while
 
 I32
-stmt ->loc = bool ·; , break/do/{/while/}/if
-bool ->bool ·|| join , ||/;
+block →{ ·decls stmts } , while
+decls →·decls decl , break/id/do/{/while/basic/if/}
+decls → ·, break/id/do/{/while/basic/if/}
 
 I33
-bool ->join ·, ||/;
-join ->join ·&& equality , ||/&&/;
+stmt →break ; ·, break/id/do/{/while/}/if
 
 I34
-join ->equality ·, ||/&&/;
-equality ->equality ·== rel , ||/&&/==/;/!=
-equality ->equality ·!= rel , ||/&&/==/;/!=
+block →{ decls ·stmts } , break/id/do/{/while/}/if
+stmts →·stmts stmt , break/id/do/{/while/}/if
+stmts → ·, break/id/do/{/while/}/if
+decls →decls ·decl , break/id/do/{/while/basic/if/}
+decl →·type id ; , break/id/do/{/while/basic/if/}
+type →·type [ num ] , id/[
+type →·basic , id/[
 
 I35
-equality ->rel ·, ||/&&/==/;/!=
+decl →type id ; ·, break/id/do/{/while/basic/if/}
 
 I36
-rel ->expr ·< expr , ||/&&/==/;/!=
-rel ->expr ·<= expr , ||/&&/==/;/!=
-rel ->expr ·>= expr , ||/&&/==/;/!=
-rel ->expr ·> expr , ||/&&/==/;/!=
-rel ->expr ·, ||/&&/==/;/!=
-expr ->expr ·+ term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->expr ·- term , ||/&&/==/<=/;/+/</!=/-/>/>=
+type →type [ num ·] , id/[
 
 I37
-expr ->term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+stmt →loc = bool ·; , break/id/do/{/while/}/if
+bool →bool ·|| join , ||/;
 
 I38
-term ->unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+bool →join ·, ||/;
+join →join ·&& equality , ||/&&/;
 
 I39
-unary ->! ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+join →equality ·, ||/&&/;
+equality →equality ·== rel , ||/&&/==/;/!=
+equality →equality ·!= rel , ||/&&/==/;/!=
 
 I40
-unary ->- ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+equality →rel ·, ||/&&/==/;/!=
 
 I41
-unary ->factor ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+rel →expr ·< expr , ||/&&/==/;/!=
+rel →expr ·<= expr , ||/&&/==/;/!=
+rel →expr ·>= expr , ||/&&/==/;/!=
+rel →expr ·> expr , ||/&&/==/;/!=
+rel →expr ·, ||/&&/==/;/!=
+expr →expr ·+ term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →expr ·- term , ||/&&/==/<=/;/+/</!=/-/>/>=
 
 I42
-stmt ->if ( bool ·) stmt , break/do/{/while/}/if
-bool ->bool ·|| join , ||/)
-stmt ->if ( bool ·) stmt else stmt , break/do/{/while/}/if
+expr →term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I43
-bool ->join ·, ||/)
-join ->join ·&& equality , ||/&&/)
+term →unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I44
-join ->equality ·, ||/&&/)
-equality ->equality ·== rel , ||/&&/==/)/!=
-equality ->equality ·!= rel , ||/&&/==/)/!=
+unary →! ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I45
-equality ->rel ·, ||/&&/==/)/!=
+unary →- ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I46
-rel ->expr ·< expr , ||/&&/==/)/!=
-rel ->expr ·<= expr , ||/&&/==/)/!=
-rel ->expr ·>= expr , ||/&&/==/)/!=
-rel ->expr ·> expr , ||/&&/==/)/!=
-rel ->expr ·, ||/&&/==/)/!=
-expr ->expr ·+ term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->expr ·- term , ||/&&/==/<=/)/+/</!=/-/>/>=
+unary →factor ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I47
-expr ->term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →( ·bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I48
-term ->unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →loc ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →loc ·[ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I49
-unary ->! ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →num ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I50
-unary ->- ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →real ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I51
-unary ->factor ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →true ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I52
-stmt ->while ( bool ·) stmt , break/do/{/while/}/if
-bool ->bool ·|| join , ||/)
+factor →false ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I53
-stmt ->do stmt while ·( bool ) ; , break/do/{/while/}/if
+loc →id ·, ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I54
-stmt ->loc = ·bool ; , while
-bool ->·bool || join , ||/;
-bool ->·join , ||/;
-join ->·join && equality , ||/&&/;
-join ->·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →loc [ bool ·] , [/=
+bool →bool ·|| join , ||/]
 
 I55
-stmt ->if ( ·bool ) stmt , while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-stmt ->if ( ·bool ) stmt else stmt , while
+bool →join ·, ||/]
+join →join ·&& equality , ||/&&/]
 
 I56
-stmt ->while ( ·bool ) stmt , while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+join →equality ·, ||/&&/]
+equality →equality ·== rel , ||/&&/==/!=/]
+equality →equality ·!= rel , ||/&&/==/!=/]
 
 I57
-stmt ->do stmt ·while ( bool ) ; , while
+equality →rel ·, ||/&&/==/!=/]
 
 I58
-stmt ->break ; ·, while
+rel →expr ·< expr , ||/&&/==/!=/]
+rel →expr ·<= expr , ||/&&/==/!=/]
+rel →expr ·>= expr , ||/&&/==/!=/]
+rel →expr ·> expr , ||/&&/==/!=/]
+rel →expr ·, ||/&&/==/!=/]
+expr →expr ·+ term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →expr ·- term , ||/&&/==/<=/+/</!=/]/-/>/>=
 
 I59
-type ->type [ num ] ·, 
+expr →term ·, ||/&&/==/<=/+/</!=/]/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I60
-stmt ->loc = bool ; ·, break/do/{/while/}/if
+term →unary ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I61
-bool ->bool || ·join , ||/;
-join ->·join && equality , ||/&&/;
-join ->·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →! ·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I62
-join ->join && ·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →- ·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I63
-equality ->equality == ·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →factor ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I64
-equality ->equality != ·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →( ·bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I65
-rel ->expr < ·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/;/+/!=/-
-expr ->·expr - term , ||/&&/==/;/+/!=/-
-expr ->·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+factor →loc ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →loc ·[ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I66
-rel ->expr <= ·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/;/+/!=/-
-expr ->·expr - term , ||/&&/==/;/+/!=/-
-expr ->·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+factor →num ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I67
-rel ->expr >= ·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/;/+/!=/-
-expr ->·expr - term , ||/&&/==/;/+/!=/-
-expr ->·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+factor →real ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I68
-rel ->expr > ·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/;/+/!=/-
-expr ->·expr - term , ||/&&/==/;/+/!=/-
-expr ->·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+factor →true ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I69
-expr ->expr + ·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →false ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I70
-expr ->expr - ·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →id ·, ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I71
-term ->term * ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+stmt →if ( bool ·) stmt , break/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
+stmt →if ( bool ·) stmt else stmt , break/id/do/{/while/}/if
 
 I72
-term ->term / ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+bool →join ·, ||/)
+join →join ·&& equality , ||/&&/)
 
 I73
-unary ->! unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+join →equality ·, ||/&&/)
+equality →equality ·== rel , ||/&&/==/)/!=
+equality →equality ·!= rel , ||/&&/==/)/!=
 
 I74
-unary ->- unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+equality →rel ·, ||/&&/==/)/!=
 
 I75
-stmt ->if ( bool ) ·stmt , break/do/{/while/}/if
-stmt ->·loc = bool ; , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/else/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/else/do/{/while/}/if
-stmt ->·break ; , break/else/do/{/while/}/if
-stmt ->·block , break/else/do/{/while/}/if
-stmt ->if ( bool ) ·stmt else stmt , break/do/{/while/}/if
+rel →expr ·< expr , ||/&&/==/)/!=
+rel →expr ·<= expr , ||/&&/==/)/!=
+rel →expr ·>= expr , ||/&&/==/)/!=
+rel →expr ·> expr , ||/&&/==/)/!=
+rel →expr ·, ||/&&/==/)/!=
+expr →expr ·+ term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →expr ·- term , ||/&&/==/<=/)/+/</!=/-/>/>=
 
 I76
-bool ->bool || ·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+expr →term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I77
-join ->join && ·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I78
-equality ->equality == ·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →! ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I79
-equality ->equality != ·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →- ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I80
-rel ->expr < ·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/)/+/!=/-
-expr ->·expr - term , ||/&&/==/)/+/!=/-
-expr ->·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+unary →factor ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I81
-rel ->expr <= ·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/)/+/!=/-
-expr ->·expr - term , ||/&&/==/)/+/!=/-
-expr ->·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+factor →( ·bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I82
-rel ->expr >= ·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/)/+/!=/-
-expr ->·expr - term , ||/&&/==/)/+/!=/-
-expr ->·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+factor →loc ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →loc ·[ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I83
-rel ->expr > ·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/)/+/!=/-
-expr ->·expr - term , ||/&&/==/)/+/!=/-
-expr ->·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+factor →num ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I84
-expr ->expr + ·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →real ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I85
-expr ->expr - ·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →true ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I86
-term ->term * ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →false ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I87
-term ->term / ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →id ·, ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I88
-unary ->! unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+stmt →while ( bool ·) stmt , break/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
 
 I89
-unary ->- unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+stmt →do stmt while ·( bool ) ; , break/id/do/{/while/}/if
 
 I90
-stmt ->while ( bool ) ·stmt , break/do/{/while/}/if
-stmt ->·loc = bool ; , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/do/{/while/}/if
-stmt ->·break ; , break/do/{/while/}/if
-stmt ->·block , break/do/{/while/}/if
+stmt →loc = ·bool ; , while
+bool →·bool || join , ||/;
+bool →·join , ||/;
+join →·join && equality , ||/&&/;
+join →·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I91
-stmt ->do stmt while ( ·bool ) ; , break/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+stmt →if ( ·bool ) stmt , while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+stmt →if ( ·bool ) stmt else stmt , while
 
 I92
-stmt ->loc = bool ·; , while
-bool ->bool ·|| join , ||/;
+stmt →while ( ·bool ) stmt , while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I93
-stmt ->if ( bool ·) stmt , while
-bool ->bool ·|| join , ||/)
-stmt ->if ( bool ·) stmt else stmt , while
+stmt →do stmt ·while ( bool ) ; , while
 
 I94
-stmt ->while ( bool ·) stmt , while
-bool ->bool ·|| join , ||/)
+stmt →break ; ·, while
 
 I95
-stmt ->do stmt while ·( bool ) ; , while
+block →{ decls ·stmts } , while
+stmts →·stmts stmt , break/id/do/{/while/}/if
+stmts → ·, break/id/do/{/while/}/if
+decls →decls ·decl , break/id/do/{/while/basic/if/}
+decl →·type id ; , break/id/do/{/while/basic/if/}
+type →·type [ num ] , id/[
+type →·basic , id/[
 
 I96
-bool ->bool || join ·, ||/;
-join ->join ·&& equality , ||/&&/;
+block →{ decls stmts ·} , break/id/do/{/while/}/if
+stmts →stmts ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
 
 I97
-join ->join && equality ·, ||/&&/;
-equality ->equality ·== rel , ||/&&/==/;/!=
-equality ->equality ·!= rel , ||/&&/==/;/!=
+type →type [ num ] ·, id/[
 
 I98
-equality ->equality == rel ·, ||/&&/==/;/!=
+stmt →loc = bool ; ·, break/id/do/{/while/}/if
 
 I99
-equality ->equality != rel ·, ||/&&/==/;/!=
+bool →bool || ·join , ||/;
+join →·join && equality , ||/&&/;
+join →·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I100
-rel ->expr < expr ·, ||/&&/==/;/!=
-expr ->expr ·+ term , ||/&&/==/;/+/!=/-
-expr ->expr ·- term , ||/&&/==/;/+/!=/-
+join →join && ·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I101
-expr ->term ·, ||/&&/==/;/+/!=/-
-term ->term ·* unary , ||/&&/==/*/;/+/!=/-//
-term ->term ·/ unary , ||/&&/==/*/;/+/!=/-//
+equality →equality == ·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I102
-term ->unary ·, ||/&&/==/*/;/+/!=/-//
+equality →equality != ·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I103
-unary ->! ·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+rel →expr < ·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/;/+/!=/-
+expr →·expr - term , ||/&&/==/;/+/!=/-
+expr →·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I104
-unary ->- ·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+rel →expr <= ·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/;/+/!=/-
+expr →·expr - term , ||/&&/==/;/+/!=/-
+expr →·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I105
-unary ->factor ·, ||/&&/==/*/;/+/!=/-//
+rel →expr >= ·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/;/+/!=/-
+expr →·expr - term , ||/&&/==/;/+/!=/-
+expr →·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I106
-rel ->expr <= expr ·, ||/&&/==/;/!=
-expr ->expr ·+ term , ||/&&/==/;/+/!=/-
-expr ->expr ·- term , ||/&&/==/;/+/!=/-
+rel →expr > ·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/;/+/!=/-
+expr →·expr - term , ||/&&/==/;/+/!=/-
+expr →·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I107
-rel ->expr >= expr ·, ||/&&/==/;/!=
-expr ->expr ·+ term , ||/&&/==/;/+/!=/-
-expr ->expr ·- term , ||/&&/==/;/+/!=/-
+expr →expr + ·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I108
-rel ->expr > expr ·, ||/&&/==/;/!=
-expr ->expr ·+ term , ||/&&/==/;/+/!=/-
-expr ->expr ·- term , ||/&&/==/;/+/!=/-
+expr →expr - ·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I109
-expr ->expr + term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →term * ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I110
-expr ->expr - term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →term / ·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
 
 I111
-term ->term * unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →! unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I112
-term ->term / unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →- unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I113
-stmt ->if ( bool ) stmt ·, break/do/{/while/}/if
-stmt ->if ( bool ) stmt ·else stmt , break/do/{/while/}/if
+factor →( bool ·) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+bool →bool ·|| join , ||/)
 
 I114
-stmt ->loc ·= bool ; , break/else/do/{/while/}/if
+loc →loc [ ·bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I115
-stmt ->if ·( bool ) stmt , break/else/do/{/while/}/if
-stmt ->if ·( bool ) stmt else stmt , break/else/do/{/while/}/if
+loc →loc [ bool ] ·, [/=
 
 I116
-stmt ->while ·( bool ) stmt , break/else/do/{/while/}/if
+bool →bool || ·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I117
-stmt ->do ·stmt while ( bool ) ; , break/else/do/{/while/}/if
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+join →join && ·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I118
-stmt ->break ·; , break/else/do/{/while/}/if
+equality →equality == ·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I119
-stmt ->block ·, break/else/do/{/while/}/if
+equality →equality != ·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I120
-bool ->bool || join ·, ||/)
-join ->join ·&& equality , ||/&&/)
+rel →expr < ·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/+/!=/]/-
+expr →·expr - term , ||/&&/==/+/!=/]/-
+expr →·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I121
-join ->join && equality ·, ||/&&/)
-equality ->equality ·== rel , ||/&&/==/)/!=
-equality ->equality ·!= rel , ||/&&/==/)/!=
+rel →expr <= ·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/+/!=/]/-
+expr →·expr - term , ||/&&/==/+/!=/]/-
+expr →·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I122
-equality ->equality == rel ·, ||/&&/==/)/!=
+rel →expr >= ·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/+/!=/]/-
+expr →·expr - term , ||/&&/==/+/!=/]/-
+expr →·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I123
-equality ->equality != rel ·, ||/&&/==/)/!=
+rel →expr > ·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/+/!=/]/-
+expr →·expr - term , ||/&&/==/+/!=/]/-
+expr →·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I124
-rel ->expr < expr ·, ||/&&/==/)/!=
-expr ->expr ·+ term , ||/&&/==/)/+/!=/-
-expr ->expr ·- term , ||/&&/==/)/+/!=/-
+expr →expr + ·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I125
-expr ->term ·, ||/&&/==/)/+/!=/-
-term ->term ·* unary , ||/&&/==/)/*/+/!=/-//
-term ->term ·/ unary , ||/&&/==/)/*/+/!=/-//
+expr →expr - ·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I126
-term ->unary ·, ||/&&/==/)/*/+/!=/-//
+term →term * ·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I127
-unary ->! ·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+term →term / ·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I128
-unary ->- ·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+unary →! unary ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I129
-unary ->factor ·, ||/&&/==/)/*/+/!=/-//
+unary →- unary ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I130
-rel ->expr <= expr ·, ||/&&/==/)/!=
-expr ->expr ·+ term , ||/&&/==/)/+/!=/-
-expr ->expr ·- term , ||/&&/==/)/+/!=/-
+factor →( bool ·) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+bool →bool ·|| join , ||/)
 
 I131
-rel ->expr >= expr ·, ||/&&/==/)/!=
-expr ->expr ·+ term , ||/&&/==/)/+/!=/-
-expr ->expr ·- term , ||/&&/==/)/+/!=/-
+loc →loc [ ·bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I132
-rel ->expr > expr ·, ||/&&/==/)/!=
-expr ->expr ·+ term , ||/&&/==/)/+/!=/-
-expr ->expr ·- term , ||/&&/==/)/+/!=/-
+stmt →if ( bool ) ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/else/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/else/id/do/{/while/}/if
+stmt →·break ; , break/else/id/do/{/while/}/if
+stmt →·block , break/else/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/else/id/do/{/while/}/if
+stmt →if ( bool ) ·stmt else stmt , break/id/do/{/while/}/if
 
 I133
-expr ->expr + term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+bool →bool || ·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I134
-expr ->expr - term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+join →join && ·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I135
-term ->term * unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+equality →equality == ·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I136
-term ->term / unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+equality →equality != ·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I137
-stmt ->while ( bool ) stmt ·, break/do/{/while/}/if
+rel →expr < ·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/)/+/!=/-
+expr →·expr - term , ||/&&/==/)/+/!=/-
+expr →·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
 
 I138
-stmt ->do stmt while ( bool ·) ; , break/do/{/while/}/if
-bool ->bool ·|| join , ||/)
+rel →expr <= ·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/)/+/!=/-
+expr →·expr - term , ||/&&/==/)/+/!=/-
+expr →·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
 
 I139
-stmt ->loc = bool ; ·, while
+rel →expr >= ·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/)/+/!=/-
+expr →·expr - term , ||/&&/==/)/+/!=/-
+expr →·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
 
 I140
-stmt ->if ( bool ) ·stmt , while
-stmt ->·loc = bool ; , else/while
-stmt ->·if ( bool ) stmt , else/while
-stmt ->·if ( bool ) stmt else stmt , else/while
-stmt ->·while ( bool ) stmt , else/while
-stmt ->·do stmt while ( bool ) ; , else/while
-stmt ->·break ; , else/while
-stmt ->·block , else/while
-stmt ->if ( bool ) ·stmt else stmt , while
+rel →expr > ·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/)/+/!=/-
+expr →·expr - term , ||/&&/==/)/+/!=/-
+expr →·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
 
 I141
-stmt ->while ( bool ) ·stmt , while
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+expr →expr + ·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I142
-stmt ->do stmt while ( ·bool ) ; , while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+expr →expr - ·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I143
-expr ->expr + ·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+term →term * ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I144
-expr ->expr - ·term , ||/&&/==/;/+/!=/-
-term ->·term * unary , ||/&&/==/*/;/+/!=/-//
-term ->·term / unary , ||/&&/==/*/;/+/!=/-//
-term ->·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+term →term / ·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I145
-term ->term * ·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+unary →! unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I146
-term ->term / ·unary , ||/&&/==/*/;/+/!=/-//
-unary ->·! unary , ||/&&/==/*/;/+/!=/-//
-unary ->·- unary , ||/&&/==/*/;/+/!=/-//
-unary ->·factor , ||/&&/==/*/;/+/!=/-//
+unary →- unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
 
 I147
-unary ->! unary ·, ||/&&/==/*/;/+/!=/-//
+factor →( bool ·) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+bool →bool ·|| join , ||/)
 
 I148
-unary ->- unary ·, ||/&&/==/*/;/+/!=/-//
+loc →loc [ ·bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
 
 I149
-stmt ->if ( bool ) stmt else ·stmt , break/do/{/while/}/if
-stmt ->·loc = bool ; , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/do/{/while/}/if
-stmt ->·break ; , break/do/{/while/}/if
-stmt ->·block , break/do/{/while/}/if
+stmt →while ( bool ) ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
 
 I150
-stmt ->loc = ·bool ; , break/else/do/{/while/}/if
-bool ->·bool || join , ||/;
-bool ->·join , ||/;
-join ->·join && equality , ||/&&/;
-join ->·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+stmt →do stmt while ( ·bool ) ; , break/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I151
-stmt ->if ( ·bool ) stmt , break/else/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-stmt ->if ( ·bool ) stmt else stmt , break/else/do/{/while/}/if
+stmt →loc = bool ·; , while
+bool →bool ·|| join , ||/;
 
 I152
-stmt ->while ( ·bool ) stmt , break/else/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+stmt →if ( bool ·) stmt , while
+bool →bool ·|| join , ||/)
+stmt →if ( bool ·) stmt else stmt , while
 
 I153
-stmt ->do stmt ·while ( bool ) ; , break/else/do/{/while/}/if
+stmt →while ( bool ·) stmt , while
+bool →bool ·|| join , ||/)
 
 I154
-stmt ->break ; ·, break/else/do/{/while/}/if
+stmt →do stmt while ·( bool ) ; , while
 
 I155
-expr ->expr + ·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+block →{ decls stmts ·} , while
+stmts →stmts ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
 
 I156
-expr ->expr - ·term , ||/&&/==/)/+/!=/-
-term ->·term * unary , ||/&&/==/)/*/+/!=/-//
-term ->·term / unary , ||/&&/==/)/*/+/!=/-//
-term ->·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+block →{ decls stmts } ·, break/id/do/{/while/}/if
 
 I157
-term ->term * ·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+bool →bool || join ·, ||/;
+join →join ·&& equality , ||/&&/;
 
 I158
-term ->term / ·unary , ||/&&/==/)/*/+/!=/-//
-unary ->·! unary , ||/&&/==/)/*/+/!=/-//
-unary ->·- unary , ||/&&/==/)/*/+/!=/-//
-unary ->·factor , ||/&&/==/)/*/+/!=/-//
+join →join && equality ·, ||/&&/;
+equality →equality ·== rel , ||/&&/==/;/!=
+equality →equality ·!= rel , ||/&&/==/;/!=
 
 I159
-unary ->! unary ·, ||/&&/==/)/*/+/!=/-//
+equality →equality == rel ·, ||/&&/==/;/!=
 
 I160
-unary ->- unary ·, ||/&&/==/)/*/+/!=/-//
+equality →equality != rel ·, ||/&&/==/;/!=
 
 I161
-stmt ->do stmt while ( bool ) ·; , break/do/{/while/}/if
+rel →expr < expr ·, ||/&&/==/;/!=
+expr →expr ·+ term , ||/&&/==/;/+/!=/-
+expr →expr ·- term , ||/&&/==/;/+/!=/-
 
 I162
-stmt ->if ( bool ) stmt ·, while
-stmt ->if ( bool ) stmt ·else stmt , while
+expr →term ·, ||/&&/==/;/+/!=/-
+term →term ·* unary , ||/&&/==/*/;/+/!=/-//
+term →term ·/ unary , ||/&&/==/*/;/+/!=/-//
 
 I163
-stmt ->loc ·= bool ; , else/while
+term →unary ·, ||/&&/==/*/;/+/!=/-//
 
 I164
-stmt ->if ·( bool ) stmt , else/while
-stmt ->if ·( bool ) stmt else stmt , else/while
+unary →! ·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I165
-stmt ->while ·( bool ) stmt , else/while
+unary →- ·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
 
 I166
-stmt ->do ·stmt while ( bool ) ; , else/while
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+unary →factor ·, ||/&&/==/*/;/+/!=/-//
 
 I167
-stmt ->break ·; , else/while
+factor →( ·bool ) , ||/&&/==/*/;/+/!=/-//
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I168
-stmt ->block ·, else/while
+factor →loc ·, ||/&&/==/*/;/+/!=/-//
+loc →loc ·[ bool ] , ||/&&/==/*/;/+/[/!=/-//
 
 I169
-stmt ->while ( bool ) stmt ·, while
+factor →num ·, ||/&&/==/*/;/+/!=/-//
 
 I170
-stmt ->do stmt while ( bool ·) ; , while
-bool ->bool ·|| join , ||/)
+factor →real ·, ||/&&/==/*/;/+/!=/-//
 
 I171
-expr ->expr + term ·, ||/&&/==/;/+/!=/-
-term ->term ·* unary , ||/&&/==/*/;/+/!=/-//
-term ->term ·/ unary , ||/&&/==/*/;/+/!=/-//
+factor →true ·, ||/&&/==/*/;/+/!=/-//
 
 I172
-expr ->expr - term ·, ||/&&/==/;/+/!=/-
-term ->term ·* unary , ||/&&/==/*/;/+/!=/-//
-term ->term ·/ unary , ||/&&/==/*/;/+/!=/-//
+factor →false ·, ||/&&/==/*/;/+/!=/-//
 
 I173
-term ->term * unary ·, ||/&&/==/*/;/+/!=/-//
+loc →id ·, ||/&&/==/*/;/+/[/!=/-//
 
 I174
-term ->term / unary ·, ||/&&/==/*/;/+/!=/-//
+rel →expr <= expr ·, ||/&&/==/;/!=
+expr →expr ·+ term , ||/&&/==/;/+/!=/-
+expr →expr ·- term , ||/&&/==/;/+/!=/-
 
 I175
-stmt ->if ( bool ) stmt else stmt ·, break/do/{/while/}/if
+rel →expr >= expr ·, ||/&&/==/;/!=
+expr →expr ·+ term , ||/&&/==/;/+/!=/-
+expr →expr ·- term , ||/&&/==/;/+/!=/-
 
 I176
-stmt ->loc = bool ·; , break/else/do/{/while/}/if
-bool ->bool ·|| join , ||/;
+rel →expr > expr ·, ||/&&/==/;/!=
+expr →expr ·+ term , ||/&&/==/;/+/!=/-
+expr →expr ·- term , ||/&&/==/;/+/!=/-
 
 I177
-stmt ->if ( bool ·) stmt , break/else/do/{/while/}/if
-bool ->bool ·|| join , ||/)
-stmt ->if ( bool ·) stmt else stmt , break/else/do/{/while/}/if
+expr →expr + term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I178
-stmt ->while ( bool ·) stmt , break/else/do/{/while/}/if
-bool ->bool ·|| join , ||/)
+expr →expr - term ·, ||/&&/==/<=/;/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I179
-stmt ->do stmt while ·( bool ) ; , break/else/do/{/while/}/if
+term →term * unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I180
-expr ->expr + term ·, ||/&&/==/)/+/!=/-
-term ->term ·* unary , ||/&&/==/)/*/+/!=/-//
-term ->term ·/ unary , ||/&&/==/)/*/+/!=/-//
+term →term / unary ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I181
-expr ->expr - term ·, ||/&&/==/)/+/!=/-
-term ->term ·* unary , ||/&&/==/)/*/+/!=/-//
-term ->term ·/ unary , ||/&&/==/)/*/+/!=/-//
+factor →( bool ) ·, ||/&&/==/<=/*/+/-///;/</!=/>/>=
 
 I182
-term ->term * unary ·, ||/&&/==/)/*/+/!=/-//
+loc →loc [ bool ·] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+bool →bool ·|| join , ||/]
 
 I183
-term ->term / unary ·, ||/&&/==/)/*/+/!=/-//
+bool →bool || join ·, ||/]
+join →join ·&& equality , ||/&&/]
 
 I184
-stmt ->do stmt while ( bool ) ; ·, break/do/{/while/}/if
+join →join && equality ·, ||/&&/]
+equality →equality ·== rel , ||/&&/==/!=/]
+equality →equality ·!= rel , ||/&&/==/!=/]
 
 I185
-stmt ->if ( bool ) stmt else ·stmt , while
-stmt ->·loc = bool ; , while
-stmt ->·if ( bool ) stmt , while
-stmt ->·if ( bool ) stmt else stmt , while
-stmt ->·while ( bool ) stmt , while
-stmt ->·do stmt while ( bool ) ; , while
-stmt ->·break ; , while
-stmt ->·block , while
+equality →equality == rel ·, ||/&&/==/!=/]
 
 I186
-stmt ->loc = ·bool ; , else/while
-bool ->·bool || join , ||/;
-bool ->·join , ||/;
-join ->·join && equality , ||/&&/;
-join ->·equality , ||/&&/;
-equality ->·equality == rel , ||/&&/==/;/!=
-equality ->·equality != rel , ||/&&/==/;/!=
-equality ->·rel , ||/&&/==/;/!=
-rel ->·expr < expr , ||/&&/==/;/!=
-rel ->·expr <= expr , ||/&&/==/;/!=
-rel ->·expr >= expr , ||/&&/==/;/!=
-rel ->·expr > expr , ||/&&/==/;/!=
-rel ->·expr , ||/&&/==/;/!=
-expr ->·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/;/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-term ->·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
-unary ->·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+equality →equality != rel ·, ||/&&/==/!=/]
 
 I187
-stmt ->if ( ·bool ) stmt , else/while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-stmt ->if ( ·bool ) stmt else stmt , else/while
+rel →expr < expr ·, ||/&&/==/!=/]
+expr →expr ·+ term , ||/&&/==/+/!=/]/-
+expr →expr ·- term , ||/&&/==/+/!=/]/-
 
 I188
-stmt ->while ( ·bool ) stmt , else/while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+expr →term ·, ||/&&/==/+/!=/]/-
+term →term ·* unary , ||/&&/==/*/+/!=/]/-//
+term →term ·/ unary , ||/&&/==/*/+/!=/]/-//
 
 I189
-stmt ->do stmt ·while ( bool ) ; , else/while
+term →unary ·, ||/&&/==/*/+/!=/]/-//
 
 I190
-stmt ->break ; ·, else/while
+unary →! ·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I191
-stmt ->do stmt while ( bool ) ·; , while
+unary →- ·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
 
 I192
-stmt ->loc = bool ; ·, break/else/do/{/while/}/if
+unary →factor ·, ||/&&/==/*/+/!=/]/-//
 
 I193
-stmt ->if ( bool ) ·stmt , break/else/do/{/while/}/if
-stmt ->·loc = bool ; , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/else/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/else/do/{/while/}/if
-stmt ->·break ; , break/else/do/{/while/}/if
-stmt ->·block , break/else/do/{/while/}/if
-stmt ->if ( bool ) ·stmt else stmt , break/else/do/{/while/}/if
+factor →( ·bool ) , ||/&&/==/*/+/!=/]/-//
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
 
 I194
-stmt ->while ( bool ) ·stmt , break/else/do/{/while/}/if
-stmt ->·loc = bool ; , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/else/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/else/do/{/while/}/if
-stmt ->·break ; , break/else/do/{/while/}/if
-stmt ->·block , break/else/do/{/while/}/if
+factor →loc ·, ||/&&/==/*/+/!=/]/-//
+loc →loc ·[ bool ] , ||/&&/==/*/+/[/!=/]/-//
 
 I195
-stmt ->do stmt while ( ·bool ) ; , break/else/do/{/while/}/if
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →num ·, ||/&&/==/*/+/!=/]/-//
 
 I196
-stmt ->if ( bool ) stmt else stmt ·, while
+factor →real ·, ||/&&/==/*/+/!=/]/-//
 
 I197
-stmt ->loc = bool ·; , else/while
-bool ->bool ·|| join , ||/;
+factor →true ·, ||/&&/==/*/+/!=/]/-//
 
 I198
-stmt ->if ( bool ·) stmt , else/while
-bool ->bool ·|| join , ||/)
-stmt ->if ( bool ·) stmt else stmt , else/while
+factor →false ·, ||/&&/==/*/+/!=/]/-//
 
 I199
-stmt ->while ( bool ·) stmt , else/while
-bool ->bool ·|| join , ||/)
+loc →id ·, ||/&&/==/*/+/[/!=/]/-//
 
 I200
-stmt ->do stmt while ·( bool ) ; , else/while
+rel →expr <= expr ·, ||/&&/==/!=/]
+expr →expr ·+ term , ||/&&/==/+/!=/]/-
+expr →expr ·- term , ||/&&/==/+/!=/]/-
 
 I201
-stmt ->do stmt while ( bool ) ; ·, while
+rel →expr >= expr ·, ||/&&/==/!=/]
+expr →expr ·+ term , ||/&&/==/+/!=/]/-
+expr →expr ·- term , ||/&&/==/+/!=/]/-
 
 I202
-stmt ->if ( bool ) stmt ·, break/else/do/{/while/}/if
-stmt ->if ( bool ) stmt ·else stmt , break/else/do/{/while/}/if
+rel →expr > expr ·, ||/&&/==/!=/]
+expr →expr ·+ term , ||/&&/==/+/!=/]/-
+expr →expr ·- term , ||/&&/==/+/!=/]/-
 
 I203
-stmt ->while ( bool ) stmt ·, break/else/do/{/while/}/if
+expr →expr + term ·, ||/&&/==/<=/+/</!=/]/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I204
-stmt ->do stmt while ( bool ·) ; , break/else/do/{/while/}/if
-bool ->bool ·|| join , ||/)
+expr →expr - term ·, ||/&&/==/<=/+/</!=/]/-/>/>=
+term →term ·* unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →term ·/ unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I205
-stmt ->loc = bool ; ·, else/while
+term →term * unary ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I206
-stmt ->if ( bool ) ·stmt , else/while
-stmt ->·loc = bool ; , else/while
-stmt ->·if ( bool ) stmt , else/while
-stmt ->·if ( bool ) stmt else stmt , else/while
-stmt ->·while ( bool ) stmt , else/while
-stmt ->·do stmt while ( bool ) ; , else/while
-stmt ->·break ; , else/while
-stmt ->·block , else/while
-stmt ->if ( bool ) ·stmt else stmt , else/while
+term →term / unary ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I207
-stmt ->while ( bool ) ·stmt , else/while
-stmt ->·loc = bool ; , else/while
-stmt ->·if ( bool ) stmt , else/while
-stmt ->·if ( bool ) stmt else stmt , else/while
-stmt ->·while ( bool ) stmt , else/while
-stmt ->·do stmt while ( bool ) ; , else/while
-stmt ->·break ; , else/while
-stmt ->·block , else/while
+factor →( bool ) ·, ||/&&/==/<=/*/+/-///</!=/]/>/>=
 
 I208
-stmt ->do stmt while ( ·bool ) ; , else/while
-bool ->·bool || join , ||/)
-bool ->·join , ||/)
-join ->·join && equality , ||/&&/)
-join ->·equality , ||/&&/)
-equality ->·equality == rel , ||/&&/==/)/!=
-equality ->·equality != rel , ||/&&/==/)/!=
-equality ->·rel , ||/&&/==/)/!=
-rel ->·expr < expr , ||/&&/==/)/!=
-rel ->·expr <= expr , ||/&&/==/)/!=
-rel ->·expr >= expr , ||/&&/==/)/!=
-rel ->·expr > expr , ||/&&/==/)/!=
-rel ->·expr , ||/&&/==/)/!=
-expr ->·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
-expr ->·term , ||/&&/==/<=/)/+/</!=/-/>/>=
-term ->·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-term ->·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
-unary ->·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →loc [ bool ·] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+bool →bool ·|| join , ||/]
 
 I209
-stmt ->if ( bool ) stmt else ·stmt , break/else/do/{/while/}/if
-stmt ->·loc = bool ; , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·if ( bool ) stmt else stmt , break/else/do/{/while/}/if
-stmt ->·while ( bool ) stmt , break/else/do/{/while/}/if
-stmt ->·do stmt while ( bool ) ; , break/else/do/{/while/}/if
-stmt ->·break ; , break/else/do/{/while/}/if
-stmt ->·block , break/else/do/{/while/}/if
+stmt →if ( bool ) stmt ·, break/id/do/{/while/}/if
+stmt →if ( bool ) stmt ·else stmt , break/id/do/{/while/}/if
 
 I210
-stmt ->do stmt while ( bool ) ·; , break/else/do/{/while/}/if
+stmt →loc ·= bool ; , break/else/id/do/{/while/}/if
+loc →loc ·[ bool ] , [/=
 
 I211
-stmt ->if ( bool ) stmt ·, else/while
-stmt ->if ( bool ) stmt ·else stmt , else/while
+stmt →if ·( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →if ·( bool ) stmt else stmt , break/else/id/do/{/while/}/if
 
 I212
-stmt ->while ( bool ) stmt ·, else/while
+stmt →while ·( bool ) stmt , break/else/id/do/{/while/}/if
 
 I213
-stmt ->do stmt while ( bool ·) ; , else/while
-bool ->bool ·|| join , ||/)
+stmt →do ·stmt while ( bool ) ; , break/else/id/do/{/while/}/if
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
 
 I214
-stmt ->if ( bool ) stmt else stmt ·, break/else/do/{/while/}/if
+stmt →break ·; , break/else/id/do/{/while/}/if
 
 I215
-stmt ->do stmt while ( bool ) ; ·, break/else/do/{/while/}/if
+stmt →block ·, break/else/id/do/{/while/}/if
 
 I216
-stmt ->if ( bool ) stmt else ·stmt , else/while
-stmt ->·loc = bool ; , else/while
-stmt ->·if ( bool ) stmt , else/while
-stmt ->·if ( bool ) stmt else stmt , else/while
-stmt ->·while ( bool ) stmt , else/while
-stmt ->·do stmt while ( bool ) ; , else/while
-stmt ->·break ; , else/while
-stmt ->·block , else/while
+block →{ ·decls stmts } , break/else/id/do/{/while/}/if
+decls →·decls decl , break/id/do/{/while/basic/if/}
+decls → ·, break/id/do/{/while/basic/if/}
 
 I217
-stmt ->do stmt while ( bool ) ·; , else/while
+bool →bool || join ·, ||/)
+join →join ·&& equality , ||/&&/)
 
 I218
-stmt ->if ( bool ) stmt else stmt ·, else/while
+join →join && equality ·, ||/&&/)
+equality →equality ·== rel , ||/&&/==/)/!=
+equality →equality ·!= rel , ||/&&/==/)/!=
 
 I219
-stmt ->do stmt while ( bool ) ; ·, else/while
+equality →equality == rel ·, ||/&&/==/)/!=
+
+I220
+equality →equality != rel ·, ||/&&/==/)/!=
+
+I221
+rel →expr < expr ·, ||/&&/==/)/!=
+expr →expr ·+ term , ||/&&/==/)/+/!=/-
+expr →expr ·- term , ||/&&/==/)/+/!=/-
+
+I222
+expr →term ·, ||/&&/==/)/+/!=/-
+term →term ·* unary , ||/&&/==/)/*/+/!=/-//
+term →term ·/ unary , ||/&&/==/)/*/+/!=/-//
+
+I223
+term →unary ·, ||/&&/==/)/*/+/!=/-//
+
+I224
+unary →! ·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I225
+unary →- ·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I226
+unary →factor ·, ||/&&/==/)/*/+/!=/-//
+
+I227
+factor →( ·bool ) , ||/&&/==/)/*/+/!=/-//
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I228
+factor →loc ·, ||/&&/==/)/*/+/!=/-//
+loc →loc ·[ bool ] , ||/&&/==/)/*/+/[/!=/-//
+
+I229
+factor →num ·, ||/&&/==/)/*/+/!=/-//
+
+I230
+factor →real ·, ||/&&/==/)/*/+/!=/-//
+
+I231
+factor →true ·, ||/&&/==/)/*/+/!=/-//
+
+I232
+factor →false ·, ||/&&/==/)/*/+/!=/-//
+
+I233
+loc →id ·, ||/&&/==/)/*/+/[/!=/-//
+
+I234
+rel →expr <= expr ·, ||/&&/==/)/!=
+expr →expr ·+ term , ||/&&/==/)/+/!=/-
+expr →expr ·- term , ||/&&/==/)/+/!=/-
+
+I235
+rel →expr >= expr ·, ||/&&/==/)/!=
+expr →expr ·+ term , ||/&&/==/)/+/!=/-
+expr →expr ·- term , ||/&&/==/)/+/!=/-
+
+I236
+rel →expr > expr ·, ||/&&/==/)/!=
+expr →expr ·+ term , ||/&&/==/)/+/!=/-
+expr →expr ·- term , ||/&&/==/)/+/!=/-
+
+I237
+expr →expr + term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+
+I238
+expr →expr - term ·, ||/&&/==/<=/)/+/</!=/-/>/>=
+term →term ·* unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →term ·/ unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+
+I239
+term →term * unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+
+I240
+term →term / unary ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+
+I241
+factor →( bool ) ·, ||/&&/==/<=/)/*/+/-///</!=/>/>=
+
+I242
+loc →loc [ bool ·] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+bool →bool ·|| join , ||/]
+
+I243
+stmt →while ( bool ) stmt ·, break/id/do/{/while/}/if
+
+I244
+stmt →do stmt while ( bool ·) ; , break/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
+
+I245
+stmt →loc = bool ; ·, while
+
+I246
+stmt →if ( bool ) ·stmt , while
+stmt →·loc = bool ; , else/while
+stmt →·if ( bool ) stmt , else/while
+stmt →·if ( bool ) stmt else stmt , else/while
+stmt →·while ( bool ) stmt , else/while
+stmt →·do stmt while ( bool ) ; , else/while
+stmt →·break ; , else/while
+stmt →·block , else/while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , else/while
+stmt →if ( bool ) ·stmt else stmt , while
+
+I247
+stmt →while ( bool ) ·stmt , while
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
+
+I248
+stmt →do stmt while ( ·bool ) ; , while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I249
+block →{ decls stmts } ·, while
+
+I250
+expr →expr + ·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
+
+I251
+expr →expr - ·term , ||/&&/==/;/+/!=/-
+term →·term * unary , ||/&&/==/*/;/+/!=/-//
+term →·term / unary , ||/&&/==/*/;/+/!=/-//
+term →·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
+
+I252
+term →term * ·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
+
+I253
+term →term / ·unary , ||/&&/==/*/;/+/!=/-//
+unary →·! unary , ||/&&/==/*/;/+/!=/-//
+unary →·- unary , ||/&&/==/*/;/+/!=/-//
+unary →·factor , ||/&&/==/*/;/+/!=/-//
+factor →·( bool ) , ||/&&/==/*/;/+/!=/-//
+factor →·loc , ||/&&/==/*/;/+/!=/-//
+factor →·num , ||/&&/==/*/;/+/!=/-//
+factor →·real , ||/&&/==/*/;/+/!=/-//
+factor →·true , ||/&&/==/*/;/+/!=/-//
+factor →·false , ||/&&/==/*/;/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/*/;/+/[/!=/-//
+loc →·id , ||/&&/==/*/;/+/[/!=/-//
+
+I254
+unary →! unary ·, ||/&&/==/*/;/+/!=/-//
+
+I255
+unary →- unary ·, ||/&&/==/*/;/+/!=/-//
+
+I256
+factor →( bool ·) , ||/&&/==/*/;/+/!=/-//
+bool →bool ·|| join , ||/)
+
+I257
+loc →loc [ ·bool ] , ||/&&/==/*/;/+/[/!=/-//
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+
+I258
+loc →loc [ bool ] ·, ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+
+I259
+expr →expr + ·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
+
+I260
+expr →expr - ·term , ||/&&/==/+/!=/]/-
+term →·term * unary , ||/&&/==/*/+/!=/]/-//
+term →·term / unary , ||/&&/==/*/+/!=/]/-//
+term →·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
+
+I261
+term →term * ·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
+
+I262
+term →term / ·unary , ||/&&/==/*/+/!=/]/-//
+unary →·! unary , ||/&&/==/*/+/!=/]/-//
+unary →·- unary , ||/&&/==/*/+/!=/]/-//
+unary →·factor , ||/&&/==/*/+/!=/]/-//
+factor →·( bool ) , ||/&&/==/*/+/!=/]/-//
+factor →·loc , ||/&&/==/*/+/!=/]/-//
+factor →·num , ||/&&/==/*/+/!=/]/-//
+factor →·real , ||/&&/==/*/+/!=/]/-//
+factor →·true , ||/&&/==/*/+/!=/]/-//
+factor →·false , ||/&&/==/*/+/!=/]/-//
+loc →·loc [ bool ] , ||/&&/==/*/+/[/!=/]/-//
+loc →·id , ||/&&/==/*/+/[/!=/]/-//
+
+I263
+unary →! unary ·, ||/&&/==/*/+/!=/]/-//
+
+I264
+unary →- unary ·, ||/&&/==/*/+/!=/]/-//
+
+I265
+factor →( bool ·) , ||/&&/==/*/+/!=/]/-//
+bool →bool ·|| join , ||/)
+
+I266
+loc →loc [ ·bool ] , ||/&&/==/*/+/[/!=/]/-//
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+
+I267
+loc →loc [ bool ] ·, ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+
+I268
+stmt →if ( bool ) stmt else ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
+
+I269
+stmt →loc = ·bool ; , break/else/id/do/{/while/}/if
+bool →·bool || join , ||/;
+bool →·join , ||/;
+join →·join && equality , ||/&&/;
+join →·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+
+I270
+stmt →if ( ·bool ) stmt , break/else/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+stmt →if ( ·bool ) stmt else stmt , break/else/id/do/{/while/}/if
+
+I271
+stmt →while ( ·bool ) stmt , break/else/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I272
+stmt →do stmt ·while ( bool ) ; , break/else/id/do/{/while/}/if
+
+I273
+stmt →break ; ·, break/else/id/do/{/while/}/if
+
+I274
+block →{ decls ·stmts } , break/else/id/do/{/while/}/if
+stmts →·stmts stmt , break/id/do/{/while/}/if
+stmts → ·, break/id/do/{/while/}/if
+decls →decls ·decl , break/id/do/{/while/basic/if/}
+decl →·type id ; , break/id/do/{/while/basic/if/}
+type →·type [ num ] , id/[
+type →·basic , id/[
+
+I275
+expr →expr + ·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I276
+expr →expr - ·term , ||/&&/==/)/+/!=/-
+term →·term * unary , ||/&&/==/)/*/+/!=/-//
+term →·term / unary , ||/&&/==/)/*/+/!=/-//
+term →·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I277
+term →term * ·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I278
+term →term / ·unary , ||/&&/==/)/*/+/!=/-//
+unary →·! unary , ||/&&/==/)/*/+/!=/-//
+unary →·- unary , ||/&&/==/)/*/+/!=/-//
+unary →·factor , ||/&&/==/)/*/+/!=/-//
+factor →·( bool ) , ||/&&/==/)/*/+/!=/-//
+factor →·loc , ||/&&/==/)/*/+/!=/-//
+factor →·num , ||/&&/==/)/*/+/!=/-//
+factor →·real , ||/&&/==/)/*/+/!=/-//
+factor →·true , ||/&&/==/)/*/+/!=/-//
+factor →·false , ||/&&/==/)/*/+/!=/-//
+loc →·loc [ bool ] , ||/&&/==/)/*/+/[/!=/-//
+loc →·id , ||/&&/==/)/*/+/[/!=/-//
+
+I279
+unary →! unary ·, ||/&&/==/)/*/+/!=/-//
+
+I280
+unary →- unary ·, ||/&&/==/)/*/+/!=/-//
+
+I281
+factor →( bool ·) , ||/&&/==/)/*/+/!=/-//
+bool →bool ·|| join , ||/)
+
+I282
+loc →loc [ ·bool ] , ||/&&/==/)/*/+/[/!=/-//
+bool →·bool || join , ||/]
+bool →·join , ||/]
+join →·join && equality , ||/&&/]
+join →·equality , ||/&&/]
+equality →·equality == rel , ||/&&/==/!=/]
+equality →·equality != rel , ||/&&/==/!=/]
+equality →·rel , ||/&&/==/!=/]
+rel →·expr < expr , ||/&&/==/!=/]
+rel →·expr <= expr , ||/&&/==/!=/]
+rel →·expr >= expr , ||/&&/==/!=/]
+rel →·expr > expr , ||/&&/==/!=/]
+rel →·expr , ||/&&/==/!=/]
+expr →·expr + term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·expr - term , ||/&&/==/<=/+/</!=/]/-/>/>=
+expr →·term , ||/&&/==/<=/+/</!=/]/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///</!=/]/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///[/</!=/]/>/>=
+
+I283
+loc →loc [ bool ] ·, ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I284
+stmt →do stmt while ( bool ) ·; , break/id/do/{/while/}/if
+
+I285
+stmt →if ( bool ) stmt ·, while
+stmt →if ( bool ) stmt ·else stmt , while
+
+I286
+stmt →loc ·= bool ; , else/while
+loc →loc ·[ bool ] , [/=
+
+I287
+stmt →if ·( bool ) stmt , else/while
+stmt →if ·( bool ) stmt else stmt , else/while
+
+I288
+stmt →while ·( bool ) stmt , else/while
+
+I289
+stmt →do ·stmt while ( bool ) ; , else/while
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
+
+I290
+stmt →break ·; , else/while
+
+I291
+stmt →block ·, else/while
+
+I292
+block →{ ·decls stmts } , else/while
+decls →·decls decl , break/id/do/{/while/basic/if/}
+decls → ·, break/id/do/{/while/basic/if/}
+
+I293
+stmt →while ( bool ) stmt ·, while
+
+I294
+stmt →do stmt while ( bool ·) ; , while
+bool →bool ·|| join , ||/)
+
+I295
+expr →expr + term ·, ||/&&/==/;/+/!=/-
+term →term ·* unary , ||/&&/==/*/;/+/!=/-//
+term →term ·/ unary , ||/&&/==/*/;/+/!=/-//
+
+I296
+expr →expr - term ·, ||/&&/==/;/+/!=/-
+term →term ·* unary , ||/&&/==/*/;/+/!=/-//
+term →term ·/ unary , ||/&&/==/*/;/+/!=/-//
+
+I297
+term →term * unary ·, ||/&&/==/*/;/+/!=/-//
+
+I298
+term →term / unary ·, ||/&&/==/*/;/+/!=/-//
+
+I299
+factor →( bool ) ·, ||/&&/==/*/;/+/!=/-//
+
+I300
+loc →loc [ bool ·] , ||/&&/==/*/;/+/[/!=/-//
+bool →bool ·|| join , ||/]
+
+I301
+expr →expr + term ·, ||/&&/==/+/!=/]/-
+term →term ·* unary , ||/&&/==/*/+/!=/]/-//
+term →term ·/ unary , ||/&&/==/*/+/!=/]/-//
+
+I302
+expr →expr - term ·, ||/&&/==/+/!=/]/-
+term →term ·* unary , ||/&&/==/*/+/!=/]/-//
+term →term ·/ unary , ||/&&/==/*/+/!=/]/-//
+
+I303
+term →term * unary ·, ||/&&/==/*/+/!=/]/-//
+
+I304
+term →term / unary ·, ||/&&/==/*/+/!=/]/-//
+
+I305
+factor →( bool ) ·, ||/&&/==/*/+/!=/]/-//
+
+I306
+loc →loc [ bool ·] , ||/&&/==/*/+/[/!=/]/-//
+bool →bool ·|| join , ||/]
+
+I307
+stmt →if ( bool ) stmt else stmt ·, break/id/do/{/while/}/if
+
+I308
+stmt →loc = bool ·; , break/else/id/do/{/while/}/if
+bool →bool ·|| join , ||/;
+
+I309
+stmt →if ( bool ·) stmt , break/else/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
+stmt →if ( bool ·) stmt else stmt , break/else/id/do/{/while/}/if
+
+I310
+stmt →while ( bool ·) stmt , break/else/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
+
+I311
+stmt →do stmt while ·( bool ) ; , break/else/id/do/{/while/}/if
+
+I312
+block →{ decls stmts ·} , break/else/id/do/{/while/}/if
+stmts →stmts ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
+
+I313
+expr →expr + term ·, ||/&&/==/)/+/!=/-
+term →term ·* unary , ||/&&/==/)/*/+/!=/-//
+term →term ·/ unary , ||/&&/==/)/*/+/!=/-//
+
+I314
+expr →expr - term ·, ||/&&/==/)/+/!=/-
+term →term ·* unary , ||/&&/==/)/*/+/!=/-//
+term →term ·/ unary , ||/&&/==/)/*/+/!=/-//
+
+I315
+term →term * unary ·, ||/&&/==/)/*/+/!=/-//
+
+I316
+term →term / unary ·, ||/&&/==/)/*/+/!=/-//
+
+I317
+factor →( bool ) ·, ||/&&/==/)/*/+/!=/-//
+
+I318
+loc →loc [ bool ·] , ||/&&/==/)/*/+/[/!=/-//
+bool →bool ·|| join , ||/]
+
+I319
+stmt →do stmt while ( bool ) ; ·, break/id/do/{/while/}/if
+
+I320
+stmt →if ( bool ) stmt else ·stmt , while
+stmt →·loc = bool ; , while
+stmt →·if ( bool ) stmt , while
+stmt →·if ( bool ) stmt else stmt , while
+stmt →·while ( bool ) stmt , while
+stmt →·do stmt while ( bool ) ; , while
+stmt →·break ; , while
+stmt →·block , while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , while
+
+I321
+stmt →loc = ·bool ; , else/while
+bool →·bool || join , ||/;
+bool →·join , ||/;
+join →·join && equality , ||/&&/;
+join →·equality , ||/&&/;
+equality →·equality == rel , ||/&&/==/;/!=
+equality →·equality != rel , ||/&&/==/;/!=
+equality →·rel , ||/&&/==/;/!=
+rel →·expr < expr , ||/&&/==/;/!=
+rel →·expr <= expr , ||/&&/==/;/!=
+rel →·expr >= expr , ||/&&/==/;/!=
+rel →·expr > expr , ||/&&/==/;/!=
+rel →·expr , ||/&&/==/;/!=
+expr →·expr + term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/;/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/;/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·term / unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+term →·unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·! unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·- unary , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+unary →·factor , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·loc , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·num , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·real , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·true , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+factor →·false , ||/&&/==/<=/*/+/-///;/</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+loc →·id , ||/&&/==/<=/*/+/-///;/[/</!=/>/>=
+
+I322
+stmt →if ( ·bool ) stmt , else/while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+stmt →if ( ·bool ) stmt else stmt , else/while
+
+I323
+stmt →while ( ·bool ) stmt , else/while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I324
+stmt →do stmt ·while ( bool ) ; , else/while
+
+I325
+stmt →break ; ·, else/while
+
+I326
+block →{ decls ·stmts } , else/while
+stmts →·stmts stmt , break/id/do/{/while/}/if
+stmts → ·, break/id/do/{/while/}/if
+decls →decls ·decl , break/id/do/{/while/basic/if/}
+decl →·type id ; , break/id/do/{/while/basic/if/}
+type →·type [ num ] , id/[
+type →·basic , id/[
+
+I327
+stmt →do stmt while ( bool ) ·; , while
+
+I328
+loc →loc [ bool ] ·, ||/&&/==/*/;/+/[/!=/-//
+
+I329
+loc →loc [ bool ] ·, ||/&&/==/*/+/[/!=/]/-//
+
+I330
+stmt →loc = bool ; ·, break/else/id/do/{/while/}/if
+
+I331
+stmt →if ( bool ) ·stmt , break/else/id/do/{/while/}/if
+stmt →·loc = bool ; , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/else/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/else/id/do/{/while/}/if
+stmt →·break ; , break/else/id/do/{/while/}/if
+stmt →·block , break/else/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/else/id/do/{/while/}/if
+stmt →if ( bool ) ·stmt else stmt , break/else/id/do/{/while/}/if
+
+I332
+stmt →while ( bool ) ·stmt , break/else/id/do/{/while/}/if
+stmt →·loc = bool ; , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/else/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/else/id/do/{/while/}/if
+stmt →·break ; , break/else/id/do/{/while/}/if
+stmt →·block , break/else/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/else/id/do/{/while/}/if
+
+I333
+stmt →do stmt while ( ·bool ) ; , break/else/id/do/{/while/}/if
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I334
+block →{ decls stmts } ·, break/else/id/do/{/while/}/if
+
+I335
+loc →loc [ bool ] ·, ||/&&/==/)/*/+/[/!=/-//
+
+I336
+stmt →if ( bool ) stmt else stmt ·, while
+
+I337
+stmt →loc = bool ·; , else/while
+bool →bool ·|| join , ||/;
+
+I338
+stmt →if ( bool ·) stmt , else/while
+bool →bool ·|| join , ||/)
+stmt →if ( bool ·) stmt else stmt , else/while
+
+I339
+stmt →while ( bool ·) stmt , else/while
+bool →bool ·|| join , ||/)
+
+I340
+stmt →do stmt while ·( bool ) ; , else/while
+
+I341
+block →{ decls stmts ·} , else/while
+stmts →stmts ·stmt , break/id/do/{/while/}/if
+stmt →·loc = bool ; , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/id/do/{/while/}/if
+stmt →·break ; , break/id/do/{/while/}/if
+stmt →·block , break/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/id/do/{/while/}/if
+
+I342
+stmt →do stmt while ( bool ) ; ·, while
+
+I343
+stmt →if ( bool ) stmt ·, break/else/id/do/{/while/}/if
+stmt →if ( bool ) stmt ·else stmt , break/else/id/do/{/while/}/if
+
+I344
+stmt →while ( bool ) stmt ·, break/else/id/do/{/while/}/if
+
+I345
+stmt →do stmt while ( bool ·) ; , break/else/id/do/{/while/}/if
+bool →bool ·|| join , ||/)
+
+I346
+stmt →loc = bool ; ·, else/while
+
+I347
+stmt →if ( bool ) ·stmt , else/while
+stmt →·loc = bool ; , else/while
+stmt →·if ( bool ) stmt , else/while
+stmt →·if ( bool ) stmt else stmt , else/while
+stmt →·while ( bool ) stmt , else/while
+stmt →·do stmt while ( bool ) ; , else/while
+stmt →·break ; , else/while
+stmt →·block , else/while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , else/while
+stmt →if ( bool ) ·stmt else stmt , else/while
+
+I348
+stmt →while ( bool ) ·stmt , else/while
+stmt →·loc = bool ; , else/while
+stmt →·if ( bool ) stmt , else/while
+stmt →·if ( bool ) stmt else stmt , else/while
+stmt →·while ( bool ) stmt , else/while
+stmt →·do stmt while ( bool ) ; , else/while
+stmt →·break ; , else/while
+stmt →·block , else/while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , else/while
+
+I349
+stmt →do stmt while ( ·bool ) ; , else/while
+bool →·bool || join , ||/)
+bool →·join , ||/)
+join →·join && equality , ||/&&/)
+join →·equality , ||/&&/)
+equality →·equality == rel , ||/&&/==/)/!=
+equality →·equality != rel , ||/&&/==/)/!=
+equality →·rel , ||/&&/==/)/!=
+rel →·expr < expr , ||/&&/==/)/!=
+rel →·expr <= expr , ||/&&/==/)/!=
+rel →·expr >= expr , ||/&&/==/)/!=
+rel →·expr > expr , ||/&&/==/)/!=
+rel →·expr , ||/&&/==/)/!=
+expr →·expr + term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·expr - term , ||/&&/==/<=/)/+/</!=/-/>/>=
+expr →·term , ||/&&/==/<=/)/+/</!=/-/>/>=
+term →·term * unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·term / unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+term →·unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·! unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·- unary , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+unary →·factor , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·( bool ) , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·loc , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·num , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·real , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·true , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+factor →·false , ||/&&/==/<=/)/*/+/-///</!=/>/>=
+loc →·loc [ bool ] , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+loc →·id , ||/&&/==/<=/)/*/+/-///[/</!=/>/>=
+
+I350
+block →{ decls stmts } ·, else/while
+
+I351
+stmt →if ( bool ) stmt else ·stmt , break/else/id/do/{/while/}/if
+stmt →·loc = bool ; , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·if ( bool ) stmt else stmt , break/else/id/do/{/while/}/if
+stmt →·while ( bool ) stmt , break/else/id/do/{/while/}/if
+stmt →·do stmt while ( bool ) ; , break/else/id/do/{/while/}/if
+stmt →·break ; , break/else/id/do/{/while/}/if
+stmt →·block , break/else/id/do/{/while/}/if
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , break/else/id/do/{/while/}/if
+
+I352
+stmt →do stmt while ( bool ) ·; , break/else/id/do/{/while/}/if
+
+I353
+stmt →if ( bool ) stmt ·, else/while
+stmt →if ( bool ) stmt ·else stmt , else/while
+
+I354
+stmt →while ( bool ) stmt ·, else/while
+
+I355
+stmt →do stmt while ( bool ·) ; , else/while
+bool →bool ·|| join , ||/)
+
+I356
+stmt →if ( bool ) stmt else stmt ·, break/else/id/do/{/while/}/if
+
+I357
+stmt →do stmt while ( bool ) ; ·, break/else/id/do/{/while/}/if
+
+I358
+stmt →if ( bool ) stmt else ·stmt , else/while
+stmt →·loc = bool ; , else/while
+stmt →·if ( bool ) stmt , else/while
+stmt →·if ( bool ) stmt else stmt , else/while
+stmt →·while ( bool ) stmt , else/while
+stmt →·do stmt while ( bool ) ; , else/while
+stmt →·break ; , else/while
+stmt →·block , else/while
+loc →·loc [ bool ] , [/=
+loc →·id , [/=
+block →·{ decls stmts } , else/while
+
+I359
+stmt →do stmt while ( bool ) ·; , else/while
+
+I360
+stmt →if ( bool ) stmt else stmt ·, else/while
+
+I361
+stmt →do stmt while ( bool ) ; ·, else/while
 

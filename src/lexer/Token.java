@@ -11,7 +11,7 @@ abstract public class Token {
 
     //获取Token
     public String getToken(){
-        return "< "+ this.toString() +", "+ this.getTag() + " >";
+        return "< "+ this.toString() +" , "+ this.getTag() + " >";
     }
 
     abstract public String getTag();

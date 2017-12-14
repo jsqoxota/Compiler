@@ -1,0 +1,39 @@
+I0
+S' →·S , $
+S →·{ M N } , $
+
+I1
+S' →S ·, $
+
+I2
+S →{ ·M N } , $
+M →·M X , a/b/}
+M → ·, a/b/}
+
+I3
+S →{ M ·N } , $
+N →·N Y , b/}
+N → ·, b/}
+M →M ·X , a/b/}
+X →·a , a/b/}
+
+I4
+S →{ M N ·} , $
+N →N ·Y , b/}
+Y →·b , b/}
+
+I5
+M →M X ·, a/b/}
+
+I6
+X →a ·, a/b/}
+
+I7
+S →{ M N } ·, $
+
+I8
+N →N Y ·, b/}
+
+I9
+Y →b ·, b/}
+

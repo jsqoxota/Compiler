@@ -1,0 +1,13 @@
+状态           a              b              c              $              S              
+0              s3             s2             null           null           1              
+1              null           null           null           acc            null           
+2              s6             s5             null           null           4              
+3              null           null           null           r3             null           
+4              null           null           s7             r2             null           
+5              s6             s5             null           null           8              
+6              null           null           r3             r3             null           
+7              s3             s2             null           null           9              
+8              null           null           r2             r2             null           
+9              null           null           null           r1             null           
+10             s6             s5             null           null           11             
+11             null           null           r1             r1             null           

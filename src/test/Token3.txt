@@ -1,67 +1,106 @@
-< {, delimiter >
-< int, key >
-< a, id >
-< ;, otherOp >
-< int, key >
-< b, id >
-< ;, otherOp >
-< a, id >
-< =, assOp >
-< 0, num >
-< ;, otherOp >
-< b, id >
-< =, assOp >
-< 0, num >
-< ;, otherOp >
-< {, delimiter >
-< int, key >
-< b, id >
-< ;, otherOp >
-< b, id >
-< =, assOp >
-< 1, num >
-< ;, otherOp >
-< {, delimiter >
-< int, key >
-< a, id >
-< ;, otherOp >
-< a, id >
-< =, assOp >
-< 2, num >
-< ;, otherOp >
-< }, delimiter >
-< {, delimiter >
-< int, key >
-< b, id >
-< ;, otherOp >
-< b, id >
-< =, assOp >
-< 3, num >
-< ;, otherOp >
-< }, delimiter >
-< a, id >
-< =, assOp >
-< a, id >
-< +, ariOp >
-< 1, num >
-< ;, otherOp >
-< b, id >
-< =, assOp >
-< b, id >
-< +, ariOp >
-< 1, num >
-< ;, otherOp >
-< }, delimiter >
-< a, id >
-< =, assOp >
-< a, id >
-< +, ariOp >
-< 1, num >
-< ;, otherOp >
-< b, id >
-< =, assOp >
-< b, id >
-< +, ariOp >
-< 1, num >
-< ;, otherOp >
-< }, delimiter >
+< { , delimiter >
+< int , basic >
+< i , id >
+< ; , otherOp >
+< int , basic >
+< j , id >
+< ; , otherOp >
+< float , basic >
+< v , id >
+< ; , otherOp >
+< float , basic >
+< x , id >
+< ; , otherOp >
+< float , basic >
+< [ , bracket >
+< 100 , num >
+< ] , bracket >
+< a , id >
+< ; , otherOp >
+< while , key >
+< ( , bracket >
+< true , key >
+< ) , bracket >
+< { , delimiter >
+< i , id >
+< = , assOp >
+< j , id >
+< ; , otherOp >
+< v , id >
+< = , assOp >
+< x , id >
+< ; , otherOp >
+< do , key >
+< { , delimiter >
+< i , id >
+< = , assOp >
+< i , id >
+< + , ariOp >
+< 1 , num >
+< ; , otherOp >
+< } , delimiter >
+< while , key >
+< ( , bracket >
+< a , id >
+< [ , bracket >
+< j , id >
+< ] , bracket >
+< < , relOp >
+< v , id >
+< ) , bracket >
+< ; , otherOp >
+< do , key >
+< { , delimiter >
+< j , id >
+< = , assOp >
+< j , id >
+< - , ariOp >
+< 1 , num >
+< ; , otherOp >
+< } , delimiter >
+< while , key >
+< ( , bracket >
+< a , id >
+< [ , bracket >
+< j , id >
+< ] , bracket >
+< > , relOp >
+< v , id >
+< ) , bracket >
+< ; , otherOp >
+< { , delimiter >
+< if , key >
+< ( , bracket >
+< i , id >
+< >= , relOp >
+< j , id >
+< ) , bracket >
+< break , key >
+< ; , otherOp >
+< } , delimiter >
+< x , id >
+< = , assOp >
+< a , id >
+< [ , bracket >
+< i , id >
+< ] , bracket >
+< ; , otherOp >
+< a , id >
+< [ , bracket >
+< i , id >
+< ] , bracket >
+< = , assOp >
+< a , id >
+< [ , bracket >
+< j , id >
+< ] , bracket >
+< ; , otherOp >
+< a , id >
+< [ , bracket >
+< j , id >
+< ] , bracket >
+< = , assOp >
+< x , id >
+< ; , otherOp >
+< } , delimiter >
+< } , delimiter >

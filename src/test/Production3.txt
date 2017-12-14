@@ -1,3 +1,4 @@
+program' → program
 program → block
 block → { decls stmts }
 decls → decls decl
@@ -6,7 +7,7 @@ decl → type id ;
 type → type [ num ]
 type → basic
 stmts → stmts stmt
-stmts →ε
+stmts → ε
 stmt → loc = bool ;
 stmt → if ( bool ) stmt
 stmt → if ( bool ) stmt else stmt
@@ -14,8 +15,8 @@ stmt → while ( bool ) stmt
 stmt → do stmt while ( bool ) ;
 stmt → break ;
 stmt → block
-Loc → loc [ bool ]
-Loc → id
+loc → loc [ bool ]
+loc → id
 bool → bool || join
 bool → join
 join → join && equality

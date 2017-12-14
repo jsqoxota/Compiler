@@ -1,0 +1,8 @@
+S' → S
+S → { M N }
+M → M X
+M → ε
+N → N Y
+N → ε
+X → a
+Y → b

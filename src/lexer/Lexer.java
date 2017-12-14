@@ -30,7 +30,6 @@ public class Lexer {
     private static boolean hexErrorFlag;                                //错误标志 16进制数字必须包含至少1为16进制数
     private static boolean floatErrorFlag;                              //错误标志 浮点文字的格式错误
     private static boolean octErrorFlag;                                //错误标志 过大的整数
-
     private static char[] buffer;                                       //缓冲区
     private static BufferedReader bufferedReader = null;
 

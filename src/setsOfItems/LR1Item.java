@@ -9,12 +9,13 @@ import java.util.HashSet;
 public class LR1Item{
     private Production production;                      //产生式
     private int pointLocation;                          //点的位置
-    private HashSet<Terminal> extraInformationS;      //额外信息
+    private HashSet<Terminal> extraInformationS;        //额外信息
 
     //构造函数
     public LR1Item(Production production) {
         this.production = production;
-        pointLocation = 0;
+        if(production.getElements().get(0).equals(SetsOfItems.epsilon))pointLocation = 1;
+        else pointLocation = 0;
         extraInformationS = new HashSet<>();
     }
 
@@ -55,7 +56,6 @@ public class LR1Item{
             for (int i = 0; i < elements.size() && i < pointLocation; i++ ){
                 alpha.add(elements.get(i));
             }
-            if(alpha.size() == 0)alpha.add(new Terminal("ε"));
             return alpha;
         }
         return null;
@@ -79,7 +79,6 @@ public class LR1Item{
             for (int i = pointLocation + 1; i < elements.size(); i++ ){
                 beta.add(elements.get(i));
             }
-            if(beta.size() == 0)beta.add(new Terminal("ε"));
             return beta;
         }
         return null;
@@ -93,7 +92,7 @@ public class LR1Item{
 
     //获得点后面的元素
     public Object getElementAfterPoint(){
-        if(pointLocation == production.getElements().size())return null;
+        if(pointLocation >= production.getElements().size())return null;
         return production.getElements().get(pointLocation);
     }
 
@@ -102,12 +101,13 @@ public class LR1Item{
     public String toString() {      //输出LR(1)项
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(production.getNonTerminals().toString());
-        stringBuilder.append(" ->");
+        stringBuilder.append(" →");
         ArrayList<Object> Objects = production.getElements();
         int i;
         for (i = 0; i < Objects.size(); i++) {
             if (pointLocation == i) stringBuilder.append("·");
-            stringBuilder.append(Objects.get(i).toString());
+            if ( !Objects.get(i).equals(SetsOfItems.epsilon))
+                stringBuilder.append(Objects.get(i).toString());
             stringBuilder.append(" ");
         }
         if (pointLocation == i) stringBuilder.append("·");

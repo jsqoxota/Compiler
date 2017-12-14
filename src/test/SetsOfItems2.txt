@@ -1,0 +1,55 @@
+I0
+S' →·S , $
+S →·b S c S , $
+S →·b S , $
+S →·a , $
+
+I1
+S' →S ·, $
+
+I2
+S →b ·S c S , $
+S →·b S c S , c/$
+S →·b S , c/$
+S →·a , c/$
+S →b ·S , $
+
+I3
+S →a ·, $
+
+I4
+S →b S ·c S , $
+S →b S ·, $
+
+I5
+S →b ·S c S , c/$
+S →·b S c S , c/$
+S →·b S , c/$
+S →·a , c/$
+S →b ·S , c/$
+
+I6
+S →a ·, c/$
+
+I7
+S →b S c ·S , $
+S →·b S c S , $
+S →·b S , $
+S →·a , $
+
+I8
+S →b S ·c S , c/$
+S →b S ·, c/$
+
+I9
+S →b S c S ·, $
+
+I10
+S →b S c ·S , c/$
+S →·b S c S , c/$
+S →·b S , c/$
+S →·a , c/$
+
+I11
+S →b S c S ·, c/$
+

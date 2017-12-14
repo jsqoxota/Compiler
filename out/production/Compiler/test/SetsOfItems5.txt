@@ -1,0 +1,40 @@
+I0
+S' →·S , $
+S →·A , $
+S →·B , $
+S →·A a A b , $
+S →·B b B a , $
+A → ·, a/$
+B → ·, b/$
+
+I1
+S' →S ·, $
+
+I2
+S →A ·, $
+S →A ·a A b , $
+
+I3
+S →B ·, $
+S →B ·b B a , $
+
+I4
+S →A a ·A b , $
+A → ·, b
+
+I5
+S →B b ·B a , $
+B → ·, a
+
+I6
+S →A a A ·b , $
+
+I7
+S →B b B ·a , $
+
+I8
+S →A a A b ·, $
+
+I9
+S →B b B a ·, $
+

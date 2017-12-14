@@ -1,14 +1,13 @@
 {
- 	int a; int b; a = 0; b = 0;
- 	{
- 		int b; b = 1;
- 		{
- 			int a; a = 2;
- 		}
- 		{
- 			int b; b = 3;
- 		}
- 		a = a + 1; b = b + 1;
- 	}
- 	a = a + 1; b = b + 1;
- }
+    int i;
+    float j;
+    double k;
+    float[100] x;
+    while(true){
+        v = x;
+        do { i = i + 1; }while (a[j] < v);
+        do { j = j - 1; }while (a[j] > v);
+        if ( i >= j)break;
+        x = a[i]; a[i] = a[j];  a[j] = x;
+    }
+}

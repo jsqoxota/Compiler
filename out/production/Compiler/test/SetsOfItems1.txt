@@ -1,0 +1,39 @@
+I0
+S' →·S , $
+S →·C C , $
+C →·c C , c/d
+C →·d , c/d
+
+I1
+S' →S ·, $
+
+I2
+S →C ·C , $
+C →·c C , $
+C →·d , $
+
+I3
+C →c ·C , c/d
+C →·c C , c/d
+C →·d , c/d
+
+I4
+C →d ·, c/d
+
+I5
+S →C C ·, $
+
+I6
+C →c ·C , $
+C →·c C , $
+C →·d , $
+
+I7
+C →d ·, $
+
+I8
+C →c C ·, c/d
+
+I9
+C →c C ·, $
+

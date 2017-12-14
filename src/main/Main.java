@@ -51,14 +51,17 @@ public class Main {
         /******************语法分析************************/
         Parser parser = Parser.getInstance(productionFile, tokenFile);
         //输出项集族和分析表到文件
+        BufferedWriter bufferedWriter2 = new BufferedWriter(new FileWriter(analysisProcessFile));
         parser.delegate(msg ->{ BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
                                 bufferedWriter.write(msg); bufferedWriter.close();},
                                 msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisTableFile));
                                 bufferedWriter.write(msg);bufferedWriter.close();},
-                                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisProcessFile));
-                                bufferedWriter.write(msg);bufferedWriter.close();});
+                                msg -> { bufferedWriter2.write(msg);System.out.print(msg);});
         //获得分析表
         parser.getAnalysisTable();
+        parser.getTokens();
+        parser.analysis();
+        bufferedWriter2.close();
     }
 
     //检测输出文件是否存在
@@ -71,7 +74,7 @@ public class Main {
     }
 
     //检查输入文件是否存在
-    private static void checkInputFile(File inputFile)throws IOException{
+    private static void checkInputFile(File inputFile){
         if(!inputFile.exists()){
             System.out.println("无法找到指定文件!\n");
             flag = true;
