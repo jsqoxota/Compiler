@@ -1,12 +1,15 @@
 package parser;
 
 import delegation.OutputToFile;
+import inter.ArrayReference;
+import inter.Quadruple;
 import inter.Statement;
 import inter.TypeS;
 import lexer.*;
 import operation.*;
 import setsOfItems.*;
 import symbol.Env;
+import symbol.TempVarS;
 import symbol.Type;
 
 import java.io.*;
@@ -21,16 +24,21 @@ public class Parser {
     private static OutputToFile setsOfItemsFile;
     private static OutputToFile analysisTableFile;
     private static OutputToFile analysisProcessFile;
-    private static ArrayList<Token> tokens;
-    private static boolean flag;                            //表头
-    private static Env env;
-    private static Grammar grammar;
+    private static ArrayList<Token> tokens;                 //源程序词法单元
+    private static boolean flag;                            //打印表头标志
+    private static Env env;                                 //符号表
+    private static Grammar grammar;                         //文法
+    private static Quadruple quadruple;                     //四元式
+    private static TempVarS tempVarS;                       //临时变量表
+    private static boolean arrayReferenceFlag;              //loc → id [ bool ]
 
     private Parser(File productionFile, File tokenFile){
         this.productionFile = productionFile;
         this.tokenFile = tokenFile;
         tokens = new ArrayList<>();
         env = new Env(null);
+        quadruple = new Quadruple();
+        tempVarS = new TempVarS();
         flag = true;
     }
 
@@ -44,6 +52,7 @@ public class Parser {
 
     //分析
     public void analysis()throws IOException{
+        ArrayReference arrayReference = null;
         TypeS typeS = null;
         Token num = null;
         Token id = null;
@@ -52,7 +61,7 @@ public class Parser {
         int step = 1;                                   //步骤编号
         int location = 0;                               //第一个符号的位置
         grammar = analysisTable.getGrammar();           //文法
-        Production production;
+        Production production;                          //产生式
         Stack<Integer> stateStack = new Stack<>();      //状态栈
         Stack<Object> symbolStack = new Stack<>();      //符号栈
         stateStack.push(0);
@@ -61,16 +70,17 @@ public class Parser {
             Token token = tokens.get(location);                 //当前输入的词法单元
             String string = analysisTable.getAnalysisTable()[s][analysisTable.getNumber(token)];
             /**>>>>>>>>>>>>>>>>>>>>>>>>>符号表新建和删除<<<<<<<<<<<<<<<<<<*/
-            if(flag && "{".equals(token.toString())){
-                env = new Env(env);
-                flag = false;
-            }
-            if(flag && "}".equals(token.toString())){
-                if( env != null) {
-                    System.out.println(env.toString());
-                    env = env.getPrev();
+            if(flag) {
+                if ("{".equals(token.toString())) {
+                    env = new Env(env);
+                    flag = false;
+                } else if ("}".equals(token.toString())) {
+                    if (env != null) {
+                        System.out.println(env.toString());
+                        env = env.getPrev();
+                    }
+                    flag = false;
                 }
-                flag = false;
             }
             /**>>>>>>>>>>>>>>>>>>>>>>移入，规约，接受<<<<<<<<<<<<<<<<<<<*/
             if(string == null) {
@@ -86,7 +96,9 @@ public class Parser {
             }
             else if( string.charAt(0) == 'r'){//规约
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
-                typeS = statement(production, typeS, basic, num, id);//变量声明
+                int productionNum = grammar.getProductionNumber(production);
+                typeS = statement(productionNum, typeS, basic, num, id);//变量声明
+                //arrayReference = assignment(productionNum, arrayReference, id);//变量赋值
                 String s1;
                 if(production.getElements().get(0).equals(SetsOfItems.epsilon))s1 = production.toString();
                 else s1 = production.toString()+"　";
@@ -110,14 +122,14 @@ public class Parser {
             if("num".equals(token.getTag())){
                 num = token;
             }
-            if("id".equals(token.getTag())){
+            else if("id".equals(token.getTag())){
                 id = token;
             }
-            if("basic".equals(token.getTag())){
+            else if("basic".equals(token.getTag())){
+                typeS = new TypeS((Type)basic);
                 basic = token;
             }
         }
-
     }
 
     //s = GOTO[Sm-r, A]
@@ -137,14 +149,13 @@ public class Parser {
 
     //输出分析过程
     public void printAnalysisProcess(int step, Stack<Integer> stateStack, Stack<Object> symbolStack, int location, String action)throws IOException{
-        String s1 = "%-60s";
-        String s = "%20s";
+        String s1 = "%-90s";
         if(flag){
             analysisProcessFile.OutputToFile(String.format("%-5s","步骤"));
             analysisProcessFile.OutputToFile(String.format(s1,"栈"));
             analysisProcessFile.OutputToFile(String.format("%-55s","动作"));
-            analysisProcessFile.OutputToFile(String.format("%-90s","符号"));
-            analysisProcessFile.OutputToFile(String.format(s1,"输入"));
+            analysisProcessFile.OutputToFile(String.format(s1,"符号"));
+            analysisProcessFile.OutputToFile("输入");
             analysisProcessFile.OutputToFile("\r\n");
             flag = false;
         }
@@ -161,12 +172,12 @@ public class Parser {
         string = symbolStack.toString().replace("[","")
                 .replace(",","")
                 .replace("]","");
-        analysisProcessFile.OutputToFile(String.format("%-90s", string));
+        analysisProcessFile.OutputToFile(String.format(s1, string));
         //输入
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = location; i < tokens.size(); i++)
             stringBuilder.append(tokens.get(i).toString());
-        analysisProcessFile.OutputToFile(String.format(s,stringBuilder.toString()));
+        analysisProcessFile.OutputToFile(stringBuilder.toString());
         analysisProcessFile.OutputToFile("\r\n");
     }
 
@@ -233,16 +244,45 @@ public class Parser {
     }
 
     //变量声明
-    private TypeS statement(Production production, TypeS typeS, Token basic, Token num, Token id){
-        if(production.equals(grammar.getProduction(7))){        //type → basic
-            typeS = new TypeS((Type)basic);
-        }
-        else if(production.equals(grammar.getProduction(6))){       //type → type [ num ]
-            typeS.getArrayType(Integer.parseInt(num.toString()));
-        }
-        else if (production.equals(grammar.getProduction(5))){      //decl → type id ;
-            Statement.statement(typeS, (Identifier) id, env);
+    private TypeS statement(int productionNum, TypeS typeS, Token basic, Token num, Token id){
+        switch (productionNum){
+            case 8:typeS.setCType();break;                                          //C → ε
+            case 7:typeS.getArrayType(Integer.parseInt(num.toString()));break;  //C → [ num ] C
+            case 6:break;                                                       //type → basic C
+            case 5:{                                                            //decl → type id ;
+                if(env.getId(id) == null){
+                    Statement.statement(typeS, (Identifier) id, env);
+                    env.getId(id).applySpace();                                 //分配空间
+                }
+                else System.out.println("变量已声明");
+            }break;
+            default:break;
         }
         return typeS;
+    }
+
+    //变量赋值
+    private ArrayReference assignment(int productionNum, ArrayReference arrayReference, Token id){
+        switch (productionNum){
+            case 17:{                               //loc → loc [ bool ]
+                if(arrayReferenceFlag){
+                    arrayReference = new ArrayReference(id,env);
+                    arrayReference.setType();
+                    arrayReference.addAddr(tempVarS);
+                    arrayReference.addQuadruple3(quadruple, tempVarS);
+                    arrayReferenceFlag = false;
+                }
+                else {
+                    arrayReference.setType();
+                    arrayReference.addTempVar(tempVarS);
+                    arrayReference.addAddr(tempVarS);
+                    arrayReference.addQuadruple(quadruple, tempVarS);
+                    arrayReference.addQuadruple2(quadruple, tempVarS);
+                }
+
+            }break;
+            case 18:arrayReferenceFlag = true;break;//loc → id
+        }
+        return arrayReference;
     }
 }

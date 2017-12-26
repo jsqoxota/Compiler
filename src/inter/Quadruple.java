@@ -1,5 +1,6 @@
 package inter;
 
+import javax.xml.stream.Location;
 import java.util.ArrayList;
 
 public class Quadruple {
@@ -8,8 +9,13 @@ public class Quadruple {
     private static final int ARG2 = 2;                                      //操作数2
     private static final int RESULT = 3;                                    //结果
     private static ArrayList<String[]> quadruples;                          //四元式
+    private static int location = 0;
 
     public Quadruple(){
         quadruples = new ArrayList<>();
+    }
+
+    public void addQuadruple(String op, String arg1, String arg2, String result){
+
     }
 }

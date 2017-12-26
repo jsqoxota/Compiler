@@ -5,7 +5,7 @@ import symbol.Env;
 
 public class Statement {
     public static void statement(TypeS typeS, Identifier identifier, Env env){
-        Id id = new Id(identifier, typeS.getType());
+        Id id = new Id(identifier, typeS.getCType());
         env.put(id);
     }
 }

@@ -3,18 +3,13 @@ package symbol;
 import lexer.Tag;
 
 public class Array extends Type{
-    private Type of;
-    private int size = 1;
+    
+    private Type of;                //数组的元素类型
+    private int size = 1;           //数组元素个数
     public Array(int size, Type p){                                     //一维数组
         super("[]", Tag.INDEX, size * p.getWidth());
         this.size = size;
         of = p;
-    }
-
-    public Array(int size, Array array){                                //多维数组
-        super("[]", Tag.INDEX, size * array.getWidth());
-        this.size = size;
-        of = array;
     }
 
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/

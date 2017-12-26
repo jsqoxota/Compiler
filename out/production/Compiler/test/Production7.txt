@@ -4,8 +4,9 @@ block → { decls stmts }
 decls → decls decl
 decls → ε
 decl → type id ;
-type → type [ num ]
-type → basic
+type → basic C
+C → [ num ] C
+C → ε
 stmts → stmts stmt
 stmts → ε
 stmt → loc = bool ;

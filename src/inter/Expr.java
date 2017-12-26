@@ -4,8 +4,8 @@ import lexer.Token;
 import symbol.Type;
 
 public class Expr extends Node {
-    private Token op;
-    private Type type;
+    protected Token op;
+    protected Type type;
     Expr(Token token, Type type){
         op = token;
         this.type = type;
