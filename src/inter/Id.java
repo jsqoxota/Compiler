@@ -1,12 +1,13 @@
 package inter;
 
+import lexer.Identifier;
 import lexer.Word;
 import symbol.Type;
 
 public class Id extends Expr {
     public int offset;
-    public Id(Word id, Type p, int b){
+    public Id(Identifier id, Type p){
         super(id, p);
-        offset = b;
+        offset = p.getWidth();
     }
 }

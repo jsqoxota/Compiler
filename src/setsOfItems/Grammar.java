@@ -1,7 +1,5 @@
 package setsOfItems;
 
-import javafx.beans.binding.StringBinding;
-
 import java.util.ArrayList;
 
 /**
@@ -41,11 +39,6 @@ public class Grammar {
             }
         }
         return productionArrayList;
-    }
-
-    //获得所有产生式
-    public int getProductionSize(){
-        return productions.size();
     }
 
     @Override

@@ -1,21 +1,11 @@
 package inter;
 
-import lexer.Lexer;
 
 public class Node {
-    int lexline = 0;
-    Node(){
-        lexline = Lexer.line;
-    }
-
-    void error(String s){
-        throw new Error("near line " + lexline + ": " + s);
-    }
-
-    static int labels = 0;
+    static int labels = 0;                          //节点标号
     public int newlabel(){
         return ++labels;
-    }
+    }      //创建新的编号
 
     public void emitlabel(int i){
         System.out.println("L" + i + ":");

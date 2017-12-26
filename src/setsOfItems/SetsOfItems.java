@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * 构造项集族
@@ -89,7 +88,6 @@ public class SetsOfItems {
             }
             grammar.addElement(production);
         }
-        System.out.println(grammar.toString());
     }
 
     //求闭包   [A -> alpha * B beta, a]    LR(1)项:LR1Item  项集编号:number

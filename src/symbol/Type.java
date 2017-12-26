@@ -10,7 +10,7 @@ import lexer.Word;
 public class Type extends ReservedWord {
     private int width = 0;      //width存储分配
 
-    private Type(String lexeme, int tag, int width){
+    public Type(String lexeme, int tag, int width){
         super(lexeme,tag);
         this.width = width;
     }
@@ -25,6 +25,17 @@ public class Type extends ReservedWord {
             Char        = new Type("char",      Tag.BASIC, 1    ),
             Boolean     = new Type("boolean",   Tag.BASIC, 1    );
 
+    public static boolean numeric(Type p){
+        if(p == Type.Char || p == Type.Int || p == Type.Float) return true;
+        else return false;
+    }
+
+    public static Type max(Type p1, Type p2){
+        if( ! numeric(p1) || ! numeric(p2))return null;
+        else if ( p1 == Type.Float || p2 == Type.Float)return Type.Float;
+        else if ( p1 == Type.Int   || p2 == Type.Int)return Type.Int;
+        else return Type.Char;
+    }
 
     public int getWidth() {
         return width;

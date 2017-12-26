@@ -1,183 +1,151 @@
-<package,	key>
-<test,	id>
-<;,	otherOp>
-<import,	key>
-<java,	id>
-<.,	otherOp>
-<io,	id>
-<.,	otherOp>
-<IOException,	id>
-<;,	otherOp>
-<public,	key>
-<class,	key>
-<tatic,	id>
-<boolean,	key>
-<d,	id>
-<public,	key>
-<static,	key>
-<void,	key>
-<main,	id>
-<(,	bracket>
-<String,	id>
-<IOException,	id>
-<{,	delimiter>
-<int,	key>
-<a,	id>
-<=,	assOp>
-<0,	num>
-<,,	otherOp>
-<b,	id>
-<=,	assOp>
-<100,	num>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<+,	ariOp>
-<b,	id>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<-,	ariOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<-=,	assOp>
-<b,	id>
-<a,	id>
-<*,	ariOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<*=,	assOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-</,	ariOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-</=,	assOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<%,	ariOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<%=,	assOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<++,	ariOp>
-<;,	otherOp>
-<b,	id>
-<--,	ariOp>
-<;,	otherOp>
-<a,	id>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<^,	bitOp>
-<b,	id>
-<a,	id>
-<=,	assOp>
-<~,	bitOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<<<,	bitOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<<<=,	assOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<>>,	bitOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<>>=,	assOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<a,	id>
-<<<<,	bitOp>
-<b,	id>
-<;,	otherOp>
-<a,	id>
-<if,	key>
-<(,	bracket>
-<a,	id>
-<>,	relOp>
-<b,	id>
-<&&,	logicOp>
-<a,	id>
-<==,	relOp>
-<b,	id>
-<if,	key>
-<(,	bracket>
-<a,	id>
-<<,	relOp>
-<b,	id>
-<&&,	logicOp>
-<!,	logicOp>
-<(,	bracket>
-<a,	id>
-<<=,	relOp>
-<b,	id>
-<),	bracket>
-<||,	logicOp>
-<a,	id>
-<!=,	relOp>
-<b,	id>
-<oolean,	id>
-<f,	id>
-<=,	assOp>
-<false,	key>
-<;,	otherOp>
-<a,	id>
-<=,	assOp>
-<f,	id>
-<System,	id>
-<.,	otherOp>
-<out,	id>
-<.,	otherOp>
-<println,	id>
-<(,	bracket>
-<a,	id>
-<),	bracket>
-<;,	otherOp>
-<int,	key>
-<portNumber,	id>
-<=,	assOp>
-<1337,	num>
-<;,	otherOp>
-<Runnable,	id>
-<r,	id>
-<=,	assOp>
-<(,	bracket>
-<),	bracket>
-<->,	otherOp>
-<System,	id>
-<.,	otherOp>
-<out,	id>
-<.,	otherOp>
-<println,	id>
-<},	delimiter>
-<},	delimiter>
-Error:(21) java: 非法字符: '￿'
+< public , key >
+< class , key >
+< test1 , id >
+< { , delimiter >
+< static , key >
+< boolean , basic >
+< d , id >
+< = , assOp >
+< false , key >
+< ; , otherOp >
+< public , key >
+< static , key >
+< void , key >
+< main , id >
+< ( , bracket >
+< String , id >
+< [ , bracket >
+< ] , bracket >
+< args , id >
+< ) , bracket >
+< throws , key >
+< IOException , id >
+< { , delimiter >
+< int , basic >
+< a , id >
+< = , assOp >
+< 0 , num >
+< , , otherOp >
+< b , id >
+< = , assOp >
+< 100 , num >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< a , id >
+< + , ariOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< += , assOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< a , id >
+< - , ariOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< -= , assOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< a , id >
+< * , ariOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< *= , assOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< a , id >
+< / , ariOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< /= , assOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< a , id >
+< % , ariOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< %= , assOp >
+< b , id >
+< ; , otherOp >
+< a , id >
+< ++ , ariOp >
+< ; , otherOp >
+< b , id >
+< -- , ariOp >
+< ; , otherOp >
+< if , key >
+< ( , bracket >
+< a , id >
+< > , relOp >
+< b , id >
+< && , logicOp >
+< a , id >
+< == , relOp >
+< b , id >
+< || , logicOp >
+< a , id >
+< >= , relOp >
+< b , id >
+< ) , bracket >
+< ; , otherOp >
+< if , key >
+< ( , bracket >
+< a , id >
+< < , relOp >
+< b , id >
+< && , logicOp >
+< ! , logicOp >
+< ( , bracket >
+< a , id >
+< <= , relOp >
+< b , id >
+< ) , bracket >
+< || , logicOp >
+< a , id >
+< != , relOp >
+< b , id >
+< ) , bracket >
+< ; , otherOp >
+< a , id >
+< = , assOp >
+< f , id >
+< ? , otherOp >
+< 1 , num >
+< : , otherOp >
+< 4 , num >
+< ; , otherOp >
+< int , basic >
+< portNumber , id >
+< = , assOp >
+< 1337 , num >
+< ; , otherOp >
+< Runnable , id >
+< r , id >
+< = , assOp >
+< ( , bracket >
+< ) , bracket >
+< -> , otherOp >
+< System , id >
+< . , otherOp >
+< out , id >
+< . , otherOp >
+< println , id >
+< ( , bracket >
+< portNumber , id >
+< ) , bracket >
+< ; , otherOp >
+< } , delimiter >
+< } , delimiter >

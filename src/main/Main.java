@@ -7,7 +7,7 @@ import parser.Parser;
 import java.io.*;
 
 public class Main {
-    private static final String selectPathname = "3";
+    private static final String selectPathname = "7";
     private static final String pathnameSourceCode = "./src/test/SourceCode" + selectPathname +".txt";
     private static final String pathnameToken = "./src/test/Token" + selectPathname +".txt";
     private static final String pathnameProduction = "./src/test/Production" + selectPathname + ".txt";
@@ -56,10 +56,12 @@ public class Main {
                                 bufferedWriter.write(msg); bufferedWriter.close();},
                                 msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisTableFile));
                                 bufferedWriter.write(msg);bufferedWriter.close();},
-                                msg -> { bufferedWriter2.write(msg);System.out.print(msg);});
+                                msg -> { bufferedWriter2.write(msg);});
         //获得分析表
         parser.getAnalysisTable();
+        //获取词法单元
         parser.getTokens();
+        //开始分析
         parser.analysis();
         bufferedWriter2.close();
     }

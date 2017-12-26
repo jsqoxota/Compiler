@@ -1,0 +1,29 @@
+< public , key >
+< class , key >
+< Main , id >
+< { , delimiter >
+< public , key >
+< static , key >
+< void , key >
+< main , id >
+< ( , bracket >
+< String , id >
+< [ , bracket >
+< ] , bracket >
+< args , id >
+< ) , bracket >
+< { , delimiter >
+< while , key >
+< ( , bracket >
+< true , key >
+< ) , bracket >
+< { , delimiter >
+< char , basic >
+< a , id >
+< = , assOp >
+Error:(4) java: 未结束的字符文字
+< sting , id >
+< s , id >
+< = , assOp >
+Error:(6) java: 未结束的字符串文字
+Error:(9) java: 未结束的注释

@@ -1,9 +1,13 @@
 package parser;
 
 import delegation.OutputToFile;
+import inter.Statement;
+import inter.TypeS;
 import lexer.*;
 import operation.*;
 import setsOfItems.*;
+import symbol.Env;
+import symbol.Type;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,11 +23,14 @@ public class Parser {
     private static OutputToFile analysisProcessFile;
     private static ArrayList<Token> tokens;
     private static boolean flag;                            //表头
+    private static Env env;
+    private static Grammar grammar;
 
     private Parser(File productionFile, File tokenFile){
         this.productionFile = productionFile;
         this.tokenFile = tokenFile;
         tokens = new ArrayList<>();
+        env = new Env(null);
         flag = true;
     }
 
@@ -37,16 +44,35 @@ public class Parser {
 
     //分析
     public void analysis()throws IOException{
+        TypeS typeS = null;
+        Token num = null;
+        Token id = null;
+        Token basic = null;
+        boolean flag = false;
         int step = 1;                                   //步骤编号
         int location = 0;                               //第一个符号的位置
-        Grammar grammar = analysisTable.getGrammar();   //文法
+        grammar = analysisTable.getGrammar();           //文法
         Production production;
         Stack<Integer> stateStack = new Stack<>();      //状态栈
         Stack<Object> symbolStack = new Stack<>();      //符号栈
         stateStack.push(0);
         while (true){
             int s = stateStack.peek();
-            String string = analysisTable.getAnalysisTable()[s][analysisTable.getNumber(tokens.get(location))];
+            Token token = tokens.get(location);                 //当前输入的词法单元
+            String string = analysisTable.getAnalysisTable()[s][analysisTable.getNumber(token)];
+            /**>>>>>>>>>>>>>>>>>>>>>>>>>符号表新建和删除<<<<<<<<<<<<<<<<<<*/
+            if(flag && "{".equals(token.toString())){
+                env = new Env(env);
+                flag = false;
+            }
+            if(flag && "}".equals(token.toString())){
+                if( env != null) {
+                    System.out.println(env.toString());
+                    env = env.getPrev();
+                }
+                flag = false;
+            }
+            /**>>>>>>>>>>>>>>>>>>>>>>移入，规约，接受<<<<<<<<<<<<<<<<<<<*/
             if(string == null) {
                 analysisProcessFile.OutputToFile("Error");
                 return;
@@ -54,11 +80,13 @@ public class Parser {
             else if( string.charAt(0) == 's'){//移入
                 printAnalysisProcess(step, stateStack, symbolStack, location, "移入　　　　");
                 stateStack.push(Integer.parseInt(string.substring(1, string.length())));
-                symbolStack.push(tokens.get(location));
+                symbolStack.push(token);
                 location++;
+                flag = true;
             }
             else if( string.charAt(0) == 'r'){//规约
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
+                typeS = statement(production, typeS, basic, num, id);//变量声明
                 String s1;
                 if(production.getElements().get(0).equals(SetsOfItems.epsilon))s1 = production.toString();
                 else s1 = production.toString()+"　";
@@ -78,7 +106,18 @@ public class Parser {
                 break;
             }
             step++;
+            /**>>>>>>>>>>>>>>>>记录数据<<<<<<<<<<<<<<<<<<*/
+            if("num".equals(token.getTag())){
+                num = token;
+            }
+            if("id".equals(token.getTag())){
+                id = token;
+            }
+            if("basic".equals(token.getTag())){
+                basic = token;
+            }
         }
+
     }
 
     //s = GOTO[Sm-r, A]
@@ -98,13 +137,13 @@ public class Parser {
 
     //输出分析过程
     public void printAnalysisProcess(int step, Stack<Integer> stateStack, Stack<Object> symbolStack, int location, String action)throws IOException{
-        String s1 = "%-20s";
+        String s1 = "%-60s";
         String s = "%20s";
         if(flag){
             analysisProcessFile.OutputToFile(String.format("%-5s","步骤"));
             analysisProcessFile.OutputToFile(String.format(s1,"栈"));
-            analysisProcessFile.OutputToFile(String.format("%-35s","动作"));
-            analysisProcessFile.OutputToFile(String.format("%-20s","符号"));
+            analysisProcessFile.OutputToFile(String.format("%-55s","动作"));
+            analysisProcessFile.OutputToFile(String.format("%-90s","符号"));
             analysisProcessFile.OutputToFile(String.format(s1,"输入"));
             analysisProcessFile.OutputToFile("\r\n");
             flag = false;
@@ -117,12 +156,12 @@ public class Parser {
                 .replace("]","");
         analysisProcessFile.OutputToFile(String.format(s1,string));
         //动作
-        analysisProcessFile.OutputToFile(String.format("%-30s",action));
+        analysisProcessFile.OutputToFile(String.format("%-50s",action));
         //符号
         string = symbolStack.toString().replace("[","")
                 .replace(",","")
                 .replace("]","");
-        analysisProcessFile.OutputToFile(String.format("%-20s", string));
+        analysisProcessFile.OutputToFile(String.format("%-90s", string));
         //输入
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = location; i < tokens.size(); i++)
@@ -153,13 +192,16 @@ public class Parser {
             if("num".equals(strings[3]))//整数
                 tokens.add(new Num(Integer.parseInt(strings[1])));
             else if("id".equals(strings[3]))//id
+            {
                 tokens.add(new Identifier(strings[1]));
+            }
             else if("real".equals(strings[3]))//小数
                 tokens.add(new Real(Double.parseDouble(strings[1])));
         }
         tokens.add(OtherWord.$);
     }
 
+    //输出
     public void delegate(OutputToFile setsOfItemsFile, OutputToFile analysisTableFile, OutputToFile analysisProcessFile){
         this.setsOfItemsFile = setsOfItemsFile;
         this.analysisTableFile = analysisTableFile;
@@ -188,5 +230,19 @@ public class Parser {
         token = RelationOp.isRelationOp(s);
         if( token != null) return token;
         return null;
+    }
+
+    //变量声明
+    private TypeS statement(Production production, TypeS typeS, Token basic, Token num, Token id){
+        if(production.equals(grammar.getProduction(7))){        //type → basic
+            typeS = new TypeS((Type)basic);
+        }
+        else if(production.equals(grammar.getProduction(6))){       //type → type [ num ]
+            typeS.getArrayType(Integer.parseInt(num.toString()));
+        }
+        else if (production.equals(grammar.getProduction(5))){      //decl → type id ;
+            Statement.statement(typeS, (Identifier) id, env);
+        }
+        return typeS;
     }
 }

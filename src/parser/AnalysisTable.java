@@ -42,7 +42,7 @@ public class AnalysisTable {
     }
 
     //初始化表
-    public void initTable(int row, int col){
+    private void initTable(int row, int col){
         analysisTable = new String[row][col];
     }
 
@@ -68,7 +68,7 @@ public class AnalysisTable {
     }
 
     //添加构造分析表
-    public void addTable(Object X, LR1Item lr1Item, int setOfItemsNumber, int nextSetOfItemsNumber){
+    private void addTable(Object X, LR1Item lr1Item, int setOfItemsNumber, int nextSetOfItemsNumber){
         if(isTerminal(X) || X == null){
                 int productionNumber = grammar.getProductionNumber(lr1Item.getProduction());
                 if (X == null) {
@@ -86,23 +86,23 @@ public class AnalysisTable {
     }
 
     //构造分析表 终结符 规约 [A -> alpha *, a]      Action[i, a]设置为 规约A->alpha
-    public void ACTION(int setOfItemsNumber, HashSet<Terminal> terminals, int productionNumber){
+    private void ACTION(int setOfItemsNumber, HashSet<Terminal> terminals, int productionNumber){
         for (Terminal terminal : terminals)
             analysisTable[setOfItemsNumber][action.get(terminal)] = "r" + productionNumber;
     }
 
     //构造分析表 终结符 接受 [S' -> S *, $] Action[i, $] 设置为"acc"
-    public void ACTION(int setOfItemsNumber, Terminal terminal){
+    private void ACTION(int setOfItemsNumber, Terminal terminal){
         analysisTable[setOfItemsNumber][action.get(terminal)] = "acc";
     }
 
     //构造分析表 终结符 移入 [A -> alpha * a beta, b]  goTo[Ii, a] = Ij   Action[i, a]设置为移入j
-    public void ACTION(int setOfItemsNumber, Terminal a, int nextSetOfItemsNumber) {
+    private void ACTION(int setOfItemsNumber, Terminal a, int nextSetOfItemsNumber) {
         analysisTable[setOfItemsNumber][action.get(a)] = "s" + nextSetOfItemsNumber;
     }
 
     //构造分析表 非终结符 goto
-    public void GOTO(int setOfItemsNumber, NonTerminals X, int nextSetOfItemsNumber) {
+    private void GOTO(int setOfItemsNumber, NonTerminals X, int nextSetOfItemsNumber) {
         analysisTable[setOfItemsNumber][goTo.get(X)] = "" + nextSetOfItemsNumber;
     }
 

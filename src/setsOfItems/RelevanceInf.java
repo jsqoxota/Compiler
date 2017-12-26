@@ -13,6 +13,8 @@ public class RelevanceInf {
         this.lr1Item = lr1Item;
     }
 
+
+    /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     public int getFirstSetOfItemNum() {
         return firstSetOfItemNum;
     }
@@ -28,10 +30,4 @@ public class RelevanceInf {
     public LR1Item getLr1Item() {
         return lr1Item;
     }
-
-//    public Production getProduction(int setOfItemNum, Object X){
-//        if(setOfItemNum != firstSetOfItemNum)return null;
-//        else if(!X.equals(this.X))return null;
-//        else return lr1Item.getProduction();
-//    }
 }

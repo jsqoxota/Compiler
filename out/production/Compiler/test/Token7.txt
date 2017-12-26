@@ -9,6 +9,9 @@
 < [ , bracket >
 < 10 , num >
 < ] , bracket >
+< [ , bracket >
+< 10 , num >
+< ] , bracket >
 < b , id >
 < ; , otherOp >
 < float , basic >
@@ -18,6 +21,9 @@
 < k , id >
 < ; , otherOp >
 < float , basic >
+< [ , bracket >
+< 100 , num >
+< ] , bracket >
 < [ , bracket >
 < 100 , num >
 < ] , bracket >
@@ -68,6 +74,9 @@
 < true , key >
 < ) , bracket >
 < { , delimiter >
+< int , basic >
+< a , id >
+< ; , otherOp >
 < if , key >
 < ( , bracket >
 < i , id >
@@ -78,6 +87,9 @@
 < ; , otherOp >
 < do , key >
 < { , delimiter >
+< int , basic >
+< c , id >
+< ; , otherOp >
 < j , id >
 < = , assOp >
 < j , id >
