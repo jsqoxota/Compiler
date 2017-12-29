@@ -1,6 +1,5 @@
 package inter;
 
-import lexer.Str;
 import lexer.Token;
 import symbol.*;
 
@@ -31,26 +30,26 @@ public class ArrayReference {
         addr = tempVarS.addTempVar(Type.getInt());
     }
 
-
-    public void addQuadruple(Quadruple quadruple, TempVarS tempVarS){
+    public void addQuadruple(Quadruples quadruples, TempVarS tempVarS, int num){
         int arg1 = type.getWidth();
-        int arg2 = ((Array)type).getSize();
-        quadruple.addQuadruple("*", "" + arg1, ""+ arg2, tempVarName);
+        int arg2 = num;
+        quadruples.addQuadruple("*", "" + arg1, ""+ arg2, tempVarName);
         tempVarS.getTempVar(tempVarName).setMessage(""+ arg1 * arg2);
     }
 
-    public void addQuadruple2(Quadruple quadruple, TempVarS tempVarS){
+    public void addQuadruple(Quadruples quadruples, TempVarS tempVarS){
         int arg1 = Integer.parseInt(tempVarS.getTempVar(tempVarName).getMessage());
         int arg2 = Integer.parseInt(tempVarS.getTempVar(lastAddr).getMessage());
-        quadruple.addQuadruple("+", "" + arg1, ""+arg2, addr);
+        quadruples.addQuadruple("+", "" + arg1, ""+arg2, addr);
         tempVarS.getTempVar(addr).setMessage(""+ arg1 * arg2);
         lastAddr = addr;
     }
 
-    public void addQuadruple3(Quadruple quadruple, TempVarS tempVarS){
+    public void addQuadruple2(Quadruples quadruples, TempVarS tempVarS, int num){
         int arg1 = type.getWidth();
-        int arg2 = ((Array)type).getSize();
-        quadruple.addQuadruple("*", "" + arg1, ""+ arg2, addr);
+        int arg2 = num;
+        quadruples.addQuadruple("*", "" + arg1, ""+ arg2, addr);
         tempVarS.getTempVar(addr).setMessage(""+ arg1 * arg2);
+        lastAddr = addr;
     }
 }

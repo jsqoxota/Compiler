@@ -18,9 +18,9 @@
     	else r = false;
 
     while(true){
-        int X;
+        int b;
         if ( i >= j)break;
-        do { int s; j = j - 1; }while (x[j] > v);
+        do { int c;j = j - 1; }while (x[j] > v);
         if ( i >= j)break;
         x = a[i]; a[i] = a[j]; x[j] = x;
     }

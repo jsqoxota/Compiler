@@ -2,10 +2,16 @@ package inter;
 
 import lexer.Identifier;
 import symbol.Env;
+import symbol.Type;
 
 public class Statement {
-    public static void statement(TypeS typeS, Identifier identifier, Env env){
-        Id id = new Id(identifier, typeS.getCType());
+    private static Env env;
+    public static void statement(Type type, Identifier identifier){
+        Id id = new Id(identifier, type);
         env.put(id);
+    }
+
+    public static void setEnv(Env env) {
+        Statement.env = env;
     }
 }

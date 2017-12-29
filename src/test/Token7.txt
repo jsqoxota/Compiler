@@ -69,7 +69,7 @@
 < ) , bracket >
 < { , delimiter >
 < int , basic >
-< X , id >
+< b , id >
 < ; , otherOp >
 < if , key >
 < ( , bracket >
@@ -82,7 +82,7 @@
 < do , key >
 < { , delimiter >
 < int , basic >
-< s , id >
+< c , id >
 < ; , otherOp >
 < j , id >
 < = , assOp >
