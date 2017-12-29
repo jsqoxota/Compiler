@@ -27,7 +27,6 @@ public class Parser {
     private static Grammar grammar;                         //文法
     private static Quadruples quadruples;                   //四元式
     private static TempVarS tempVarS;                       //临时变量表
-    private static boolean arrayReferenceFlag;              //loc → id [ bool ]
 
     private Parser(File productionFile, File tokenFile){
         this.productionFile = productionFile;
@@ -36,8 +35,8 @@ public class Parser {
         env = new Env(null);
         Statement.setEnv(env);
         Var.setEnv(env);
-        quadruples = new Quadruples();
-        tempVarS = new TempVarS();
+        quadruples = Quadruples.getInstance();
+        tempVarS = TempVarS.getInstance();
         flag = true;
     }
 
@@ -81,6 +80,10 @@ public class Parser {
                         env = env.getPrev();
                     }
                     flag = false;
+                    System.out.println(quadruples.toString());
+                }
+                else if(";".equals(token.toString())){
+                    ArrayReference.locIsIdFlag = false;             // is loc -> id [bool]?
                 }
             }
             /**>>>>>>>>>>>>>>>>>>>>>>移入，规约，接受<<<<<<<<<<<<<<<<<<<*/
@@ -98,7 +101,7 @@ public class Parser {
             else if( string.charAt(0) == 'r'){//规约
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
                 int productionNum = grammar.getProductionNumber(production);
-                arrayReference = assignment(productionNum, arrayReference, id, num);//变量赋值
+                //arrayReference = assignment(productionNum, arrayReference, id, num);//变量赋值
                 String s1;
                 if(production.getElements().get(0).equals(SetsOfItems.epsilon))s1 = production.toString();
                 else s1 = production.toString()+"　";
@@ -245,29 +248,29 @@ public class Parser {
         return null;
     }
 
-    //变量赋值
-    private ArrayReference assignment(int productionNum, ArrayReference arrayReference, Token id, Token num){
-        switch (productionNum){
-            case 18:{                                       //loc → loc [ bool ]
-                if(arrayReferenceFlag){
-                    arrayReference = new ArrayReference(id,env);
-                    arrayReference.setType();
-                    arrayReference.addAddr(tempVarS);
-                    arrayReference.addQuadruple2(quadruples, tempVarS, Integer.parseInt(num.toString()));
-                    arrayReferenceFlag = false;
-                }
-                else {
-                    arrayReference.setType();
-                    arrayReference.addTempVar(tempVarS);
-                    arrayReference.addAddr(tempVarS);
-                    arrayReference.addQuadruple(quadruples, tempVarS, Integer.parseInt(num.toString()));
-                    arrayReference.addQuadruple(quadruples, tempVarS);
-                }
-            }break;
-            case 19:{                                           //loc → id
-                arrayReferenceFlag = true;
-            }break;
-        }
-        return arrayReference;
-    }
+//    //变量赋值
+//    private ArrayReference assignment(int productionNum, ArrayReference arrayReference, Token id, Token num){
+//        switch (productionNum){
+//            case 18:{                                       //loc → loc [ bool ]
+//                if(arrayReferenceFlag){
+//                    arrayReference = new ArrayReference(id,env);
+//                    arrayReference.setType();
+//                    arrayReference.addAddr(tempVarS);
+//                    arrayReference.addQuadruple2(quadruples, tempVarS, Integer.parseInt(num.toString()));
+//                    arrayReferenceFlag = false;
+//                }
+//                else {
+//                    arrayReference.setType();
+//                    arrayReference.addTempVar(tempVarS);
+//                    arrayReference.addAddr(tempVarS);
+//                    arrayReference.addQuadruple(quadruples, tempVarS, Integer.parseInt(num.toString()));
+//                    arrayReference.addQuadruple(quadruples, tempVarS);
+//                }
+//            }break;
+//            case 19:{                                           //loc → id
+//                arrayReferenceFlag = true;
+//            }break;
+//        }
+//        return arrayReference;
+//    }
 }

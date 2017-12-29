@@ -2,23 +2,25 @@ package inter;
 
 import lexer.Identifier;
 import lexer.Token;
-import setsOfItems.Grammar;
 import setsOfItems.NonTerminals;
-import setsOfItems.Production;
 import symbol.Array;
 import symbol.Env;
+import symbol.TempVarS;
 import symbol.Type;
 
 import java.util.ArrayList;
 
 public class Var {
     //private Token token;
+    private Quadruples quadruples = Quadruples.getInstance();
+    private TempVarS tempVarS = TempVarS.getInstance();
     private static Env env = null;
     private Token token = null;
-    private Type type = null;                      //变量类型
-    private String addr = null;                    //临时变量名
-    private String value = null;                   //变量值
-    private String name = null;                    //变量名
+    private Type type = null;                       //变量类型
+    private String addr = null;                     //临时变量名
+    private String value = null;                    //变量值
+    private String name = null;                     //变量名
+    private String array = null;                    //数组基地址
 
     //终结符
     public Var(Token token, Env env){
@@ -29,49 +31,27 @@ public class Var {
 
     //非终结符
     public Var(NonTerminals nonTerminals, ArrayList<Var> vars, int productionNum){
+        name = nonTerminals.toString();
         switch (productionNum){
             case 8:{                                            //C → ε  C.type = t;
                 type = TypeS.getType();
-                name = nonTerminals.toString();
             }break;
-            case 7:{                                            //C → [ num ] C1
-                int num = 0;
-                Type type = null;
-                for (Var var : vars){
-                    if("num".equals(var.name))                      //数组大小
-                        num = Integer.parseInt(var.value);
-                    else if("C".equals(var.name))type = var.type;   //数组类型
-                }
-                this.type = new Array(num, type);           //C.type = array(num.value, C1.type);
-                name = nonTerminals.toString();
+            case 7:statement7(vars);break;                      //C → [ num ] C1
+            case 5:statement5(vars);break;                      //decl → type id ;
+            case 18:{                                           //loc → loc[bool]
+                if(ArrayReference.locIsIdFlag)
+                    arrayReferenceTrue(vars);
+                else arrayReferenceFalse(vars);
             }break;
-            case 5:{                                        //decl → type id ;
-                Token token = null;
-                Type type = null;
-                for (Var var : vars){
-                    if("id".equals(var.name))token = var.token;
-                    if ("type".equals(var.name))type = var.type;
-                }
-                if(env.getId(token) == null){                           //添加符号表
-                    Statement.statement(type, (Identifier) token);
-                    env.getId(token).applySpace();                      //分配空间
-                }
-                else System.out.println("变量已声明");
+            case 19:{                                           //loc → id
+                ArrayReference.locIsIdFlag = true;              //is loc -> id [bool]?
+                defaultMethod(vars);
             }break;
-            default:{
-                name = nonTerminals.toString();
-                for(Var var : vars){
-                    type = var.type;
-                    if (type != null) {
-                        value = var.value;
-                        addr = var.addr;
-                        break;
-                    }
-                }
-            } break;
+            default:defaultMethod(vars); break;
         }
 
     }
+
     public static void setEnv(Env env1){
         env = env1;
     }
@@ -108,6 +88,7 @@ public class Var {
         if("num".equals(temp)){
             type = Type.getInt();
             value = token.toString();
+            addr = value;
             name = "num";
         }
         else if("id".equals(temp)){
@@ -124,21 +105,116 @@ public class Var {
         else if("real".equals(temp)){
             type = Type.getDouble();
             value = token.toString();
+            addr = value;
             name = "real";
         }
         else if("char".equals(temp)){
             type = Type.getChar();
             value = token.toString();
+            addr = value;
             name = "char";
         }
         else if("boolean".equals(temp)){
             type = Type.getBoolean();
             value = token.toString();
+            addr = value;
             name = "boolean";
         }
     }
 
+    //C → [ num ] C1
+    private void statement7(ArrayList<Var> vars){
+        int num = 0;
+        Type type = null;
+        for (Var var : vars){
+            if("num".equals(var.name))                      //数组大小
+                num = Integer.parseInt(var.value);
+            else if("C".equals(var.name))type = var.type;   //数组类型
+        }
+        this.type = new Array(num, type);           //C.type = array(num.value, C1.type);
+    }
 
+    //decl → type id ;
+    private void statement5(ArrayList<Var> vars){
+        Token token = null;
+        Type type = null;
+        for (Var var : vars){
+            if("id".equals(var.name))token = var.token;
+            if ("type".equals(var.name))type = var.type;
+        }
+        if(env.getId(token) == null){                           //添加符号表
+            Statement.statement(type, (Identifier) token);
+            env.getId(token).applySpace();                      //分配空间
+        }
+        else System.out.println("变量已声明");
+    }
+
+    //当loc为id时
+    private void arrayReferenceTrue(ArrayList<Var> vars){
+        String addr = null;
+        String value = null;
+        Type type = null;
+        String name = null;
+        for (Var var : vars){
+            if("bool".equals(var.name)) {
+                addr = var.addr;
+                value = var.value;
+            }
+            if ("loc".equals(var.name)){
+                type = var.type;
+                name = var.name;
+            }
+        }
+        array = name;                                   //loc.array = top.get(id.lexeme);   id名
+        this.addr = tempVarS.addTempVar();              //loc.addr = new Temp();    申请临时变量
+        this.type = ((Array) type).getOf();             //loc.type = loc.array.type.elem
+        this.value = String.valueOf(Integer.valueOf(value) * this.type.getWidth());  // gen(loc.addr = bool.addr * loc.type.width;)
+        quadruples.addQuadruple("*", addr, "" + this.type.getWidth(), this.addr);
+        tempVarS.getTempVar(this.addr).setValue(this.value);
+        ArrayReference.locIsIdFlag = false;
+    }
+
+    //当loc不为id时
+    private void arrayReferenceFalse(ArrayList<Var> vars){
+        String addrB = null;
+        String addrL = null;
+        String valueB = null;
+        String valueL = null;
+        Type type = null;
+        for (Var var : vars){
+            if("bool".equals(var.name)) {
+                addrB = var.addr;
+                valueB = var.value;
+            }
+            if ("loc".equals(var.name)){
+                type = var.type;
+                addrL = var.addr;
+                valueL = var.value;
+                array = var.array;                      //loc.array = loc1.array;
+            }
+        }
+        this.type = ((Array) type).getOf();             //loc.type = loc.type.elem
+        String t = tempVarS.addTempVar();               //t = new Temp();
+        this.addr = tempVarS.addTempVar();              //loc.addr = new Temp();    申请临时变量
+        tempVarS.getTempVar(t).setValue(String.valueOf(Integer.valueOf(valueB) * this.type.getWidth()));  // gen(t = bool.addr * loc.type.width;)
+        quadruples.addQuadruple("*", addrB, "" + this.type.getWidth(), t);//添加四元式
+        this.value = "" + (Integer.valueOf(valueL) + Integer.valueOf(tempVarS.getTempVar(t).getValue())); // gen(loc.addr = loc1.addr + t;)
+        quadruples.addQuadruple("+", addrL, t, this.addr);
+        tempVarS.getTempVar(this.addr).setValue(this.value);
+        ArrayReference.locIsIdFlag = false;
+    }
+
+    //default
+    private void defaultMethod(ArrayList<Var> vars){
+        for(Var var : vars){
+            type = var.type;
+            if (type != null) {
+                value = var.value;
+                addr = var.addr;
+                break;
+            }
+        }
+    }
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {

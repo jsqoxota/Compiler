@@ -1,27 +1,4 @@
 {
-    int i;
-    int [10][10]b;
-    //变量声明
-
-    float j;
-    double k;
-    float[100] x;
-    boolean flag;
-    /*变量赋值*/
-    i = 0X10;
-    j = 100.46;
-    flag = false;
-    x[j] = 10;
-
-
-    if( !(x > y) ) r = true;
-    	else r = false;
-
-    while(true){
-        int b;
-        if ( i >= j)break;
-        do { int c;j = j - 1; }while (x[j] > v);
-        if ( i >= j)break;
-        x = a[i]; a[i] = a[j]; x[j] = x;
-    }
+    int [2][3]b;
+    b[1][2] = 10;
 }

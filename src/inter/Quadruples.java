@@ -1,20 +1,30 @@
 package inter;
 
 import lexer.Str;
+import symbol.TempVarS;
 
 import javax.xml.stream.Location;
 import java.util.ArrayList;
 
 public class Quadruples {
+    private static Quadruples quadruple;
     private static final int OP = 0;                                        //运算符内部编码
     private static final int ARG1 = 1;                                      //操作数1
     private static final int ARG2 = 2;                                      //操作数2
     private static final int RESULT = 3;                                    //结果
-    private static ArrayList<String[]> quadruples;                          //四元式
+    private ArrayList<String[]> quadruples;                                 //四元式
     private static int location = 0;
 
-    public Quadruples(){
+    private Quadruples(){
         quadruples = new ArrayList<>();
+    }
+
+    public static Quadruples getInstance(){
+        if(quadruple == null){
+            quadruple = new Quadruples();
+            return quadruple;
+        }
+        else return quadruple;
     }
 
     public void addQuadruple(String op, String arg1, String arg2, String result){
