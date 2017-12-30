@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b050b094-b6b7-4085-be06-06b4b83772a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/bytesToNum.class" afterPath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/bytesToNum.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/bytesToReal.class" afterPath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/bytesToReal.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/numToBytes.class" afterPath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/numToBytes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/realToBytes.class" afterPath="$PROJECT_DIR$/out/production/Compiler/byteArrayConversion/realToBytes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/inter/ArrayReference.class" afterPath="$PROJECT_DIR$/out/production/Compiler/inter/ArrayReference.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/inter/Id.class" afterPath="$PROJECT_DIR$/out/production/Compiler/inter/Id.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler/inter/ArrayReference.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/inter/Var.class" afterPath="$PROJECT_DIR$/out/production/Compiler/inter/Var.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/parser/Parser.class" afterPath="$PROJECT_DIR$/out/production/Compiler/parser/Parser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/symbol/Array.class" afterPath="$PROJECT_DIR$/out/production/Compiler/symbol/Array.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/symbol/Env.class" afterPath="$PROJECT_DIR$/out/production/Compiler/symbol/Env.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/symbol/Type.class" afterPath="$PROJECT_DIR$/out/production/Compiler/symbol/Type.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/test/AnalysisProcess7.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/AnalysisProcess7.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/test/SourceCode7.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/SourceCode7.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler/test/Token7.txt" afterPath="$PROJECT_DIR$/out/production/Compiler/test/Token7.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inter/ArrayReference.java" afterPath="$PROJECT_DIR$/src/inter/ArrayReference.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inter/Id.java" afterPath="$PROJECT_DIR$/src/inter/Id.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inter/Var.java" afterPath="$PROJECT_DIR$/src/inter/Var.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Parser.java" afterPath="$PROJECT_DIR$/src/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbol/Array.java" afterPath="$PROJECT_DIR$/src/symbol/Array.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbol/Env.java" afterPath="$PROJECT_DIR$/src/symbol/Env.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbol/Type.java" afterPath="$PROJECT_DIR$/src/symbol/Type.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/AnalysisProcess7.txt" afterPath="$PROJECT_DIR$/src/test/AnalysisProcess7.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/SourceCode7.txt" afterPath="$PROJECT_DIR$/src/test/SourceCode7.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/Token7.txt" afterPath="$PROJECT_DIR$/src/test/Token7.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/byteArrayConversion/bytesToNum.java" afterPath="$PROJECT_DIR$/src/byteArrayConversion/BytesToNum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/byteArrayConversion/bytesToReal.java" afterPath="$PROJECT_DIR$/src/byteArrayConversion/BytesToReal.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/byteArrayConversion/numToBytes.java" afterPath="$PROJECT_DIR$/src/byteArrayConversion/NumToBytes.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/byteArrayConversion/realToBytes.java" afterPath="$PROJECT_DIR$/src/byteArrayConversion/RealToBytes.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,28 +41,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+      <file leaf-file-name="Array.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/symbol/Array.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1295">
-              <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-                <element signature="method#getInstance#0;class#Parser#0" expanded="false" />
-                <element signature="method#analysis#0;class#Parser#0" expanded="false" />
-                <element signature="method#GOTO#0;class#Parser#0" expanded="false" />
-                <element signature="method#printAnalysisProcess#0;class#Parser#0" expanded="false" />
-                <element signature="method#getAnalysisTable#0;class#Parser#0" expanded="false" />
-                <element signature="method#getTokens#0;class#Parser#0" expanded="false" />
-                <element signature="method#delegate#0;class#Parser#0" expanded="false" />
-                <element signature="method#getToken#0;class#Parser#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="407">
+              <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SourceCode7.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SourceCode7.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/SourceCode7.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="37">
@@ -95,74 +64,21 @@
       <file leaf-file-name="Env.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/symbol/Env.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="183">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="method#Env#0;class#Env#0" expanded="false" />
-                <element signature="method#getId#0;class#Env#0" expanded="false" />
                 <element signature="method#toString#0;class#Env#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Production7.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/Production7.txt">
+      <file leaf-file-name="Production.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SourceCode3.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/SourceCode3.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/symbol/Type.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-              <folding>
-                <element signature="docComment;class#Type#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnalysisProcess7.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/AnalysisProcess7.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Production3.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/Production3.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Array.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/symbol/Array.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+            <state relative-caret-position="197">
+              <caret line="51" column="41" lean-forward="false" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -171,20 +87,54 @@
       <file leaf-file-name="Var.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inter/Var.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="57" column="64" lean-forward="false" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+            <state relative-caret-position="396">
+              <caret line="253" column="28" lean-forward="false" selection-start-line="253" selection-start-column="28" selection-end-line="253" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#basicType#0;class#Var#0" expanded="false" />
                 <element signature="method#tokenType#0;class#Var#0" expanded="false" />
                 <element signature="method#statement7#0;class#Var#0" expanded="false" />
                 <element signature="method#statement5#0;class#Var#0" expanded="false" />
-                <element signature="method#arrayReferenceTrue#0;class#Var#0" expanded="false" />
                 <element signature="method#arrayReferenceFalse#0;class#Var#0" expanded="false" />
-                <element signature="method#assignment#0;class#Var#0" expanded="false" />
-                <element signature="method#defaultMethod#0;class#Var#0" expanded="false" />
                 <element signature="method#bytesChangeToData#0;class#Var#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#287#288#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TempVarS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/symbol/TempVarS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+              <folding>
+                <element signature="method#getInstance#0;class#TempVarS#0" expanded="false" />
+                <element signature="method#addTempVar#0;class#TempVarS#0" expanded="false" />
+                <element signature="e#655#656#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalysisProcess7.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/AnalysisProcess7.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-53">
+              <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -294,8 +244,8 @@
         <option value="$PROJECT_DIR$/src/inter/ArrayReference.java" />
         <option value="$PROJECT_DIR$/src/parser/Parser.java" />
         <option value="$PROJECT_DIR$/src/test/AnalysisProcess7.txt" />
-        <option value="$PROJECT_DIR$/src/inter/Var.java" />
         <option value="$PROJECT_DIR$/src/test/SourceCode7.txt" />
+        <option value="$PROJECT_DIR$/src/inter/Var.java" />
       </list>
     </option>
   </component>
@@ -382,6 +332,12 @@
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="setsOfItems" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -670,12 +626,12 @@
       <workItem from="1514556793043" duration="13780000" />
       <workItem from="1514597610302" duration="8757000" />
       <workItem from="1514610624066" duration="15182000" />
-      <workItem from="1514629889360" duration="9601000" />
+      <workItem from="1514629889360" duration="13419000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="538329000" />
+    <option name="totallyTimeSpent" value="542147000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -688,6 +644,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -696,10 +653,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64269406" sideWeight="0.5075107" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.044419136" sideWeight="0.49517167" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2904328" sideWeight="0.49248928" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41002277" sideWeight="0.49248928" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16416308" sideWeight="0.4922179" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16416308" sideWeight="0.4922179" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22532189" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -785,12 +742,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="355" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/inter/Var.java</url>
+          <line>250</line>
+          <properties />
+          <option name="timeStamp" value="355" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="358" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="env.getId(v.array).type" language="JAVA" />
-        <watch expression="v.type.toString()" language="JAVA" />
+        <watch expression="var.addr" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -853,36 +817,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/typeConversion.java" />
-    <entry file="file://$PROJECT_DIR$/src/byteArrayConversion/bytesToFloat.java" />
-    <entry file="file://$PROJECT_DIR$/src/byteArrayConversion/RealToBytes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/byteArrayConversion/BytesToReal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/SetsOfItems6.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1554">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lexer/Num.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
@@ -954,29 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="267" column="4" lean-forward="false" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="70" />
-          <folding>
-            <element signature="docComment;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#addRelevance#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#mergeLR1Item#0;class#SetsOfItems#0" expanded="false" />
-            <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/AnalysisProcess4.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-184">
@@ -998,33 +909,6 @@
           <folding>
             <element signature="e#242#243#0" expanded="false" />
             <element signature="e#270#271#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symbol/TempVarS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-          <folding>
-            <element signature="method#getInstance#0;class#TempVarS#0" expanded="false" />
-            <element signature="method#addTempVar#0;class#TempVarS#0" expanded="false" />
-            <element signature="e#655#656#0" expanded="false" />
-            <element signature="e#692#693#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symbol/TempVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding>
-            <element signature="e#140#141#0" expanded="false" />
-            <element signature="e#172#173#0" expanded="false" />
-            <element signature="e#212#213#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#380#381#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1149,47 +1033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inter/ArrayReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#287#288#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inter/Id.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="45" column="43" lean-forward="true" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Id#0;class#Id#0" expanded="false" />
-            <element signature="e#510#511#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="e#1299#1300#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/AnalysisProcess6.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1206,33 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Production3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inter/Var.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="57" column="64" lean-forward="false" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#basicType#0;class#Var#0" expanded="false" />
-            <element signature="method#tokenType#0;class#Var#0" expanded="false" />
-            <element signature="method#statement7#0;class#Var#0" expanded="false" />
-            <element signature="method#statement5#0;class#Var#0" expanded="false" />
-            <element signature="method#arrayReferenceTrue#0;class#Var#0" expanded="false" />
-            <element signature="method#arrayReferenceFalse#0;class#Var#0" expanded="false" />
-            <element signature="method#assignment#0;class#Var#0" expanded="false" />
-            <element signature="method#defaultMethod#0;class#Var#0" expanded="false" />
-            <element signature="method#bytesChangeToData#0;class#Var#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/SourceCode3.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -1241,19 +1057,221 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Production7.txt">
+    <entry file="file://$PROJECT_DIR$/src/byteArrayConversion/RealToBytes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inter/Id.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="45" column="43" lean-forward="true" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Id#0;class#Id#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inter/ArrayReference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symbol/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2633">
+          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding>
+            <element signature="docComment;class#Type#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Terminal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production6.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production5.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production3.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
+          <caret line="41" column="12" lean-forward="true" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Production7.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
           <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetOfItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/SetsOfItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="267" column="4" lean-forward="false" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="70" />
+          <folding>
+            <element signature="docComment;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#SetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#getInstance#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#constructorSetsOfItems#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#closure#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#closure#1;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#addRelevance#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#goTo#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#first#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#first#1;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#changeToLR1Item#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#isTerminal#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#mergeLR1Item#0;class#SetsOfItems#0" expanded="false" />
+            <element signature="method#toString#0;class#SetsOfItems#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symbol/TempVar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#380#381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setsOfItems/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="51" column="41" lean-forward="false" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symbol/Env.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="method#Env#0;class#Env#0" expanded="false" />
+            <element signature="method#toString#0;class#Env#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1158">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
+            <element signature="method#getInstance#0;class#Parser#0" expanded="false" />
+            <element signature="method#GOTO#0;class#Parser#0" expanded="false" />
+            <element signature="method#printAnalysisProcess#0;class#Parser#0" expanded="false" />
+            <element signature="method#getAnalysisTable#0;class#Parser#0" expanded="false" />
+            <element signature="method#getTokens#0;class#Parser#0" expanded="false" />
+            <element signature="method#delegate#0;class#Parser#0" expanded="false" />
+            <element signature="method#getToken#0;class#Parser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symbol/Array.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inter/Var.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="253" column="28" lean-forward="false" selection-start-line="253" selection-start-column="28" selection-end-line="253" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#basicType#0;class#Var#0" expanded="false" />
+            <element signature="method#tokenType#0;class#Var#0" expanded="false" />
+            <element signature="method#statement7#0;class#Var#0" expanded="false" />
+            <element signature="method#statement5#0;class#Var#0" expanded="false" />
+            <element signature="method#arrayReferenceFalse#0;class#Var#0" expanded="false" />
+            <element signature="method#bytesChangeToData#0;class#Var#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lexer/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#287#288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/AnalysisProcess7.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-53">
+          <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symbol/TempVarS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <element signature="method#getInstance#0;class#TempVarS#0" expanded="false" />
+            <element signature="method#addTempVar#0;class#TempVarS#0" expanded="false" />
+            <element signature="e#655#656#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,55 +1280,6 @@
         <state relative-caret-position="37">
           <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symbol/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding>
-            <element signature="docComment;class#Type#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symbol/Env.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="method#Env#0;class#Env#0" expanded="false" />
-            <element signature="method#getId#0;class#Env#0" expanded="false" />
-            <element signature="method#toString#0;class#Env#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symbol/Array.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1295">
-          <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#getInstance#0;class#Parser#0" expanded="false" />
-            <element signature="method#analysis#0;class#Parser#0" expanded="false" />
-            <element signature="method#GOTO#0;class#Parser#0" expanded="false" />
-            <element signature="method#printAnalysisProcess#0;class#Parser#0" expanded="false" />
-            <element signature="method#getAnalysisTable#0;class#Parser#0" expanded="false" />
-            <element signature="method#getTokens#0;class#Parser#0" expanded="false" />
-            <element signature="method#delegate#0;class#Parser#0" expanded="false" />
-            <element signature="method#getToken#0;class#Parser#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

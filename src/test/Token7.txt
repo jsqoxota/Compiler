@@ -6,12 +6,6 @@
 < [ , bracket >
 < 10 , num >
 < ] , bracket >
-< [ , bracket >
-< 10 , num >
-< ] , bracket >
-< [ , bracket >
-< 10 , num >
-< ] , bracket >
 < b , id >
 < ; , otherOp >
 < int , basic >
@@ -37,12 +31,6 @@
 < [ , bracket >
 < i , id >
 < ] , bracket >
-< ] , bracket >
-< [ , bracket >
-< i , id >
-< ] , bracket >
-< [ , bracket >
-< 5 , num >
 < ] , bracket >
 < = , assOp >
 < 5 , num >

@@ -56,6 +56,7 @@ public class Var {
                 defaultMethod(vars);
             }break;
             case 11: assignment(vars);break;                    //stmt → loc = bool ;
+            case 44: arrayAssignment(vars);break;               //factor → loc
             default:defaultMethod(vars); break;
         }
     }
@@ -178,7 +179,7 @@ public class Var {
             }
         }
         this.addr = tempVarS.addTempVar();              //loc.addr = new Temp();    申请临时变量
-        this.type = ((Array)type).getOf();         //loc.type = loc.array.type.elem
+        this.type = ((Array)type).getOf();              //loc.type = loc.array.type.elem
         this.value = String.valueOf(Integer.valueOf(value) * this.type.getWidth());  // gen(loc.addr = bool.addr * loc.type.width;)
         quadruples.addQuadruple("*", addr, "" + this.type.getWidth(), this.addr);
         tempVarS.getTempVar(this.addr).setValue(this.value);
@@ -237,9 +238,26 @@ public class Var {
         else {
             if (Type.conversion(((Array) var).getBasicType(), bool.type)){
                 env.getId(array).setValue(bool.value, bool.type.getWidth());
-                quadruples.addQuadruple("=", var1.addr, bool.addr, array.toString());
+                this.addr = tempVarS.addTempVar();
+                this.value = bool.value;
+                quadruples.addQuadruple("=", array.toString(), var1.addr, this.addr);
+                tempVarS.getTempVar(this.addr).setValue(this.value);
             }
         }
+    }
+
+    //factor → loc
+    private void arrayAssignment(ArrayList<Var> vars){
+        Var var = vars.get(0);
+        TempVar tempVar = tempVarS.getTempVar(var.getAddr());
+        if(tempVar != null) {
+            type = var.type;
+            addr = tempVarS.addTempVar();
+            this.value = tempVar.getValue();
+            quadruples.addQuadruple("=", var.array.toString(), var.addr, addr);
+            tempVarS.getTempVar(this.addr).setValue(this.value);
+        }
+        else defaultMethod(vars);
     }
 
     //default
@@ -290,6 +308,7 @@ public class Var {
         }
         return values;
     }
+
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
     @Override
     public String toString() {
