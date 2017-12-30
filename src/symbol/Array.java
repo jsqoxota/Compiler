@@ -29,4 +29,12 @@ public class Array extends Type{
     public int getSize() {
         return size;
     }
+
+    public Type getBasicType(){
+        Type basic = this.getOf();
+        while (basic instanceof Array){
+            basic = ((Array)basic).getOf();
+        }
+        return basic;
+    }
 }

@@ -40,8 +40,14 @@ public class Env {
         Iterator iterator= symbolTable.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry entry = (Map.Entry) iterator.next();
-            Id val = (Id)entry.getValue();
+            Id val = (Id) entry.getValue();
             stringBuilder.append(val.getOp().toString() + "\t" + val.getType().toString() + "\t" + val.getOffset());
+            byte[] bytes = val.getValue();
+            if (bytes != null) {
+                for (byte b : bytes) {
+                    stringBuilder.append("\t" + b);
+                }
+            }
             stringBuilder.append("\r\n");
         }
         stringBuilder.append("\n\n");

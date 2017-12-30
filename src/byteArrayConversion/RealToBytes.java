@@ -1,6 +1,6 @@
 package byteArrayConversion;
 
-public class realToBytes {
+public class RealToBytes {
     public static byte[] floatToBytes(float real){
         int num = Float.floatToIntBits(real);
         byte[] bytes = new byte[4];

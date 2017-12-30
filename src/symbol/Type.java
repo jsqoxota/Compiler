@@ -37,6 +37,40 @@ public class Type extends ReservedWord {
         else return Type.Char;
     }
 
+    public static boolean conversion(Type p1, Type p2){
+        if (p1 == Type.Int){
+            if(p2 == Type.Int || p2 == Type.Char || p2 == Type.Short || p2 == Type.Byte)return true;
+            else return false;
+        }
+        else if(p1 == Type.Short){
+            if(p2 == Short || p2 == Type.Byte )return true;
+            else return false;
+        }
+        else if(p1 == Type.Byte){
+            if(p2 == Byte)return true;
+        }
+        else if(p1 == Type.Char){
+            if(p2 == Type.Char)return true;
+        }
+        else if(p1 == Type.Float){
+            if (p2 == Type.Float || p2 == Type.Int || p2 == Type.Char || p2 == Type.Short || p2 == Type.Byte)return true;
+            else return false;
+        }
+        else if(p1 == Type.Double){
+            if( p2 == Type.Double || p2 == Type.Long ||p2 == Type.Float || p2 == Type.Int || p2 == Type.Char || p2 == Type.Short || p2 == Type.Byte)return true;
+            else return false;
+        }
+        else if (p1 == Type.Long){
+            if(p1 == Type.Long || p2 == Type.Int || p2 == Type.Char || p2 == Type.Short || p2 == Type.Byte)return true;
+            else return false;
+        }
+        else if (p1 == Type.Boolean ){
+            if (p2 == Type.Boolean)return true;
+            else return false;
+        }
+        return false;
+    }
+
     public int getWidth() {
         return width;
     }

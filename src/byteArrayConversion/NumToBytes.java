@@ -1,6 +1,6 @@
 package byteArrayConversion;
 
-public class numToBytes {
+public class NumToBytes {
     public static byte[] intToBytes(int num){
         byte[] bytes = new byte[4];
         for (int i = 3; i >= 0; i--){

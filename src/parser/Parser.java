@@ -33,8 +33,8 @@ public class Parser {
         this.tokenFile = tokenFile;
         tokens = new ArrayList<>();
         env = new Env(null);
-        Statement.setEnv(env);
         Var.setEnv(env);
+        Statement.setEnv(env);
         quadruples = Quadruples.getInstance();
         tempVarS = TempVarS.getInstance();
         flag = true;
@@ -50,10 +50,6 @@ public class Parser {
 
     //分析
     public void analysis()throws IOException{
-        ArrayReference arrayReference = null;
-        Token num = null;
-        Token id = null;
-        Token basic = null;
         boolean flag = false;
         int step = 1;                                   //步骤编号
         int location = 0;                               //第一个符号的位置
@@ -74,16 +70,6 @@ public class Parser {
                     Statement.setEnv(env);
                     Var.setEnv(env);
                     flag = false;
-                } else if ("}".equals(token.toString())) {
-                    if (env != null) {
-                        System.out.println(env.toString());
-                        env = env.getPrev();
-                    }
-                    flag = false;
-                    System.out.println(quadruples.toString());
-                }
-                else if(";".equals(token.toString())){
-                    ArrayReference.locIsIdFlag = false;             // is loc -> id [bool]?
                 }
             }
             /**>>>>>>>>>>>>>>>>>>>>>>移入，规约，接受<<<<<<<<<<<<<<<<<<<*/
@@ -101,7 +87,6 @@ public class Parser {
             else if( string.charAt(0) == 'r'){//规约
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
                 int productionNum = grammar.getProductionNumber(production);
-                //arrayReference = assignment(productionNum, arrayReference, id, num);//变量赋值
                 String s1;
                 if(production.getElements().get(0).equals(SetsOfItems.epsilon))s1 = production.toString();
                 else s1 = production.toString()+"　";
@@ -111,7 +96,7 @@ public class Parser {
                     for (int i = 0; i < production.getElements().size(); i++)
                         vars.add(symbolStack.pop());
                 }
-                Var var1 = new Var(production.getNonTerminals(), vars, productionNum);
+                Var var1 = new Var(production.getNonTerminals(),vars, productionNum);
                 symbolStack.push(var1);
                 GOTO(production, stateStack);
             }
@@ -125,14 +110,16 @@ public class Parser {
             }
             step++;
             /**>>>>>>>>>>>>>>>>记录数据<<<<<<<<<<<<<<<<<<*/
-            if("num".equals(token.getTag())){
-                num = token;
-            }
-            else if("id".equals(token.getTag())){
-                id = token;
-            }
-            else if("basic".equals(token.getTag())){
+            if("basic".equals(token.getTag())){
                 TypeS.setType((Type) token);
+            }
+            else if (flag && "}".equals(token.toString())) {
+                if (env != null) {
+                    System.out.println(env.toString());
+                    env = env.getPrev();
+                }
+                flag = false;
+                System.out.println(quadruples.toString());
             }
         }
     }
@@ -247,30 +234,4 @@ public class Parser {
         if( token != null) return token;
         return null;
     }
-
-//    //变量赋值
-//    private ArrayReference assignment(int productionNum, ArrayReference arrayReference, Token id, Token num){
-//        switch (productionNum){
-//            case 18:{                                       //loc → loc [ bool ]
-//                if(arrayReferenceFlag){
-//                    arrayReference = new ArrayReference(id,env);
-//                    arrayReference.setType();
-//                    arrayReference.addAddr(tempVarS);
-//                    arrayReference.addQuadruple2(quadruples, tempVarS, Integer.parseInt(num.toString()));
-//                    arrayReferenceFlag = false;
-//                }
-//                else {
-//                    arrayReference.setType();
-//                    arrayReference.addTempVar(tempVarS);
-//                    arrayReference.addAddr(tempVarS);
-//                    arrayReference.addQuadruple(quadruples, tempVarS, Integer.parseInt(num.toString()));
-//                    arrayReference.addQuadruple(quadruples, tempVarS);
-//                }
-//            }break;
-//            case 19:{                                           //loc → id
-//                arrayReferenceFlag = true;
-//            }break;
-//        }
-//        return arrayReference;
-//    }
 }
