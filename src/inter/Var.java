@@ -2,8 +2,6 @@ package inter;
 
 import byteArrayConversion.BytesToNum;
 import byteArrayConversion.BytesToReal;
-import byteArrayConversion.NumToBytes;
-import byteArrayConversion.RealToBytes;
 import lexer.Identifier;
 import lexer.Token;
 import setsOfItems.NonTerminals;
@@ -15,12 +13,12 @@ public class Var {
     //private Token token;
     private Quadruples quadruples = Quadruples.getInstance();
     private TempVarS tempVarS = TempVarS.getInstance();
-    private static Env env = null;
+    private static Env env = null;                  //符号表
     private Type type = null;                       //变量类型
     private String addr = null;                     //临时变量名
     private String value = null;                    //变量值
     private String name = null;                     //变量名
-    private Token array = null;                    //数组基地址
+    private Token array = null;                     //数组基地址
 
     //终结符
     public Var(Token token, Env env){
@@ -29,13 +27,17 @@ public class Var {
         tokenType(token, env);
     }
 
+    public static void setEnv(final Env e){
+        env = e;
+    }
+
     //非终结符
     public Var(NonTerminals nonTerminals, ArrayList<Var> vars, int productionNum){
         name = nonTerminals.toString();
         switch (productionNum){
             case 8:type = TypeS.getType();break;                //C → ε  C.type = t;
             case 7:statement7(vars);break;                      //C → [ num ] C1
-            case 5:statement5(vars, env);break;                 //decl → type id ;
+            case 5:statement5(vars);break;                      //decl → type id ;
             case 18:{                                           //loc → loc[bool]
                 for (Var v: vars){
                     if("loc".equals(v.name)){//判断是否是 loc → id[bool]
@@ -52,17 +54,17 @@ public class Var {
                 Id id = env.getId(array);
                 if(id != null){
                     this.type = id.getType();
+                    this.value = bytesChangeToData(id);
+                    this.addr = id.toString();
+                    break;
                 }
                 defaultMethod(vars);
             }break;
             case 11: assignment(vars);break;                    //stmt → loc = bool ;
             case 44: arrayAssignment(vars);break;               //factor → loc
+            case 34: add(vars);break;                           //expr → expr + term
             default:defaultMethod(vars); break;
         }
-    }
-
-    public static void setEnv(final Env e){
-        env = e;
     }
 
     //basic类型
@@ -131,6 +133,37 @@ public class Var {
         }
     }
 
+    //expr → expr + term
+    private void add(ArrayList<Var> vars){
+        Var arg1 = null;
+        Var arg2 = null;
+        for (Var var : vars){
+            if("expr".equals(var.name)) {                     //操作数1
+                arg1 = var;
+            }
+            else if("term".equals(var.name)){                  //数组类型
+                arg2 = var;
+            }
+        }
+        this.addr = tempVarS.addTempVar();
+        this.type = Type.max(arg1.type, arg2.type);
+        if(type == Type.getDouble()){
+            this.value = "" + (Double.parseDouble(arg1.value) + Double.parseDouble(arg2.value));
+        }
+        else if (type == Type.getFloat()){
+            this.value = "" + (Float.parseFloat(arg1.value) + Float.parseFloat(arg2.value));
+        }
+        else if (type == Type.getLong()){
+            this.value = "" + (Long.parseLong(arg1.value) + Long.parseLong(arg2.value));
+        }
+        else if (type != null){
+            this.value = "" + (Integer.parseInt(arg1.value) + Integer.parseInt(arg2.value));
+        }
+        else System.out.println("类型错误！");
+        quadruples.addQuadruple("+", arg1.addr, arg2.addr, this.addr);
+        tempVarS.getTempVar(this.addr).setValue(this.value);
+    }
+
     //C → [ num ] C1
     private void statement7(ArrayList<Var> vars){
         int num = 0;
@@ -147,7 +180,7 @@ public class Var {
     }
 
     //decl → type id ;
-    private void statement5(ArrayList<Var> vars, Env env){
+    private void statement5(ArrayList<Var> vars){
         Token token = null;
         Type type = null;
         for (Var var : vars){
@@ -161,7 +194,7 @@ public class Var {
         else System.out.println("变量已声明");
     }
 
-    //当loc为id时  loc -> id [num]
+    //loc -> id [num]
     private void arrayReferenceTrue(ArrayList<Var> vars){
         String addr = null;
         String value = null;
@@ -185,7 +218,7 @@ public class Var {
         tempVarS.getTempVar(this.addr).setValue(this.value);
     }
 
-    //当loc不为id时 loc -> loc [num]
+    //loc -> loc [num]
     private void arrayReferenceFalse(ArrayList<Var> vars){
         String addrB = null;
         String addrL = null;
@@ -273,6 +306,7 @@ public class Var {
         }
     }
 
+    //数组转换成数据
     private String bytesChangeToData(Id id){
         Type type = id.getType();
         byte[] bytes = id.getValue();

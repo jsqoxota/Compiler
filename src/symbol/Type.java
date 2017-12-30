@@ -26,15 +26,17 @@ public class Type extends ReservedWord {
             Boolean     = new Type("boolean",   Tag.BASIC, 1    );
 
     public static boolean numeric(Type p){
-        if(p == Type.Char || p == Type.Int || p == Type.Float) return true;
+        if(p == Type.Char || p == Type.Int || p == Type.Float || p == Type.Double
+                || p == Type.Short || p == Type.Byte || p == Type.Long) return true;
         else return false;
     }
 
     public static Type max(Type p1, Type p2){
         if( ! numeric(p1) || ! numeric(p2))return null;
+        else if ( p1 == Type.Double || p2 == Type.Double)return Type.Double;
         else if ( p1 == Type.Float || p2 == Type.Float)return Type.Float;
-        else if ( p1 == Type.Int   || p2 == Type.Int)return Type.Int;
-        else return Type.Char;
+        else if ( p1 == Type.Long || p2 == Type.Long)return Type.Long;
+        else return Type.Int;
     }
 
     public static boolean conversion(Type p1, Type p2){
