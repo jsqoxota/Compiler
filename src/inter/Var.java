@@ -1,7 +1,5 @@
 package inter;
 
-import byteArrayConversion.BytesToNum;
-import byteArrayConversion.BytesToReal;
 import lexer.Identifier;
 import lexer.Token;
 import setsOfItems.NonTerminals;
@@ -10,13 +8,11 @@ import symbol.*;
 import java.util.ArrayList;
 
 public class Var {
-    //private Token token;
     private Quadruples quadruples = Quadruples.getInstance();
     private TempVarS tempVarS = TempVarS.getInstance();
     private static Env env = null;                  //符号表
     private Type type = null;                       //变量类型
     private String addr = null;                     //临时变量名
-    private String value = null;                    //变量值
     private String name = null;                     //变量名
     private Token array = null;                     //数组基地址
 
@@ -54,7 +50,6 @@ public class Var {
                 Id id = env.getId(array);
                 if(id != null){
                     this.type = id.getType();
-                    this.value = bytesChangeToData(id);
                     this.addr = id.toString();
                     break;
                 }
@@ -62,7 +57,10 @@ public class Var {
             }break;
             case 11: assignment(vars);break;                    //stmt → loc = bool ;
             case 44: arrayAssignment(vars);break;               //factor → loc
-            case 34: add(vars);break;                           //expr → expr + term
+            case 34: addOrSub(vars, "+");break;                 //expr → expr + term
+            case 35: addOrSub(vars, "-");break;                 //expr → expr - term
+            case 37: mulOrDiv(vars, "*");break;                 //term → term * unary
+            case 38: mulOrDiv(vars, "/");break;                 //term → term / unary
             default:defaultMethod(vars); break;
         }
     }
@@ -98,8 +96,7 @@ public class Var {
         String temp = token.getTag();
         if("num".equals(temp)){
             type = Type.getInt();
-            value = token.toString();
-            addr = value;
+            addr = token.toString();
             name = "num";
         }
         else if("id".equals(temp)){
@@ -115,26 +112,23 @@ public class Var {
         }
         else if("real".equals(temp)){
             type = Type.getDouble();
-            value = token.toString();
-            addr = value;
+            addr = token.toString();
             name = "real";
         }
         else if("char".equals(temp)){
             type = Type.getChar();
-            value = token.toString();
-            addr = value;
+            addr = token.toString();
             name = "char";
         }
         else if("boolean".equals(temp)){
             type = Type.getBoolean();
-            value = token.toString();
-            addr = value;
+            addr = token.toString();
             name = "boolean";
         }
     }
 
-    //expr → expr + term
-    private void add(ArrayList<Var> vars){
+    //expr → expr + term or expr → expr - term
+    private void addOrSub(ArrayList<Var> vars, String op){
         Var arg1 = null;
         Var arg2 = null;
         for (Var var : vars){
@@ -147,21 +141,26 @@ public class Var {
         }
         this.addr = tempVarS.addTempVar();
         this.type = Type.max(arg1.type, arg2.type);
-        if(type == Type.getDouble()){
-            this.value = "" + (Double.parseDouble(arg1.value) + Double.parseDouble(arg2.value));
+        if(type == null)System.out.println("类型错误！");
+        quadruples.addQuadruple(op, arg1.addr, arg2.addr, this.addr);
+    }
+
+    //term → term * unary  or  term → term / unary
+    private void mulOrDiv(ArrayList<Var> vars, String op){
+        Var arg1 = null;
+        Var arg2 = null;
+        for (Var var : vars){
+            if("term".equals(var.name)) {                     //操作数1
+                arg1 = var;
+            }
+            else if("unary".equals(var.name)){                  //数组类型
+                arg2 = var;
+            }
         }
-        else if (type == Type.getFloat()){
-            this.value = "" + (Float.parseFloat(arg1.value) + Float.parseFloat(arg2.value));
-        }
-        else if (type == Type.getLong()){
-            this.value = "" + (Long.parseLong(arg1.value) + Long.parseLong(arg2.value));
-        }
-        else if (type != null){
-            this.value = "" + (Integer.parseInt(arg1.value) + Integer.parseInt(arg2.value));
-        }
-        else System.out.println("类型错误！");
-        quadruples.addQuadruple("+", arg1.addr, arg2.addr, this.addr);
-        tempVarS.getTempVar(this.addr).setValue(this.value);
+        this.addr = tempVarS.addTempVar();
+        this.type = Type.max(arg1.type, arg2.type);
+        if(type == null)System.out.println("类型错误！");
+        quadruples.addQuadruple(op, arg1.addr, arg2.addr, this.addr);
     }
 
     //C → [ num ] C1
@@ -170,13 +169,12 @@ public class Var {
         Type type = null;
         for (Var var : vars){
             if("num".equals(var.name))                      //数组大小
-                num = Integer.parseInt(var.value);
+                num = Integer.parseInt(var.addr);
             else if("C".equals(var.name)){                  //数组类型
                 type = var.type;
             }
         }
-        this.type = new Array(num, type);           //C.type = array(num.value, C1.type);
-
+        this.type = new Array(num, type);                   //C.type = array(num.value, C1.type);
     }
 
     //decl → type id ;
@@ -197,14 +195,10 @@ public class Var {
     //loc -> id [num]
     private void arrayReferenceTrue(ArrayList<Var> vars){
         String addr = null;
-        String value = null;
         Type type = null;
         for (Var var : vars){
             if("bool".equals(var.name)) {
                 addr = var.addr;
-                Id id = env.getId(new Identifier(addr));
-                if(id != null)value = bytesChangeToData(id);
-                else value = var.value;
             }
             else if ("loc".equals(var.name)){
                 type = var.type;
@@ -213,40 +207,29 @@ public class Var {
         }
         this.addr = tempVarS.addTempVar();              //loc.addr = new Temp();    申请临时变量
         this.type = ((Array)type).getOf();              //loc.type = loc.array.type.elem
-        this.value = String.valueOf(Integer.valueOf(value) * this.type.getWidth());  // gen(loc.addr = bool.addr * loc.type.width;)
-        quadruples.addQuadruple("*", addr, "" + this.type.getWidth(), this.addr);
-        tempVarS.getTempVar(this.addr).setValue(this.value);
+        quadruples.addQuadruple("*", addr, "" + this.type.getWidth(), this.addr);   // gen(loc.addr = bool.addr * loc.type.width;)
     }
 
     //loc -> loc [num]
     private void arrayReferenceFalse(ArrayList<Var> vars){
         String addrB = null;
         String addrL = null;
-        String valueB = null;
-        String valueL = null;
         Type type = null;
         for (Var var : vars){
             if("bool".equals(var.name)) {
                 addrB = var.addr;
-                Id id = env.getId(new Identifier(addrB));           //bool为参数时
-                if(id != null)valueB = bytesChangeToData(id);
-                else valueB = var.value;
             }
             else if ("loc".equals(var.name)){
                 type = var.type;
                 addrL = var.addr;
-                valueL = var.value;
                 array = var.array;                      //loc.array = loc1.array;
             }
         }
         this.type = ((Array)type).getOf();              //loc.type = loc.type.elem
         String t = tempVarS.addTempVar();               //t = new Temp();
         this.addr = tempVarS.addTempVar();              //loc.addr = new Temp();    申请临时变量
-        tempVarS.getTempVar(t).setValue(String.valueOf(Integer.valueOf(valueB) * this.type.getWidth()));   // gen(t = bool.addr * loc.type.width;)
-        quadruples.addQuadruple("*", addrB, "" + this.type.getWidth(), t);                        //添加四元式
-        this.value = "" + (Integer.valueOf(valueL) + Integer.valueOf(tempVarS.getTempVar(t).getValue()));  // gen(loc.addr = loc1.addr + t;)
-        quadruples.addQuadruple("+", addrL, t, this.addr);
-        tempVarS.getTempVar(this.addr).setValue(this.value);//设置临时变量的值
+        quadruples.addQuadruple("*", addrB, "" + this.type.getWidth(), t);                        // gen(t = bool.addr * loc.type.width;)
+        quadruples.addQuadruple("+", addrL, t, this.addr);               // gen(loc.addr = loc1.addr + t;)
     }
 
     //变量和数组赋值 stmt → loc = bool ;
@@ -264,17 +247,13 @@ public class Var {
         Type var = env.getId(array).type;
         if(!(var instanceof Array)){
             if (Type.conversion(var, bool.type)) {
-                env.getId(array).setValue(bool.value);
                 quadruples.addQuadruple("=", bool.addr, null, array.toString());
             } else System.out.println("类型不正确");
         }
         else {
             if (Type.conversion(((Array) var).getBasicType(), bool.type)){
-                env.getId(array).setValue(bool.value, bool.type.getWidth());
                 this.addr = tempVarS.addTempVar();
-                this.value = bool.value;
                 quadruples.addQuadruple("=", array.toString(), var1.addr, this.addr);
-                tempVarS.getTempVar(this.addr).setValue(this.value);
             }
         }
     }
@@ -286,9 +265,7 @@ public class Var {
         if(tempVar != null) {
             type = var.type;
             addr = tempVarS.addTempVar();
-            this.value = tempVar.getValue();
             quadruples.addQuadruple("=", var.array.toString(), var.addr, addr);
-            tempVarS.getTempVar(this.addr).setValue(this.value);
         }
         else defaultMethod(vars);
     }
@@ -298,49 +275,11 @@ public class Var {
         for(Var var : vars){
             type = var.type;
             if (type != null) {
-                value = var.value;
                 addr = var.addr;
                 array = var.array;
                 break;
             }
         }
-    }
-
-    //数组转换成数据
-    private String bytesChangeToData(Id id){
-        Type type = id.getType();
-        byte[] bytes = id.getValue();
-        String values = null;
-        if(type == Type.getInt()){
-            values = "" + BytesToNum.bytesToInt(bytes, 0);
-        }
-        else if (type == Type.getShort()){
-            values = "" + BytesToNum.bytesToShort(bytes, 0);
-        }
-        else if (type == Type.getLong()){
-            values = "" + BytesToNum.bytesToLong(bytes, 0);
-        }
-        else if(type == Type.getFloat()){
-            values = "" + BytesToReal.bytesToFloat(bytes, 0);
-        }
-        else if (type == Type.getDouble()){
-            values = "" + BytesToReal.bytesToDouble(bytes, 0);
-        }
-        else if (type == Type.getByte()){
-            values = "" + bytes[0];
-        }
-        else if ((type == Type.getChar())){
-            values = "" + bytes[0];
-        }
-        else if(type == Type.getBoolean()){
-            if (bytes[0] == '1'){
-                values = "" + true;
-            }
-            else if(bytes[0] == '0'){
-                values = "" + false;
-            }
-        }
-        return values;
     }
 
     /**>>>>>>>>>>>>>> proc: getter setter override <<<<<<<<<<<<<<<<<*/
@@ -355,10 +294,6 @@ public class Var {
 
     public String getAddr() {
         return addr;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     public String getName() {
