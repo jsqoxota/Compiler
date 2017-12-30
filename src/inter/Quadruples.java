@@ -41,12 +41,14 @@ public class Quadruples {
         StringBuilder stringBuilder = new StringBuilder();
         for (String[] strings : quadruples){
             if("=".equals(strings[OP]))assignment(strings,stringBuilder);
+            else if(strings[ARG2] == null && !("=".equals(strings[OP]))) monocular(strings, stringBuilder);
             else binocular(strings, stringBuilder);
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
     }
 
+    //赋值
     private void assignment(String[] strings, StringBuilder stringBuilder){
         stringBuilder.append(String.format("%-4s",strings[RESULT]));
         stringBuilder.append(" " + strings[OP] + " ");
@@ -60,11 +62,20 @@ public class Quadruples {
         }
     }
 
+    //双目运算符
     private void binocular(String[] strings, StringBuilder stringBuilder){
         stringBuilder.append(String.format("%-4s",strings[RESULT]));
         stringBuilder.append(" = ");
         stringBuilder.append(strings[ARG1] + " ");
         stringBuilder.append(strings[OP] + " ");
         stringBuilder.append(strings[ARG2]);
+    }
+
+    //单目运算符
+    private void monocular(String[] strings, StringBuilder stringBuilder){
+        stringBuilder.append(String.format("%-4s",strings[RESULT]));
+        stringBuilder.append(" = ");
+        stringBuilder.append(" " + strings[OP] + " ");
+        stringBuilder.append(strings[ARG1]);
     }
 }

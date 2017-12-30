@@ -1,12 +1,11 @@
 {
     //变量声明
-    int i;
-    int [10][10][10]b;
-    int [5]c;
+    boolean flag;
+    double b;
 
     /*变量赋值*/
-    i = 1 + 1;
-    i = i * 5 * 10 / 100;
-    c[1] = 2;
-    b[c[i]][i][0] = 5;
+    flag = true;
+    flag = !flag;
+    b = 10.0;
+    b = -b;
 }

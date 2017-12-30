@@ -61,6 +61,8 @@ public class Var {
             case 35: addOrSub(vars, "-");break;                 //expr → expr - term
             case 37: mulOrDiv(vars, "*");break;                 //term → term * unary
             case 38: mulOrDiv(vars, "/");break;                 //term → term / unary
+            case 40: monocular(vars, "!");break;                //unary → ! unary
+            case 41: monocular(vars, "-");break;                //unary → - unary
             default:defaultMethod(vars); break;
         }
     }
@@ -125,6 +127,16 @@ public class Var {
             addr = token.toString();
             name = "boolean";
         }
+        else if ("true".equals(temp)){
+            type = Type.getBoolean();
+            addr = "true";
+            name = "true";
+        }
+        else if("false".equals(temp)){
+            type = Type.getBoolean();
+            addr = "false";
+            name = "false";
+        }
     }
 
     //expr → expr + term or expr → expr - term
@@ -135,7 +147,7 @@ public class Var {
             if("expr".equals(var.name)) {                     //操作数1
                 arg1 = var;
             }
-            else if("term".equals(var.name)){                  //数组类型
+            else if("term".equals(var.name)){                 //操作数2
                 arg2 = var;
             }
         }
@@ -153,7 +165,7 @@ public class Var {
             if("term".equals(var.name)) {                     //操作数1
                 arg1 = var;
             }
-            else if("unary".equals(var.name)){                  //数组类型
+            else if("unary".equals(var.name)){                //操作数2
                 arg2 = var;
             }
         }
@@ -161,6 +173,31 @@ public class Var {
         this.type = Type.max(arg1.type, arg2.type);
         if(type == null)System.out.println("类型错误！");
         quadruples.addQuadruple(op, arg1.addr, arg2.addr, this.addr);
+    }
+
+    //unary → ! unary or //unary → - unary
+    private void monocular(ArrayList<Var> vars, String op){
+        Var arg = null;
+        for (Var var : vars){
+            if("unary".equals(var.name)) {                     //操作数1
+                arg = var;
+            }
+        }
+        this.addr = tempVarS.addTempVar();
+        if("!".equals(op)){
+            if (arg.type == Type.getBoolean()){
+                quadruples.addQuadruple(op, arg.addr, null, this.addr);
+                this.type = arg.type;
+            }
+            else System.out.println("Operator '!' cannot be applied to '" + arg.type + "'");
+        }
+        else if ("-".equals(op)){
+            if (arg.type != Type.getBoolean()) {
+                quadruples.addQuadruple(op, arg.addr, null, this.addr);
+                this.type = arg.type;
+            }
+            else System.out.println("Operator '-' cannot be applied to '" + arg.type + "'");
+        }
     }
 
     //C → [ num ] C1
@@ -248,7 +285,7 @@ public class Var {
         if(!(var instanceof Array)){
             if (Type.conversion(var, bool.type)) {
                 quadruples.addQuadruple("=", bool.addr, null, array.toString());
-            } else System.out.println("类型不正确");
+            } else System.out.println("类型不正确 assignment");
         }
         else {
             if (Type.conversion(((Array) var).getBasicType(), bool.type)){
