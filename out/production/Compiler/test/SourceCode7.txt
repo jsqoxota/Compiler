@@ -2,8 +2,10 @@
     //变量声明
     boolean flag;
     double b;
+    boolean [10]flags;
 
     /*变量赋值*/
+    flags[1] = true;
     flag = true;
     flag = !flag;
     b = 10.0;

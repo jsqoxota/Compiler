@@ -292,8 +292,7 @@ public class Var {
         }
         else {
             if (Type.conversion(((Array) var).getBasicType(), bool.type)){
-                this.addr = tempVarS.addTempVar();
-                quadruples.addQuadruple("=", array.toString(), var1.addr, this.addr);
+                quadruples.addQuadruple("=", var1.addr, bool.addr, array.toString());
             }
         }
     }

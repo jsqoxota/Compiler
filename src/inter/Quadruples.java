@@ -50,15 +50,17 @@ public class Quadruples {
 
     //赋值
     private void assignment(String[] strings, StringBuilder stringBuilder){
-        stringBuilder.append(String.format("%-4s",strings[RESULT]));
-        stringBuilder.append(" " + strings[OP] + " ");
         if(strings[ARG2] == null){
+            stringBuilder.append(String.format("%-4s",strings[RESULT]));
+            stringBuilder.append(" " + strings[OP] + " ");
             stringBuilder.append(strings[ARG1]);
             return;
         }
         else {
-            stringBuilder.append(strings[ARG1]);
-            stringBuilder.append("[" + strings[ARG2] + "]");
+            stringBuilder.append(strings[RESULT]);
+            stringBuilder.append("[" + strings[ARG1] + "]");
+            stringBuilder.append(" " + strings[OP] + " ");
+            stringBuilder.append(strings[ARG2]);
         }
     }
 
