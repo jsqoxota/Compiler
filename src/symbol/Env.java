@@ -23,8 +23,8 @@ public class Env {
 
     public Id getId(Token w){
         for (Env e = this; e != null; e = e.prev){
-            Id found = (e.symbolTable.get(w));
-            if(found != null )return symbolTable.get(w);
+            Id found = e.symbolTable.get(w);
+            if(found != null )return found;
         }
         return null;
     }

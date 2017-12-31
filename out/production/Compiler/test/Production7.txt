@@ -7,14 +7,15 @@ decl → type id ;
 type → basic C
 C → [ num ] C
 C → ε
-stmts → stmts stmt
+stmts → stmts M stmt M
 stmts → ε
 stmt → loc = bool ;
 stmt → if ( bool ) M stmt
 stmt → if ( bool ) M stmt N else M stmt
 stmt → while M ( bool ) M stmt
-stmt → do stmt while ( bool ) ;
+stmt → do M stmt while ( bool ) ; M
 stmt → break ;
+stmt → continue ;
 stmt → block
 loc → loc [ bool ]
 loc → id

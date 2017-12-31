@@ -50,7 +50,10 @@ public class Parser {
 
     //分析
     public void analysis()throws IOException{
-        boolean flag = false;
+        boolean flag = false;                           //
+        boolean flag2 = true;                          //反复读取词法单元
+        Token token = null;
+        Var var = null;
         int step = 1;                                   //步骤编号
         int location = 0;                               //第一个符号的位置
         grammar = analysisTable.getGrammar();           //文法
@@ -60,17 +63,18 @@ public class Parser {
         stateStack.push(0);
         while (true){
             int s = stateStack.peek();
-            Token token = tokens.get(location);                 //当前输入的词法单元
-            Var var = new Var(token, env);
+            if(flag2){
+                token = tokens.get(location);                 //当前输入的词法单元
+                var = new Var(token, env);
+                flag2 = false;
+            }
             String string = analysisTable.getAnalysisTable()[s][analysisTable.getNumber(token)];
             /**>>>>>>>>>>>>>>>>>>>>>>>>>符号表新建和删除<<<<<<<<<<<<<<<<<<*/
-            if(flag) {
-                if ("{".equals(token.toString())) {
-                    env = new Env(env);
-                    Statement.setEnv(env);
-                    Var.setEnv(env);
-                    flag = false;
-                }
+            if (flag && "{".equals(token.toString())) {
+                env = new Env(env);
+                Statement.setEnv(env);
+                Var.setEnv(env);
+                flag = false;
             }
             /**>>>>>>>>>>>>>>>>>>>>>>移入，规约，接受<<<<<<<<<<<<<<<<<<<*/
             if(string == null) {
@@ -83,6 +87,7 @@ public class Parser {
                 symbolStack.push(var);
                 location++;
                 flag = true;
+                flag2 = true;
             }
             else if( string.charAt(0) == 'r'){//规约
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
@@ -96,9 +101,21 @@ public class Parser {
                     for (int i = 0; i < production.getElements().size(); i++)
                         vars.add(symbolStack.pop());
                 }
-                Var var1 = new Var(production.getNonTerminals(),vars, productionNum);
+                Var var1;
+                if(productionNum == 16 || productionNum == 17){
+                    var1 = new Var(production.getNonTerminals(), symbolStack, productionNum);
+                }
+                else var1 = new Var(production.getNonTerminals(),vars, productionNum);
                 symbolStack.push(var1);
                 GOTO(production, stateStack);
+                if(productionNum == 2){     //符号表前移
+                    if (env != null) {
+                        System.out.println(env.toString());
+                        env = env.getPrev();
+                    }
+                    System.out.println(quadruples.toString());
+                }
+
             }
             else if("acc".equals(string)){//接受
                 printAnalysisProcess(step, stateStack, symbolStack, location, "接受　　　　");
@@ -112,14 +129,6 @@ public class Parser {
             /**>>>>>>>>>>>>>>>>记录数据<<<<<<<<<<<<<<<<<<*/
             if("basic".equals(token.getTag())){
                 TypeS.setType((Type) token);
-            }
-            else if (flag && "}".equals(token.toString())) {
-                if (env != null) {
-                    System.out.println(env.toString());
-                    env = env.getPrev();
-                }
-                flag = false;
-                System.out.println(quadruples.toString());
             }
         }
     }
