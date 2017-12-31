@@ -239,6 +239,7 @@ public class SetsOfItems {
         if(OtherOp.isOtherOp(s) != null) return true;
         if(RelationOp.isRelationOp(s) != null) return true;
         if(OtherWord.isOtherWord(s)) return true;
+        if(lexer.Boolean.isBoolean(s) != null)return true;
         else return false;
     }
 

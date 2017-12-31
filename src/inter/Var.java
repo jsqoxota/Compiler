@@ -91,6 +91,9 @@ public class Var {
         else if ("byte".equals(temp)){
             type = Type.getByte();
         }
+        else if("boolean".equals(temp)){
+            type = Type.getBoolean();
+        }
     }
 
     //词法单元类型
@@ -122,20 +125,20 @@ public class Var {
             addr = token.toString();
             name = "char";
         }
-        else if("boolean".equals(temp)){
+        else if ("boolean".equals(temp)){
             type = Type.getBoolean();
-            addr = token.toString();
             name = "boolean";
+            booleanValue(token);
         }
-        else if ("true".equals(temp)){
-            type = Type.getBoolean();
+    }
+
+    //boolean
+    private void booleanValue(Token token){
+        String value = token.toString();
+        if("true".equals(value)){
             addr = "true";
-            name = "true";
-        }
-        else if("false".equals(temp)){
-            type = Type.getBoolean();
+        }else if("false".equals(value)){
             addr = "false";
-            name = "false";
         }
     }
 

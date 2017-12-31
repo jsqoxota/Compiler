@@ -36,7 +36,7 @@ public class ReservedWord extends Word {
         //reserve(new ReservedWord("double",      Tag.DOUBLE      ));
         reserve(new ReservedWord("else",        Tag.ELSE        ));
         reserve(new ReservedWord("extends",     Tag.EXTENDS     ));
-        reserve(new ReservedWord("false",       Tag.FALSE       ));
+        //reserve(new ReservedWord("false",       Tag.FALSE       ));
         reserve(new ReservedWord("final",       Tag.FINAL       ));
         reserve(new ReservedWord("finally",     Tag.FINALLY     ));
         //reserve(new ReservedWord("float",       Tag.FLOAT       ));
@@ -67,7 +67,7 @@ public class ReservedWord extends Word {
         reserve(new ReservedWord("throws",      Tag.THROWS      ));
         reserve(new ReservedWord("transient",   Tag.TRANSIENT   ));
         reserve(new ReservedWord("try",         Tag.TRY         ));
-        reserve(new ReservedWord("true",        Tag.TRUE        ));
+        //reserve(new ReservedWord("true",        Tag.TRUE        ));
         reserve(new ReservedWord("void",        Tag.VOID        ));
         reserve(new ReservedWord("volatile",    Tag.VOLATILE    ));
         reserve(new ReservedWord("while",       Tag.WHILE       ));
@@ -79,6 +79,8 @@ public class ReservedWord extends Word {
         reserve(Type.getDouble());
         reserve(Type.getChar());
         reserve(Type.getBoolean());
+        reserve(Boolean.True);
+        reserve(Boolean.False);
     }
 
     //将关键字保存到HashMap

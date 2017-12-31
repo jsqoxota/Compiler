@@ -7,7 +7,7 @@
 < ; , otherOp >
 < flag , id >
 < = , assOp >
-< true , key >
+< true , boolean >
 < ; , otherOp >
 < flag , id >
 < = , assOp >
