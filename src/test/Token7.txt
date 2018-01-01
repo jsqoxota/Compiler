@@ -134,6 +134,7 @@
 < ) , bracket >
 < i , id >
 < = , assOp >
+< - , ariOp >
 < 1000000 , num >
 < ; , otherOp >
 < while , key >

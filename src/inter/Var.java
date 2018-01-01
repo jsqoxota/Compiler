@@ -55,10 +55,10 @@ public class Var {
             case 31: relation(vars,"<=");break;         //rel → expr <= expr
             case 32: relation(vars,">=");break;         //rel → expr >= expr
             case 33: relation(vars,">");break;          //rel → expr > expr
-            case 35: addOrSub(vars, "+");break;         //expr → expr + term
-            case 36: addOrSub(vars, "-");break;         //expr → expr - term
-            case 38: mulOrDiv(vars, "*");break;         //term → term * unary
-            case 39: mulOrDiv(vars, "/");break;         //term → term / unary
+            case 35: ArithmeticOp(vars, "+");break;         //expr → expr + term
+            case 36: ArithmeticOp(vars, "-");break;         //expr → expr - term
+            case 38: ArithmeticOp(vars, "*");break;         //term → term * unary
+            case 39: ArithmeticOp(vars, "/");break;         //term → term / unary
             case 41: monocular(vars, "!");break;        //unary → ! unary
             case 42: monocular(vars, "-");break;        //unary → - unary
             case 44: defaultMethod(vars, 1);break;    //factor → ( bool )
@@ -182,6 +182,7 @@ public class Var {
             this.type = id.getType();
             this.addr = id.toString();
         }
+        else System.out.println("变量未声明");
     }
 
     //loc → loc[bool]
@@ -197,50 +198,23 @@ public class Var {
         }
     }
 
-    //expr → expr + term or expr → expr - term
-    private void addOrSub(ArrayList<Var> vars, String op){
-        Var arg1 = null;
-        Var arg2 = null;
-        for (Var var : vars){
-            if("expr".equals(var.name)) {                     //操作数1
-                arg1 = var;
-            }
-            else if("term".equals(var.name)){                 //操作数2
-                arg2 = var;
-            }
-        }
+    //expr → expr + term
+    //expr → expr - term
+    //term → term * unary
+    //term → term / unary
+    private void ArithmeticOp(ArrayList<Var> vars, String op){
+        Var arg1 = vars.get(2);             //操作数1
+        Var arg2 = vars.get(0);             //操作数2
         this.addr = tempVarS.addTempVar();
         this.type = Type.max(arg1.type, arg2.type);
         if(type == null)System.out.println("类型错误！");
         quadruples.addQuadruple(op, arg1.addr, arg2.addr, this.addr);
     }
 
-    //term → term * unary  or  term → term / unary
-    private void mulOrDiv(ArrayList<Var> vars, String op){
-        Var arg1 = null;
-        Var arg2 = null;
-        for (Var var : vars){
-            if("term".equals(var.name)) {                     //操作数1
-                arg1 = var;
-            }
-            else if("unary".equals(var.name)){                //操作数2
-                arg2 = var;
-            }
-        }
-        this.addr = tempVarS.addTempVar();
-        this.type = Type.max(arg1.type, arg2.type);
-        if(type == null)System.out.println("类型错误！");
-        quadruples.addQuadruple(op, arg1.addr, arg2.addr, this.addr);
-    }
-
-    //unary → ! unary or  unary → - unary
+    //unary → ! unary
+    //unary → - unary
     private void monocular(ArrayList<Var> vars, String op){
-        Var arg = null;
-        for (Var var : vars){
-            if("unary".equals(var.name)) {                     //操作数1
-                arg = var;
-            }
-        }
+        Var arg = vars.get(0);
         this.addr = tempVarS.addTempVar();
         if("!".equals(op)){
             if (arg.type == Type.getBoolean()){

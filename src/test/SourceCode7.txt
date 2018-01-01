@@ -9,7 +9,7 @@
         if( j >= i)continue;
         x = a[i]; a[i] = - a[j]; a[j] = x;
     }
-    while(!false)i = 1000000;
+    while(!false)i = -1000000;
     while( 1 == 2)i = 456;
     i = 100;
 }

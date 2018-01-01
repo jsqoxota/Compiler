@@ -41,10 +41,11 @@
 39  goto  null   null   3      
 40  goto  null   null   42     
 41  !     false  null   t14    
-42  =     1000000null   i      
-43  goto  null   null   40     
-44  if == 1      2      46     
-45  goto  null   null   48     
-46  =     456    null   i      
-47  goto  null   null   44     
-48  =     100    null   i      
+42  -     1000000null   t15    
+43  =     t15    null   i      
+44  goto  null   null   40     
+45  if == 1      2      47     
+46  goto  null   null   49     
+47  =     456    null   i      
+48  goto  null   null   45     
+49  =     100    null   i      
