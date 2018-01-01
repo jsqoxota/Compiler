@@ -16,10 +16,11 @@ public class Var {
     private String addr = null;                     //临时变量名
     private String name = null;                     //变量名
     private Token array = null;                     //数组基地址
-    private BackPatchingList trueList = null;       //跳转表
-    private BackPatchingList falseList = null;
-    private BackPatchingList nextList = null;
-    private BackPatchingList lastList = null;       //循环语句末尾
+    //回填表
+    private BackPatchingList trueList = null;       //true
+    private BackPatchingList falseList = null;      //false
+    private BackPatchingList nextList = null;       //语句末尾
+    private BackPatchingList lastList = null;       //循环末尾
     private int instr;
 
     //终结符
@@ -342,11 +343,11 @@ public class Var {
                 Id b = env.getId(new Identifier(bool.addr));
                 if(b != null) {
                     if( !(b.type instanceof Array))
-                        quadruples.addQuadruple("=[]", loc.addr, bool.addr, array.toString());
+                        quadruples.addQuadruple("[]=", loc.addr, bool.addr, array.toString());
                     else quadruples.addQuadruple("=", array.toString(), bool.addr, loc.addr);
                 }
                 else {
-                    quadruples.addQuadruple("=[]", loc.addr, bool.addr, array.toString());
+                    quadruples.addQuadruple("[]=", loc.addr, bool.addr, array.toString());
                 }
             }
         }

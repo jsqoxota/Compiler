@@ -1,0 +1,49 @@
+0  :i = 10000
+1  :t0 = 5 * 4
+2  :a[t0] = 123
+3  :if i > 2 goto 9
+4  :goto 5
+5  :if j > 2 goto 7
+6  :goto 40
+7  :if j > 10 goto 9
+8  :goto 40
+9  :t1 = i + 1
+10 :i = t1
+11 :goto 16
+12 :t2 = i * 4
+13 :t3 = a[t2]
+14 :if t3 < v goto 9
+15 :goto 16
+16 :t4 = j - 1
+17 :j = t4
+18 :goto 16
+19 :t5 = j * 4
+20 :t6 = a[t5]
+21 :if t6 > v goto 16
+22 :goto 23
+23 :if i >= j goto 25
+24 :goto 26
+25 :goto 40
+26 :if j >= i goto 28
+27 :goto 29
+28 :goto 3
+29 :t7 = i * 4
+30 :t8 = a[t7]
+31 :x = t8
+32 :t9 = i * 4
+33 :t10 = j * 4
+34 :t11 = a[t10]
+35 :t12 =  - t11
+36 :a[t9] = t12
+37 :t13 = j * 4
+38 :a[t13] = x
+39 :goto 3
+40 :goto 42
+41 :t14 =  ! false
+42 :i = 1000000
+43 :goto 40
+44 :if 1 == 2 goto 46
+45 :goto 48
+46 :i = 456
+47 :goto 44
+48 :i = 100

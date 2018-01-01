@@ -45,14 +45,13 @@ public class Quadruples {
         quadruples.get(location)[RESULT] = "" + num;
     }
 
-    @Override
-    public String toString() {
+    public String changeToIntermediateCode (){
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
         for (String[] strings : quadruples){
             stringBuilder.append(String.format("%-3s:",i));
             if("=".equals(strings[OP]))assignment(strings,stringBuilder);
-            else if ("=[]".equals(strings[OP]))valueIsArray(strings,stringBuilder);
+            else if ("[]=".equals(strings[OP]))valueIsArray(strings,stringBuilder);
             else if("goto".equals(strings[OP]))Goto(strings, stringBuilder);
             else if(strings[OP].charAt(0) == 'i')IfGo(strings, stringBuilder);
             else if(strings[ARG2] == null && !("=".equals(strings[OP]))) monocular(strings, stringBuilder);
@@ -119,5 +118,27 @@ public class Quadruples {
         stringBuilder.append("[" + strings[ARG1] + "]");
         stringBuilder.append(" = ");
         stringBuilder.append(strings[ARG2]);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int i = 0;
+        stringBuilder.append(String.format("%-4s",""));
+        stringBuilder.append(String.format("%-6s","op"));
+        stringBuilder.append(String.format("%-7s","arg1"));
+        stringBuilder.append(String.format("%-7s","arg2"));
+        stringBuilder.append(String.format("%-7s","result"));
+        stringBuilder.append("\r\n");
+        for (String[] strings : quadruples){
+            stringBuilder.append(String.format("%-4s",i));
+            stringBuilder.append(String.format("%-6s",strings[OP]));
+            stringBuilder.append(String.format("%-7s",strings[ARG1]));
+            stringBuilder.append(String.format("%-7s",strings[ARG2]));
+            stringBuilder.append(String.format("%-7s",strings[RESULT]));
+            stringBuilder.append("\r\n");
+            i++;
+        }
+        return stringBuilder.toString();
     }
 }

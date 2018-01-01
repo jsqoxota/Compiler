@@ -14,6 +14,8 @@ public class Main {
     private static final String pathnameSetsOfItems = "./src/test/SetsOfItems" + selectPathname +".txt";
     private static final String pathnameAnalysisTable = "./src/test/AnalysisTable" + selectPathname + ".txt";
     private static final String pathnameAnalysisProcess = "./src/test/AnalysisProcess" + selectPathname +".txt";
+    private static final String pathnameQuadruples = "./src/test/Quadruples" + selectPathname + ".txt";
+    private static final String pathnameIntermediateCode = "./src/test/IntermediateCode" + selectPathname + ".txt";
     private static boolean flag = false;
     public static void main(String[] args)throws IOException {
         File sourceCodeFile = new File(pathnameSourceCode);
@@ -22,6 +24,8 @@ public class Main {
         File setsOfItemsFile = new File(pathnameSetsOfItems);
         File analysisTableFile = new File(pathnameAnalysisTable);
         File analysisProcessFile = new File(pathnameAnalysisProcess);
+        File QuadruplesFile = new File(pathnameQuadruples);
+        File IntermediateCodeFile = new File(pathnameIntermediateCode);
 
         //检查文件
         checkInputFile(sourceCodeFile);
@@ -30,6 +34,8 @@ public class Main {
         checkOutputFile(setsOfItemsFile);
         checkOutputFile(analysisTableFile);
         checkOutputFile(analysisProcessFile);
+        checkOutputFile(QuadruplesFile);
+        checkOutputFile(IntermediateCodeFile);
         if(flag)return;
 
         /******************词法分析************************/
@@ -48,15 +54,21 @@ public class Main {
         }
         bufferedWriter1.close();
 
-        /******************语法分析************************/
+        /******************语法分析 and 中间代码生成************************/
         Parser parser = Parser.getInstance(productionFile, tokenFile);
         //输出项集族和分析表到文件
         BufferedWriter bufferedWriter2 = new BufferedWriter(new FileWriter(analysisProcessFile));
-        parser.delegate(msg ->{ BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
-                                bufferedWriter.write(msg); bufferedWriter.close();},
-                                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisTableFile));
-                                bufferedWriter.write(msg);bufferedWriter.close();},
-                                msg -> { bufferedWriter2.write(msg);});
+        parser.delegate(
+                msg ->{ BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(setsOfItemsFile));
+                bufferedWriter.write(msg); bufferedWriter.close();},
+                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(analysisTableFile));
+                bufferedWriter.write(msg);bufferedWriter.close();},
+                msg -> { bufferedWriter2.write(msg);},
+                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(QuadruplesFile));
+                bufferedWriter.write(msg);bufferedWriter.close();},
+                msg -> { BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(IntermediateCodeFile));
+                    bufferedWriter.write(msg);bufferedWriter.close();}
+                );
         //获得分析表
         parser.getAnalysisTable();
         //获取词法单元

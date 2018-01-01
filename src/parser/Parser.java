@@ -21,6 +21,8 @@ public class Parser {
     private static OutputToFile setsOfItemsFile;
     private static OutputToFile analysisTableFile;
     private static OutputToFile analysisProcessFile;
+    private static OutputToFile QuadruplesFile;
+    private static OutputToFile IntermediateCodeFile;
     private static ArrayList<Token> tokens;                 //源程序词法单元
     private static boolean flag;                            //打印表头标志
     private static Env env;                                 //符号表
@@ -50,8 +52,8 @@ public class Parser {
 
     //分析
     public void analysis()throws IOException{
-        boolean flag = false;                           //
-        boolean flag2 = true;                          //反复读取词法单元
+        boolean flag = false;                           //是否第一次
+        boolean flag2 = true;                           //反复读取词法单元
         Token token = null;
         Var var = null;
         int step = 1;                                   //步骤编号
@@ -69,7 +71,7 @@ public class Parser {
                 flag2 = false;
             }
             String string = analysisTable.getAnalysisTable()[s][analysisTable.getNumber(token)];
-            /**>>>>>>>>>>>>>>>>>>>>>>>>>符号表新建和删除<<<<<<<<<<<<<<<<<<*/
+            /**>>>>>>>>>>>>>>>>>>>>>>>>>符号表新建<<<<<<<<<<<<<<<<<<*/
             if (flag && "{".equals(token.toString())) {
                 env = new Env(env);
                 Statement.setEnv(env);
@@ -90,30 +92,30 @@ public class Parser {
                 flag2 = true;
             }
             else if( string.charAt(0) == 'r'){//规约
+                //获取产生式和产生式编号
                 production = grammar.getProduction(Integer.parseInt(string.substring(1, string.length())));
                 int productionNum = grammar.getProductionNumber(production);
+                //输出分析过程
                 String s1;
                 if(production.getElements().get(0).equals(SetsOfItems.epsilon))s1 = production.toString();
                 else s1 = production.toString()+"　";
                 printAnalysisProcess(step, stateStack, symbolStack, location, "根据"+ s1 +"规约");
                 ArrayList<Var> vars = new ArrayList<>();
+                //保存出栈的元素
                 if (!production.getElements().get(0).equals(SetsOfItems.epsilon)) {
                     for (int i = 0; i < production.getElements().size(); i++)
                         vars.add(symbolStack.pop());
                 }
                 Var var1;
-                if(productionNum == 16 || productionNum == 17){
+                if(productionNum == 16 || productionNum == 17){//break and continue
                     var1 = new Var(production.getNonTerminals(), symbolStack, productionNum);
                 }
-                else var1 = new Var(production.getNonTerminals(),vars, productionNum);
+                else var1 = new Var(production.getNonTerminals(),vars, productionNum);//other
                 symbolStack.push(var1);
                 GOTO(production, stateStack);
-                if(productionNum == 2){     //符号表前移
-                    if (env != null) {
-                        System.out.println(env.toString());
-                        env = env.getPrev();
-                    }
-                    System.out.println(quadruples.toString());
+                //符号表前移
+                if(productionNum == 2){
+                    if (env != null) env = env.getPrev();
                 }
 
             }
@@ -126,11 +128,13 @@ public class Parser {
                 break;
             }
             step++;
-            /**>>>>>>>>>>>>>>>>记录数据<<<<<<<<<<<<<<<<<<*/
+            /**>>>>>>>>>>>>>>>>设置数据类型<<<<<<<<<<<<<<<<<<*/
             if("basic".equals(token.getTag())){
                 TypeS.setType((Type) token);
             }
         }
+        QuadruplesFile.OutputToFile(quadruples.toString());
+        IntermediateCodeFile.OutputToFile(quadruples.changeToIntermediateCode());
     }
 
     //s = GOTO[Sm-r, A]
@@ -215,10 +219,12 @@ public class Parser {
     }
 
     //输出
-    public void delegate(OutputToFile setsOfItemsFile, OutputToFile analysisTableFile, OutputToFile analysisProcessFile){
+    public void delegate(OutputToFile setsOfItemsFile, OutputToFile analysisTableFile, OutputToFile analysisProcessFile, OutputToFile QuadruplesFile, OutputToFile IntermediateCodeFile){
         this.setsOfItemsFile = setsOfItemsFile;
         this.analysisTableFile = analysisTableFile;
         this.analysisProcessFile = analysisProcessFile;
+        this.QuadruplesFile = QuadruplesFile;
+        this.IntermediateCodeFile = IntermediateCodeFile;
     }
 
     //获得Token

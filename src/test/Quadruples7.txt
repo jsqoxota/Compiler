@@ -1,0 +1,50 @@
+    op    arg1   arg2   result 
+0   =     10000  null   i      
+1   *     5      4      t0     
+2   []=   t0     123    a      
+3   if >  i      2      9      
+4   goto  null   null   5      
+5   if >  j      2      7      
+6   goto  null   null   40     
+7   if >  j      10     9      
+8   goto  null   null   40     
+9   +     i      1      t1     
+10  =     t1     null   i      
+11  goto  null   null   16     
+12  *     i      4      t2     
+13  =     a      t2     t3     
+14  if <  t3     v      9      
+15  goto  null   null   16     
+16  -     j      1      t4     
+17  =     t4     null   j      
+18  goto  null   null   16     
+19  *     j      4      t5     
+20  =     a      t5     t6     
+21  if >  t6     v      16     
+22  goto  null   null   23     
+23  if >= i      j      25     
+24  goto  null   null   26     
+25  goto  null   null   40     
+26  if >= j      i      28     
+27  goto  null   null   29     
+28  goto  null   null   3      
+29  *     i      4      t7     
+30  =     a      t7     t8     
+31  =     t8     null   x      
+32  *     i      4      t9     
+33  *     j      4      t10    
+34  =     a      t10    t11    
+35  -     t11    null   t12    
+36  []=   t9     t12    a      
+37  *     j      4      t13    
+38  []=   t13    x      a      
+39  goto  null   null   3      
+40  goto  null   null   42     
+41  !     false  null   t14    
+42  =     1000000null   i      
+43  goto  null   null   40     
+44  if == 1      2      46     
+45  goto  null   null   48     
+46  =     456    null   i      
+47  goto  null   null   44     
+48  =     100    null   i      
