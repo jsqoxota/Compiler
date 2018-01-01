@@ -48,8 +48,8 @@ public class Var {
             case 23: and(vars);break;                       //join → join && M equality
             case 25: MIsEmpty(vars);break;                  //M → ε
             case 26: NIsEmpty(vars);break;                  //N → ε
-            case 27: relation2(vars, "==");break;       //equality → equality == rel
-            case 28: relation2(vars, "!=");break;       //equality → equality != rel
+            case 27: relation(vars, "==");break;        //equality → equality == rel
+            case 28: relation(vars, "!=");break;        //equality → equality != rel
             case 30: relation(vars,"<");break;          //rel → expr < expr
             case 31: relation(vars,"<=");break;         //rel → expr <= expr
             case 32: relation(vars,">=");break;         //rel → expr >= expr
@@ -68,14 +68,14 @@ public class Var {
         }
     }
 
-    //break 语句
+    //break continue 语句
     //stmt → break ;
     public Var(NonTerminals nonTerminals, Stack<Var> vars, int productionNum){
         name = nonTerminals.toString();
         boolean flag = false;
         Var stmts = null;
         for (int i = vars.size() - 1; i >= 0; i --){
-            if("while".equals(vars.get(i).name))flag = true;
+            if("while".equals(vars.get(i).name) || "do".equals(vars.get(i).name))flag = true;
             else if(flag && "stmts".equals(vars.get(i).name)){
                 stmts = vars.get(i);
                 break;
@@ -383,31 +383,15 @@ public class Var {
     // rel → expr <= expr
     // rel → expr > expr
     // rel → expr >= expr
+    //equality → equality == rel
+    //equality → equality != rel
     private void relation(ArrayList<Var> vars, String op){
         type = Type.getBoolean();
-        Var arg1 = vars.get(2);
-        Var arg2 = vars.get(0);
+        Var var1 = vars.get(2);
+        Var var2 = vars.get(0);
 
         trueList = BackPatchingList.makeList(Quadruples.getLocation());
-        quadruples.addQuadruple("if "+ op, arg1.addr, arg2.addr, null);
-        falseList = BackPatchingList.makeList(Quadruples.getLocation());
-        quadruples.addQuadruple("goto", null, null, null);
-    }
-
-    private void relation2(ArrayList<Var> vars, String op){
-        type = Type.getBoolean();
-        Var arg1 = null;
-        Var arg2 = null;
-        for (Var var : vars){
-            if ("equality".equals(var.name)) {
-                arg1 = var;
-            }
-            else if("rel".equals(var.name)){
-                arg2 = var;
-            }
-        }
-        trueList = BackPatchingList.makeList(Quadruples.getLocation());
-        quadruples.addQuadruple("if "+ op, arg1.addr, arg2.addr, null);
+        quadruples.addQuadruple("if "+ op, var1.addr, var2.addr, null);
         falseList = BackPatchingList.makeList(Quadruples.getLocation());
         quadruples.addQuadruple("goto", null, null, null);
     }
@@ -498,7 +482,7 @@ public class Var {
         Var M1 = vars.get(2);
         Var stmt = vars.get(1);
         Var M2 = vars.get(0);
-        BackPatchingList.backPatch(stmt.nextList, M1.instr, quadruples);
+        BackPatchingList.backPatch(stmt.nextList, M2.instr, quadruples);
         BackPatchingList.backPatch(stmts.lastList, M2.instr, quadruples);
         BackPatchingList.backPatch(stmts.nextList, M1.instr, quadruples);
         nextList = stmt.nextList;

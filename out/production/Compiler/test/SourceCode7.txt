@@ -1,11 +1,15 @@
 {
     int i; int j; float v; float x; float[100] a;
-    while( i > j ){
-        do i = i + 1; while( a[i] < v);
-        do j = j - 1; while( a[j] > v);
-        if( i >= j)continue;
-        if( i <= j)break;
-        x = a[i]; a[i] = a[j]; a[j] = x;
+    i = 10000;
+    a[5] = 123;
+    while( i > 2 || j > 2 && j > 10){
+        do { i = i + 1; break;} while( a[i] < v);
+        do { j = j - 1; continue;}while( a[j] > v);
+        if( i >= j)break;
+        if( j >= i)continue;
+        x = a[i]; a[i] = - a[j]; a[j] = x;
     }
+    while(!false)i = 1000000;
+    while( 1 == 2)i = 456;
+    i = 100;
 }
-

@@ -170,9 +170,10 @@ public class Parser {
         //动作
         analysisProcessFile.OutputToFile(String.format("%-50s",action));
         //符号
-        string = symbolStack.toString().replace("[","")
-                .replace(",","")
-                .replace("]","");
+        string = symbolStack.toString();
+        string = string.substring(0, string.length() - 1);
+        string = string.substring(1, string.length());
+        string = string.replace(",", "");
         analysisProcessFile.OutputToFile(String.format(s1, string));
         //输入
         StringBuilder stringBuilder = new StringBuilder();
